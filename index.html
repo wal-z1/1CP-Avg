@@ -417,7 +417,7 @@
         ALG: (cf, ci) => 0.67 * cf + 0.33 * ci,
         ANA: (cf, ci) => 0.67 * cf + 0.33 * ci,
         TEO: (cf, cc) => (2/3) * cf + (1/3) * cc,
-        ALSDD: (tpc, interos, cc, tp, cf) => (tpc + interos + cc) * 0.25 + tp * 0.2 + cf * 0.55,
+        ALSDD: (tpc, interos, cc, tpz, cf) => ((tpc + interos + cc)/3) * 0.25 + tpz * 0.2 + cf * 0.55,
         ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
         ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
       };
