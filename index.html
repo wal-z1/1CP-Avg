@@ -208,7 +208,6 @@
       }
     </style>
   </head>
-
   <body>
     <!-- Page header and toggles -->
     <h2 id="main-title">1CP S1 Avg Calc</h2>
@@ -331,17 +330,16 @@
         </tr>
         <script>
           // S2 modules and fields
- // S2 modules and fields
-const mC2 = [
-  { code: "SYS", coef: 3, fields: ["FE", "ME", "CC"] },
-  { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
-  { code: "ALG", coef: 3, fields: ["CF", "CI"] },
-  { code: "ANA", coef: 5, fields: ["CF", "CI"] },
-  { code: "TEO", coef: 2, fields: ["CF", "CC"] },
-  { code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"] },
-  { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
-  { code: "ElectF", coef: 4, fields: ["CF", "CI", "CC"] },
-];
+          const mC2 = [
+            { code: "SYS", coef: 3, fields: ["FE", "ME", "CC"] },
+            { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
+            { code: "ALG", coef: 3, fields: ["CF", "CI"] },
+            { code: "ANA", coef: 5, fields: ["CF", "CI"] },
+            { code: "TEO", coef: 2, fields: ["CF", "CC"] },
+            { code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"] },
+            { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
+            { code: "ELECT", coef: 4, fields: ["CF", "CI", "CC"] }
+          ];
           document.write(
             mC2.map(m => `<tr>
               <td>
@@ -455,21 +453,22 @@ const mC2 = [
         document.getElementById("f-a").textContent = (total / tCoef).toFixed(2);
       }
 
-// S2 overall calculation
-function cA_S2() {
-  let total = 0;
-  mC2.forEach(m => {
-    const key = m.code.toLowerCase();
-    const cell = document.querySelector(`.s2-${key}`);
-    const isManual = cell.querySelector(".m-g").style.display !== "none";
-    const s = gIV(`.s2-${key} ${isManual ? ".m-g" : ".c-g"} input`);
-    const avg = cMA(m.code, s, isManual, "S2");
-    document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
-    total += avg * m.coef;
-  });
-  // Use 27 as the total coefficient for Semester 2
-  document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
-}
+      // S2 overall calculation
+      function cA_S2() {
+        let total = 0;
+        mC2.forEach(m => {
+          const key = m.code.toLowerCase();
+          const cell = document.querySelector(`.s2-${key}`);
+          const isManual = cell.querySelector(".m-g").style.display !== "none";
+          const s = gIV(`.s2-${key} ${isManual ? ".m-g" : ".c-g"} input`);
+          const avg = cMA(m.code, s, isManual, "S2");
+          document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
+          total += avg * m.coef;
+        });
+        // Use 27 as the total coefficient for Semester 2
+        document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
+      }
+
       // Missing module calculations (S1 or S2)
       const missing = [];
       function addMissing() {
