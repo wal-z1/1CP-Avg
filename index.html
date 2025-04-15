@@ -240,10 +240,10 @@
           <select id="m-m" style="width: 100%; max-width: 200px">
             <option value="">-- Choose Module --</option>
             <!-- Options for S1 modules -->
-            <option value="SYS">SYS</option>
+            <option value="SYS1">SYS</option>
             <option value="ARCHI">ARCHI</option>
-            <option value="ALG">ALG</option>
-            <option value="ANA">ANA</option>
+            <option value="ALG1">ALG</option>
+            <option value="ANA1">ANA</option>
             <option value="TEE">TEE</option>
             <option value="ALSDS">ALSDS</option>
             <option value="BWEB">BWEB</option>
@@ -273,10 +273,10 @@
         <script>
           // S1 modules and fields
           const mC = [
-            { code: "SYS", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
+            { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
             { code: "ARCHI", coef: 4, fields: ["CF", "CI"] },
-            { code: "ALG", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA", coef: 5, fields: ["CF", "CI"] },
+            { code: "ALG1", coef: 3, fields: ["CF", "CI"] },
+            { code: "ANA1", coef: 5, fields: ["CF", "CI"] },
             { code: "TEE", coef: 2, fields: ["CF", "CC (/20)"] },
             { code: "ALSDS", coef: 5, fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"] },
             { code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"] },
@@ -332,14 +332,14 @@
         <script>
           // S2 modules and fields
           const mC2 = [
-            { code: "SYS", coef: 3, fields: ["FE", "ME", "CC"] },
+            { code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"] },
             { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
-            { code: "ALG", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA", coef: 5, fields: ["CF", "CI"] },
+            { code: "ALG2", coef: 3, fields: ["CF", "CI"] },
+            { code: "ANA2", coef: 5, fields: ["CF", "CI"] },
             { code: "TEO", coef: 2, fields: ["CF", "CC"] },
             { code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TPz", "CF"] },
             { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
-            { code: "ELECT", coef: 3, fields: ["CF", "CI", "CC"] },
+            { code: "ELECTF", coef: 4, fields: ["CF", "CI", "CC"] },
           ];
           document.write(
             mC2.map(m => `<tr>
@@ -381,9 +381,9 @@
     <div class="i-b" id="formula-display">
       <!-- S1 formulas by default -->
       <h3>Calc Formulas (S1)</h3>
-      <p><strong>SYS:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
+      <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
       <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-      <p><strong>ALG/ANA:</strong> (0.67 × CF) + (0.33 × CI)</p>
+      <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
       <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
       <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
       <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
@@ -400,10 +400,10 @@
 
       // S1 calculation functions/objects
       const mCal = {
-        SYS: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
+        SYS1: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
         ARCHI: (cf, ci, b = false) => 0.5 * cf + 0.5 * ci + (b ? 1 : 0),
-        ALG: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ALG1: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ANA1: (cf, ci) => 0.67 * cf + 0.33 * ci,
         TEE: (cf, p) => (2 / 3) * cf + (1 / 3) * p,
         ALSDS: (cf, ci, tp1, tp2, tr) => 0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
         BWEB: (cf, ci, cc) => 0.4 * cf + 0.4 * ci + 0.2 * cc,
@@ -412,14 +412,14 @@
 
       // S2 calculation functions/objects
       const mCal2 = {
-        SYS: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
+        SYS2: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
         MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
-        ALG: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ALG2: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ANA2: (cf, ci) => 0.67 * cf + 0.33 * ci,
         TEO: (cf, cc) => (2/3) * cf + (1/3) * cc,
         ALSDD: (tpc, interos, cc, tpz, cf) => ((tpc + interos + cc)/3) * 0.25 + tpz * 0.2 + cf * 0.55,
         ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
-        ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
+        ELECTF: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
       };
 
       // Helper: get input values given a selector (for both S1 and S2)
@@ -587,14 +587,14 @@
           title.textContent = "1CP S2 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S2)</h3>
-             <p><strong>SYS:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
+             <p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
              <p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>
-             <p><strong>ALG:</strong> 0.67 × CF + 0.33 × CI</p>
-             <p><strong>ANA:</strong> 0.67 × CF + 0.33 × CI</p>
+             <p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p>
+             <p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p>
              <p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p>
              <p><strong>ALSDD:(might change later due to unknown formula </strong> ("(TPc + interos + CC)"/3) × 0.25 + TP × 0.2 + CF × 0.55</p>
              <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
-             <p><strong>ELECT:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
+             <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
           // Hide S1 elements and show S2 elements
           document.getElementById("s1-table").style.display = "none";
           document.getElementById("s1-calc").style.display = "none";
@@ -606,21 +606,21 @@
           const select = document.getElementById("m-m");
           select.innerHTML =
             `<option value="">-- Choose Module --</option>
-             <option value="SYS">SYS</option>
+             <option value="SYS2">SYS2</option>
              <option value="MECA">MECA</option>
-             <option value="ALG">ALG</option>
-             <option value="ANA">ANA</option>
+             <option value="ALG2">ALG2</option>
+             <option value="ANA2">ANA2</option>
              <option value="TEO">TEO</option>
              <option value="ALSDD">ALSDD</option>
              <option value="ANG">ANG</option>
-             <option value="ELECT">ELECT</option>`;
+             <option value="ELECTF">ELECTF</option>`;
         } else {
           title.textContent = "1CP S1 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S1)</h3>
              <p><strong>SYS:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
              <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-             <p><strong>ALG/ANA:</strong> (0.67 × CF) + (0.33 × CI)</p>
+             <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
              <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
              <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
              <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
