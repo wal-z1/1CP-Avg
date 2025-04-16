@@ -212,33 +212,33 @@
     <!-- Page header and toggles -->
     <h2 id="main-title">1CP S1 Avg Calc</h2>
     <div style="text-align: center; margin-bottom: 1.5rem">
-      <!-- Existing talents toggle -->
+      <!-- Talent mode toggle (S1 vs. S2 based on table switch state) -->
       <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
         <input type="checkbox" id="t-m" onchange="tTM()" style="width: 20px; height: 20px" />
         Enable Talents Avg + Missing Module Calc
       </label>
       &nbsp;&nbsp;&nbsp;
-      <!-- New S2 mode toggle -->
+      <!-- Table mode S2 toggle -->
       <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
         <input type="checkbox" id="s2-m" onchange="toggleS2()" style="width: 20px; height: 20px" />
         Switch to S2 Mode
       </label>
     </div>
 
-    <!-- Existing talents section (S1/Talents Calc) -->
+    <!-- Talent section (used for both Talent S1 and Talent S2) -->
     <div id="t-s" style="display: none">
       <h3>Recover Missing Module from Talents Avg</h3>
       <div style="margin-bottom: 1rem">
         <label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Enter Talents Avg:</label>
         <input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" />
       </div>
-      <!-- new multi-missing section -->
+      <!-- New multi-missing section -->
       <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: flex-end;">
         <div>
           <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Select Module:</label>
           <select id="m-m" style="width: 100%; max-width: 200px">
             <option value="">-- Choose Module --</option>
-            <!-- Options for S1 modules -->
+            <!-- Options for S1 modules by default -->
             <option value="SYS">SYS</option>
             <option value="ARCHI">ARCHI</option>
             <option value="ALG">ALG</option>
@@ -252,10 +252,10 @@
         <button onclick="addMissing()">Add Module</button>
       </div>
       <div id="missing-list" style="margin-bottom: 1.5rem"></div>
-      <!-- end new -->
+      <!-- End multi-missing section -->
       <button onclick="cM()">Calc Semester Avg</button>
       <div class="r-b">
-        <h3>Semester 1 Avg: <span id="t-f-a">0.00</span></h3>
+        <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
       </div>
     </div>
 
@@ -315,7 +315,7 @@
     </div>
 
     <div class="r-b" id="s1-result" style="text-align: center">
-      <h3>Semester 1 Avg: <span id="f-a">0.00</span></h3>
+      <h3>Semester Avg: <span id="f-a">0.00</span></h3>
     </div>
 
     <!-- S2 Table Section (hidden by default) -->
@@ -354,7 +354,7 @@
                 <div class="c-g">
                   ${m.fields.map(f => `
                     <span class="g-l">${f}</span>
-                    <input type="number" min="0" ${f === "ME" || f==="FE" ? 'max="20"' : (f.includes("interos") || f==="TPc" ? 'max="20"' : 'max="20"')} step="0.5">
+                    <input type="number" min="0" ${f === "ME" || f==="FE" ? 'max="20"' : 'max="20"'} step="0.5">
                   `).join(" ")}
                 </div>
                 <div class="m-g" style="display:none;">
@@ -373,7 +373,7 @@
     </div>
 
     <div class="r-b" id="s2-result" style="text-align: center; display:none">
-      <h3>Semester 2 Avg: <span id="s2-f-a">0.00</span></h3>
+      <h3>Semester Avg: <span id="s2-f-a">0.00</span></h3>
     </div>
 
     <!-- Formula Display Section -->
@@ -394,10 +394,10 @@
     <script>
       // Global state variables
       let aB = false; // bonus toggle for ARCHI
-      let isS2 = false; // false = S1 mode, true = S2 mode
+      let isS2 = false; // false = S1 mode, true = S2 mode for table calculations
       const tCoef = 26; // common total coefficient
 
-      // S1 calculation functions/objects
+      // S1 calculation functions
       const mCal = {
         SYS: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
         ARCHI: (cf, ci, b = false) => 0.5 * cf + 0.5 * ci + (b ? 1 : 0),
@@ -409,7 +409,7 @@
         ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
       };
 
-      // S2 calculation functions/objects
+      // S2 calculation functions
       const mCal2 = {
         SYS: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
         MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
@@ -478,7 +478,6 @@
         // Choose source array based on mode
         const mObj = (!isS2 ? mC : mC2).find(x => x.code === mod);
         const container = document.getElementById("missing-list");
-        const idx = missing.length;
         missing.push({ code: mod, coef: mObj.coef, fields: mObj.fields });
         const div = document.createElement("div");
         div.id = `miss-${mod}`;
@@ -563,28 +562,76 @@
         cA_S2();
       }
 
-      // Toggle talents section (unchanged)
+      /***********************
+       * VISIBILITY HANDLING *
+       ***********************/
+
+      // Toggle talent mode
       function tTM() {
-        const on = document.getElementById("t-m").checked;
-        document.getElementById("t-s").style.display = on ? "block" : "none";
-        // Hide S1 table & calc button when talents are active
-        document.getElementById("s1-table").style.display = on ? "none" : "block";
-        document.getElementById("s1-calc").style.display = on ? "none" : "inline-block";
-        const rbs = document.querySelectorAll(".r-b");
-        if (rbs.length === 2) {
-          rbs[0].style.display = on ? "block" : "none";
-          rbs[1].style.display = on ? "none" : "block";
+        const talentToggle = document.getElementById("t-m");
+        const talentOn = talentToggle.checked;
+        const talentSection = document.getElementById("t-s");
+        const s1Table = document.getElementById("s1-table");
+        const s2Table = document.getElementById("s2-table");
+        const s1Calc = document.getElementById("s1-calc");
+        const s2Calc = document.getElementById("s2-calc");
+
+        if (talentOn) {
+          // Activate talent mode (S1 or S2 based on s2-m state)
+          // Guard: If talent mode is already visible, skip showing it again.
+          if (talentSection.style.display !== "block") {
+            talentSection.style.display = "block"; // Show talent section
+          }
+          // Disable both table modes when any talent mode is active
+          if (s1Table.style.display !== "none") {
+            s1Table.style.display = "none"; // Hide table S1
+          }
+          if (s2Table.style.display !== "none") {
+            s2Table.style.display = "none"; // Hide table S2
+          }
+          if (s1Calc.style.display !== "none") {
+            s1Calc.style.display = "none"; // Hide table S1 calc button
+          }
+          if (s2Calc.style.display !== "none") {
+            s2Calc.style.display = "none"; // Hide table S2 calc button
+          }
+        } else {
+          // Deactivate talent mode
+          if (talentSection.style.display !== "none") {
+            talentSection.style.display = "none"; // Hide talent section
+          }
+          // Now, if talent is off then enable table mode based on the s2-m state.
+          // Call toggleS2() to update table mode visibility accordingly.
+          toggleS2();
         }
       }
 
-      // Toggle S2 mode (and update UI accordingly)
+      // Toggle table mode S1 vs. S2; also ensure talent mode is disabled when table modes are active.
       function toggleS2() {
-        isS2 = document.getElementById("s2-m").checked;
-        // Update header and formula display
-        const title = document.getElementById("main-title");
+        const s2Toggle = document.getElementById("s2-m");
+        const s2Active = s2Toggle.checked;
+        const mainTitle = document.getElementById("main-title");
         const formulaDiv = document.getElementById("formula-display");
-        if (isS2) {
-          title.textContent = "1CP S2 Avg Calc";
+        const s1Table = document.getElementById("s1-table");
+        const s2Table = document.getElementById("s2-table");
+        const s1Calc = document.getElementById("s1-calc");
+        const s2Calc = document.getElementById("s2-calc");
+        const s1Result = document.getElementById("s1-result");
+        const s2Result = document.getElementById("s2-result");
+        const talentSection = document.getElementById("t-s");
+
+        // Guard: if talent mode is active, disable all table modes.
+        if (document.getElementById("t-m").checked) {
+          if (s1Table.style.display !== "none") { s1Table.style.display = "none"; }
+          if (s2Table.style.display !== "none") { s2Table.style.display = "none"; }
+          s1Calc.style.display = "none";
+          s2Calc.style.display = "none";
+          return; // Exit early; table modes remain hidden.
+        }
+
+        if (s2Active) {
+          // Activate table S2 mode:
+          mainTitle.textContent = "1CP S2 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S2)</h3>
              <p><strong>SYS:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
@@ -595,14 +642,21 @@
              <p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p>
              <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
              <p><strong>ELECT:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
-          // Hide S1 elements and show S2 elements
-          document.getElementById("s1-table").style.display = "none";
-          document.getElementById("s1-calc").style.display = "none";
-          document.getElementById("s1-result").style.display = "none";
-          document.getElementById("s2-table").style.display = "block";
-          document.getElementById("s2-calc").style.display = "inline-block";
-          document.getElementById("s2-result").style.display = "block";
-          // Also adjust missing module dropdown options for S2
+          // Guard: Hide S1 table mode if it is currently visible.
+          if (s1Table.style.display !== "none") {
+            s1Table.style.display = "none"; // Hide S1 table when S2 is activated
+          }
+          if (s1Calc.style.display !== "none") {
+            s1Calc.style.display = "none"; // Hide S1 calc button when S2 is activated
+          }
+          if (s1Result.style.display !== "none") {
+            s1Result.style.display = "none"; // Hide S1 result when S2 is activated
+          }
+          // Show S2 table mode
+          s2Table.style.display = "block";
+          s2Calc.style.display = "inline-block";
+          s2Result.style.display = "block";
+          // Update missing module dropdown options for S2
           const select = document.getElementById("m-m");
           select.innerHTML =
             `<option value="">-- Choose Module --</option>
@@ -615,7 +669,8 @@
              <option value="ANG">ANG</option>
              <option value="ELECT">ELECT</option>`;
         } else {
-          title.textContent = "1CP S1 Avg Calc";
+          // Activate table S1 mode:
+          mainTitle.textContent = "1CP S1 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S1)</h3>
              <p><strong>SYS:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
@@ -625,14 +680,21 @@
              <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
              <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
              <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
-          // Show S1 and hide S2
-          document.getElementById("s1-table").style.display = "block";
-          document.getElementById("s1-calc").style.display = "inline-block";
-          document.getElementById("s1-result").style.display = "block";
-          document.getElementById("s2-table").style.display = "none";
-          document.getElementById("s2-calc").style.display = "none";
-          document.getElementById("s2-result").style.display = "none";
-          // Reset missing module dropdown to S1 options
+          // Guard: Hide S2 table mode if it is currently visible.
+          if (s2Table.style.display !== "none") {
+            s2Table.style.display = "none"; // Hide S2 table when S1 is activated
+          }
+          if (s2Calc.style.display !== "none") {
+            s2Calc.style.display = "none"; // Hide S2 calc button when S1 is activated
+          }
+          if (s2Result.style.display !== "none") {
+            s2Result.style.display = "none"; // Hide S2 result when S1 is activated
+          }
+          // Show S1 table mode
+          s1Table.style.display = "block";
+          s1Calc.style.display = "inline-block";
+          s1Result.style.display = "block";
+          // Reset missing module options for S1 mode
           const select = document.getElementById("m-m");
           select.innerHTML =
             `<option value="">-- Choose Module --</option>
@@ -645,12 +707,9 @@
              <option value="BWEB">BWEB</option>
              <option value="ELECT">ELECT</option>`;
         }
-        // Also clear any missing modules list (for simplicity)
-        document.getElementById("missing-list").innerHTML = "";
-        missing.length = 0;
       }
 
-      // Initialize by calculating S1 averages
+      // Initialize by calculating S1 averages (and ensuring the proper initial visibility)
       cA();
     </script>
   </body>
