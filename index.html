@@ -2,10 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Calculator</title>
     <style>
       :root {
@@ -18,6 +16,8 @@
         --txtl: #64748b;
         --sh: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
       }
+
+
       body {
         font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
         background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
@@ -27,12 +27,14 @@
         color: var(--txt);
         min-height: 100vh;
       }
+
       h2,
       h3 {
         margin: 0 0 1.5rem;
         font-weight: 700;
         color: var(--txt);
       }
+
       h2 {
         font-size: 2.5rem;
         text-align: center;
@@ -41,6 +43,8 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+
+
       .t-c,
       .i-b,
       #t-s,
@@ -53,7 +57,9 @@
         padding: 2rem;
         transition: transform 0.2s ease, box-shadow 0.2s ease;
         border: 1px solid rgba(255, 255, 255, 0.3);
+        max-width: 100%;
       }
+
       .t-c:hover,
       .i-b:hover,
       #t-s:hover,
@@ -61,6 +67,8 @@
         transform: translateY(-2px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
       }
+
+
       table {
         width: 100%;
         border-collapse: separate;
@@ -68,14 +76,15 @@
         background: white;
         border-radius: 0.75rem;
         overflow: hidden;
-        position: relative;
       }
+
       th,
       td {
         padding: 1rem;
         text-align: center;
         position: relative;
       }
+
       th {
         background: linear-gradient(45deg, var(--p), var(--s));
         color: white;
@@ -83,12 +92,16 @@
         text-transform: uppercase;
         letter-spacing: 0.05em;
       }
+
       tr:nth-child(even) {
         background-color: #f8fafc;
       }
+
       td {
         border-bottom: 1px solid #e2e8f0;
       }
+
+
       input[type="number"],
       select {
         width: 90px;
@@ -100,17 +113,20 @@
         background: white;
         color: var(--txt);
       }
+
       input[type="number"]:focus,
       select:focus {
         border-color: var(--p);
         box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         outline: none;
       }
+
       .t-m {
         display: inline-flex;
         align-items: center;
         gap: 0.5rem;
       }
+
       .t-m input[type="checkbox"] {
         -webkit-appearance: none;
         appearance: none;
@@ -122,6 +138,7 @@
         cursor: pointer;
         transition: background 0.2s ease;
       }
+
       .t-m input[type="checkbox"]::before {
         content: "";
         position: absolute;
@@ -133,12 +150,15 @@
         left: 2px;
         transition: transform 0.2s ease;
       }
+
       .t-m input[type="checkbox"]:checked {
         background: var(--su);
       }
+
       .t-m input[type="checkbox"]:checked::before {
         transform: translateX(20px);
       }
+
       button {
         padding: 0.875rem 2rem;
         background: linear-gradient(45deg, var(--p), var(--s));
@@ -153,17 +173,20 @@
         gap: 0.5rem;
         box-shadow: var(--sh);
       }
+
       button:hover {
         transform: translateY(-1px);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         opacity: 0.9;
       }
+
       .r-b {
         background: linear-gradient(45deg, #f8fafc, #ffffff);
         border-radius: 0.75rem;
         padding: 1.5rem;
         margin-top: 1.5rem;
       }
+
       #f-a,
       #t-f-a,
       #s2-f-a {
@@ -175,15 +198,18 @@
         border-radius: 0.5rem;
         background: rgba(37, 99, 235, 0.1);
       }
+
       .i-b {
         border-left: 4px solid var(--a);
       }
+
       .i-b p {
         margin: 1rem 0;
         padding: 0.75rem;
         background: #f8fafc;
         border-radius: 0.5rem;
       }
+
       .f {
         text-align: center;
         margin: 2rem 0;
@@ -192,6 +218,8 @@
         padding-top: 2rem;
         border-top: 1px solid #e2e8f0;
       }
+
+
       @media (max-width: 768px) {
         body {
           padding: 1rem;
@@ -210,60 +238,65 @@
           display: block;
           overflow-x: auto;
         }
-      }
-      @keyframes fI {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
+        input[type="number"],
+        select {
+          width: 80px;
+          padding: 0.5rem;
         }
-        to {
-          opacity: 1;
-          transform: translateY(0);
+        button {
+          padding: 0.5rem 1.5rem;
+          font-size: 0.9rem;
         }
       }
-      .t-c,
-      .i-b,
-      #t-s,
-      #s2-c {
-        animation: fI 0.4s ease-out;
+
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .t-c, .i-b, #t-s, #s2-c {
+        animation: fadeIn 0.4s ease-out;
       }
     </style>
   </head>
   <body>
-    <!-- Page header and toggles -->
+
     <h2 id="main-title">1CP S1 Avg Calc</h2>
     <div style="text-align: center; margin-bottom: 1.5rem">
-      <!-- Talent mode toggle (S1 vs. S2 based on table switch state) -->
+
       <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
         <input type="checkbox" id="t-m" onchange="tTM()" style="width: 20px; height: 20px" />
         Enable Talents Avg + Missing Module Calc
       </label>
       &nbsp;&nbsp;&nbsp;
-      <!-- Table mode S2 toggle -->
+
       <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
         <input type="checkbox" id="s2-m" onchange="toggleS2()" style="width: 20px; height: 20px" />
         Switch to S2 Mode (will only work if switched from the table view)
       </label>
     </div>
 
-    <!-- Talent section (used for both Talent S1 and Talent S2) -->
+   
     <div id="t-s" style="display: none">
       <h3>Recover Missing Module from Talents Avg</h3>
       <div style="margin-bottom: 1rem">
-        <label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Enter Talents Avg:</label>
+        <label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">
+          Enter Talents Avg:
+        </label>
         <input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" />
       </div>
-      <!-- New multi-missing section -->
-      <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: flex-end;">
+
+      <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap;">
         <div>
-          <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Select Module:</label>
+          <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">
+            Select Module:
+          </label>
           <select id="m-m" style="width: 100%; max-width: 200px">
             <option value="">-- Choose Module --</option>
-            <!-- Options for S1 modules by default -->
-            <option value="SYS">SYS</option>
+            <option value="SYS1">SYS1</option>
             <option value="ARCHI">ARCHI</option>
-            <option value="ALG">ALG</option>
-            <option value="ANA">ANA</option>
+            <option value="ALG1">ALG1</option>
+            <option value="ANA1">ANA1</option>
             <option value="TEE">TEE</option>
             <option value="ALSDS">ALSDS</option>
             <option value="BWEB">BWEB</option>
@@ -273,14 +306,14 @@
         <button onclick="addMissing()">Add Module</button>
       </div>
       <div id="missing-list" style="margin-bottom: 1.5rem"></div>
-      <!-- End multi-missing section -->
+
       <button onclick="cM()">Calc Semester Avg</button>
       <div class="r-b">
         <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
       </div>
     </div>
 
-    <!-- S1 Table Section -->
+
     <div id="s1-table" class="t-c">
       <table>
         <tr>
@@ -293,10 +326,10 @@
         <script>
           // S1 modules and fields
           const mC = [
-            { code: "SYS", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
+            { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
             { code: "ARCHI", coef: 4, fields: ["CF", "CI"] },
-            { code: "ALG", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA", coef: 5, fields: ["CF", "CI"] },
+            { code: "ALG1", coef: 3, fields: ["CF", "CI"] },
+            { code: "ANA1", coef: 5, fields: ["CF", "CI"] },
             { code: "TEE", coef: 2, fields: ["CF", "CC (/20)"] },
             { code: "ALSDS", coef: 5, fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"] },
             { code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"] },
@@ -320,9 +353,7 @@
                     .map(
                       f => `
                     <span class="g-l">${f}</span>
-                    <input type="number" min="0" ${
-                      f.includes("/8") ? 'max="8"' : 'max="20"'
-                    } step="0.5">
+                    <input type="number" min="0" ${f.includes("/8") ? 'max="8"' : 'max="20"'} step="0.5">
                   `
                     )
                     .join(" ")}
@@ -349,7 +380,7 @@
       <h3>Semester Avg: <span id="f-a">0.00</span></h3>
     </div>
 
-    <!-- S2 Table Section (hidden by default) -->
+
     <div id="s2-table" class="t-c" style="display: none">
       <table>
         <tr>
@@ -360,16 +391,16 @@
           <th>Avg</th>
         </tr>
         <script>
-          // S2 modules and fields
+ 
           const mC2 = [
-            { code: "SYS", coef: 3, fields: ["FE", "ME", "CC"] },
+            { code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"] },
             { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
-            { code: "ALG", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA", coef: 5, fields: ["CF", "CI"] },
+            { code: "ALG2", coef: 3, fields: ["CF", "CI"] },
+            { code: "ANA2", coef: 5, fields: ["CF", "CI"] },
             { code: "TEO", coef: 2, fields: ["CF", "CC"] },
             { code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"] },
             { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
-            { code: "ELECT", coef: 4, fields: ["CF", "CI", "CC"] }
+            { code: "ELECTF", coef: 4, fields: ["CF", "CI", "CC"] }
           ];
           document.write(
             mC2
@@ -415,20 +446,20 @@
       <h3>Semester Avg: <span id="s2-f-a">0.00</span></h3>
     </div>
 
-    <!-- Formula Display Section (unchanged formulas) -->
+    
     <div class="i-b" id="formula-display">
-      <!-- S1 formulas by default -->
+
       <h3>Calc Formulas (S1)</h3>
-      <p><strong>SYS:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
+      <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
       <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-      <p><strong>ALG/ANA:</strong> (0.67 × CF) + (0.33 × CI)</p>
+      <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
       <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
       <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
       <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
       <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>
     </div>
 
-    <!-- Extra Feature: Reset Button to Clear All Inputs and Results -->
+
     <div style="text-align: center; margin-top: 2rem;">
       <button onclick="resetCalculator()">Reset All</button>
     </div>
@@ -443,26 +474,27 @@
 
       // S1 calculation functions
       const mCal = {
-        SYS: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
+        SYS1: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
         ARCHI: (cf, ci, b = false) => 0.5 * cf + 0.5 * ci + (b ? 1 : 0),
-        ALG: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ALG1: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ANA1: (cf, ci) => 0.67 * cf + 0.33 * ci,
         TEE: (cf, p) => (2 / 3) * cf + (1 / 3) * p,
-        ALSDS: (cf, ci, tp1, tp2, tr) => 0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
+        ALSDS: (cf, ci, tp1, tp2, tr) =>
+          0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
         BWEB: (cf, ci, cc) => 0.4 * cf + 0.4 * ci + 0.2 * cc,
         ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
       };
 
       // S2 calculation functions
       const mCal2 = {
-        SYS: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
+        SYS2: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
         MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
-        ALG: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ALG2: (cf, ci) => 0.67 * cf + 0.33 * ci,
+        ANA2: (cf, ci) => 0.67 * cf + 0.33 * ci,
         TEO: (cf, cc) => (2 / 3) * cf + (1 / 3) * cc,
         ALSDD: (tpc, interos, cc, tpz, cf) => ((tpc + interos + cc) / 3) * 0.25 + tpz * 0.2 + cf * 0.55,
         ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
-        ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
+        ELECTF: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
       };
 
       // Helper: get input values given a selector (for both S1 and S2)
@@ -470,9 +502,9 @@
         return Array.from(document.querySelectorAll(sel)).map(i => parseFloat(i.value) || 0);
       }
 
-      // Choose the calculation function based on module & manual (or not) input
+
       function cMA(mod, s, isManual = false, mode = "S1") {
-        if (isManual) return s[0] || 0; // if manual, use entered average
+        if (isManual) return s[0] || 0; 
         if (mode === "S1") {
           const fn = mCal[mod];
           return mod === "ARCHI" ? fn(...s, aB) : fn(...s);
@@ -482,7 +514,7 @@
         }
       }
 
-      // S1 overall calculation
+    
       function cA() {
         let total = 0;
         mC.forEach(m => {
@@ -497,7 +529,7 @@
         document.getElementById("f-a").textContent = (total / tCoef).toFixed(2);
       }
 
-      // S2 overall calculation
+
       function cA_S2() {
         let total = 0;
         mC2.forEach(m => {
@@ -509,7 +541,7 @@
           document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
           total += avg * m.coef;
         });
-        // Use 27 as the total coefficient for Semester 2
+
         document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
       }
 
@@ -569,7 +601,6 @@
         let sumNum = tA * tCoef;
         let sumCoef = tCoef;
         missing.forEach(m => {
-          // find the inputs within the missing div
           const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input`))
             .map(i => parseFloat(i.value) || 0);
           const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
@@ -610,8 +641,6 @@
        * VISIBILITY HANDLING *
        ***********************/
 
-      // Toggle talent mode – when on, show talent section and hide tables;
-      // when off, hide talent section and update table mode via toggleS2().
       function tTM() {
         const talentSection = document.getElementById("t-s");
         const talentOn = document.getElementById("t-m").checked;
@@ -635,12 +664,9 @@
       function toggleS2() {
         // If talent mode is active, do not change table mode.
         if (document.getElementById("t-m").checked) return;
-
         const s2Active = document.getElementById("s2-m").checked;
-
         // Update global mode flag
         isS2 = s2Active;
-
         const mainTitle = document.getElementById("main-title");
         const formulaDiv = document.getElementById("formula-display");
         const s1Table = document.getElementById("s1-table");
@@ -655,14 +681,14 @@
           mainTitle.textContent = "1CP S2 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S2)</h3>
-             <p><strong>SYS:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
+             <p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
              <p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>
-             <p><strong>ALG:</strong> 0.67 × CF + 0.33 × CI</p>
-             <p><strong>ANA:</strong> 0.67 × CF + 0.33 × CI</p>
+             <p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p>
+             <p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p>
              <p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p>
              <p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p>
              <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
-             <p><strong>ELECT:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
+             <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
           s2Table.style.display = "block";
           s2Calc.style.display = "inline-block";
           s2Result.style.display = "block";
@@ -671,21 +697,21 @@
           s1Result.style.display = "none";
           select.innerHTML =
             `<option value="">-- Choose Module --</option>
-             <option value="SYS">SYS</option>
+             <option value="SYS2">SYS2</option>
              <option value="MECA">MECA</option>
-             <option value="ALG">ALG</option>
-             <option value="ANA">ANA</option>
+             <option value="ALG2">ALG2</option>
+             <option value="ANA2">ANA2</option>
              <option value="TEO">TEO</option>
              <option value="ALSDD">ALSDD</option>
              <option value="ANG">ANG</option>
-             <option value="ELECT">ELECT</option>`;
+             <option value="ELECTF">ELECTF</option>`;
         } else {
           mainTitle.textContent = "1CP S1 Avg Calc";
           formulaDiv.innerHTML =
             `<h3>Calc Formulas (S1)</h3>
-             <p><strong>SYS:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
+             <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
              <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-             <p><strong>ALG/ANA:</strong> (0.67 × CF) + (0.33 × CI)</p>
+             <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
              <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
              <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
              <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
@@ -698,10 +724,10 @@
           s2Result.style.display = "none";
           select.innerHTML =
             `<option value="">-- Choose Module --</option>
-             <option value="SYS">SYS</option>
+             <option value="SYS1">SYS1</option>
              <option value="ARCHI">ARCHI</option>
-             <option value="ALG">ALG</option>
-             <option value="ANA">ANA</option>
+             <option value="ALG1">ALG1</option>
+             <option value="ANA1">ANA1</option>
              <option value="TEE">TEE</option>
              <option value="ALSDS">ALSDS</option>
              <option value="BWEB">BWEB</option>
@@ -732,12 +758,12 @@
         // Reset overall results
         document.getElementById("f-a").textContent = "0.00";
         document.getElementById("s2-f-a").textContent = "0.00";
-        // Reset checkboxes (manual entry toggles)
+
         document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        // Restore normal display for manual components
+
         document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
         document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
-        // Finally, recalc to update any displayed averages
+
         if (document.getElementById("s2-m").checked) {
           cA_S2();
         } else {
@@ -745,7 +771,7 @@
         }
       }
 
-      // Initialize by calculating S1 averages (and ensuring the proper initial visibility)
+
       cA();
     </script>
   </body>
