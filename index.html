@@ -735,7 +735,35 @@
         }
       }
 
-  
+      // Reset all input fields and outputs without affecting core calculation logic.
+      function resetCalculator() {
+        // Reset talent section inputs
+        document.getElementById("t-a").value = "";
+        document.getElementById("t-f-a").textContent = "0.00";
+        // Reset missing modules
+        document.getElementById("missing-list").innerHTML = "";
+        missing.length = 0;
+        // Reset all table inputs (S1)
+        mC.forEach(m => {
+          const key = m.code.toLowerCase();
+          document.querySelectorAll(`.${key} input[type="number"]`).forEach(input => input.value = "");
+          document.getElementById(`a-${key}`).textContent = "0.00";
+        });
+        // Reset all table inputs (S2)
+        mC2.forEach(m => {
+          const key = m.code.toLowerCase();
+          document.querySelectorAll(`.s2-${key} input[type="number"]`).forEach(input => input.value = "");
+          document.getElementById(`a-s2-${key}`).textContent = "0.00";
+        });
+        // Reset overall results
+        document.getElementById("f-a").textContent = "0.00";
+        document.getElementById("s2-f-a").textContent = "0.00";
+
+        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
+
+        document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
+        document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
+
         if (document.getElementById("s2-m").checked) {
           cA_S2();
         } else {
