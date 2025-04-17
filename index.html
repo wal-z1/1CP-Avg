@@ -574,22 +574,22 @@
         container.appendChild(div);
       }
 
-      // Missing module overall calc (for talents section)
-      function cM() {
-        const tA = parseFloat(document.getElementById("t-a").value) || 0;
-        let sumNum = tA * tCoef;
-        let sumCoef = tCoef;
-        missing.forEach(m => {
-          const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input`))
+ function cM() {
+    const tA = parseFloat(document.getElementById("t-a").value) || 0;
+    const semesterCoef = isS2 ? 27 : 26; // Fixed coefficient based on semester
+    let totalWeightedSum = tA * semesterCoef; // Start with talent contribution
+    
+    missing.forEach(m => {
+        const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input`))
             .map(i => parseFloat(i.value) || 0);
-          const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
-          sumNum += avg * m.coef;
-        });
-        const fA = sumNum / sumCoef;
-        document.getElementById("t-f-a").textContent = fA.toFixed(2);
-      }
+        const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
+        totalWeightedSum += avg * m.coef; // Add missing module contribution
+    });
 
-      function tAB() {
+    const finalAvg = totalWeightedSum / semesterCoef; // Divide by fixed semester coefficient
+    document.getElementById("t-f-a").textContent = finalAvg.toFixed(2);
+}
+     function tAB() {
         aB = !aB;
         document.getElementById("a-b").textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
         cA();
