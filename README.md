@@ -6,7 +6,7 @@ This is a small web-based calculator designed to help organize and calculate you
 
 The project is built with **HTML**, **CSS**, and **JavaScript** — no backend or database involved.
 
-Yes, I used AI to help me code this — so **don’t judge me 😅**. It was a fun learning experience, and it works!
+Yes, I used AI to help me code this — so ** don’t judge me **. It was a fun learning experience, and it works.....I think at least...
 
 ## 🔓 Open Source
 
