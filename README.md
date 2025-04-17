@@ -14,14 +14,15 @@ This project is open source and available for anyone to fork, improve, or build 
 
 ## ✨ Features
 
-- 📊 Table View to enter and visualize module data.
-- ❓ Missing Module Mode to work even if you don’t have all your results yet.
-- 🎨 A stylized layout for a cleaner and smoother user experience.
-- 🖥 Built entirely with HTML, CSS, and JavaScript.
+-  Table View to enter and visualize module data.
+-  Missing Module Mode to work even if you don’t have all your results yet.
+
 
 ## 🚧 Disclaimer
 
-This was made with the help of AI and for learning purposes. It’s simple, functional, and still a work in progress — so don’t expect anything fancy.
+This was made with the help of AI and for learning purposes. 
+
+It’s simple, functional, and still a work in progress — so don’t expect anything fancy.
 
 ---
 
