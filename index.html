@@ -1,246 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQclQRt6Ns8S32kXTZtz3BO2-c30s0Y37ZI-A&s" type="image/png">
-    <!-- Ensure proper scaling on mobile devices -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator 1CP S1&amp;S2</title>
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQclQRt6Ns8S32kXTZtz3BO2-c30s0Y37ZI-A&s" type="image/png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Calculator 1CP S1&amp;S2</title>
 
-    <style>
-      /* ===========================
-         Root color variables & shadows
-      ============================ */
-      :root {
-        --p: #2563eb;       /* primary blue */
-        --s: #4f46e5;       /* secondary indigo */
-        --a: #9333ea;       /* accent purple */
-        --su: #22c55e;      /* success green */
-        --bg: #f8fafc;      /* light background */
-        --txt: #1e293b;     /* main text */
-        --txtl: #64748b;    /* light text */
-        --sh: 0 4px 6px -1px rgba(0, 0, 0, 0.1); /* default shadow */
-      }
+  <style>
+    :root {
+      --p: #2563eb;
+      --s: #4f46e5;
+      --a: #9333ea;
+      --su: #22c55e;
+      --bg: #e5e7eb;       /* light gray background */
+      --bg2: #f1f5f9;      /* secondary bg for elements */
+      --txt: #1f2937;      /* dark gray text */
+      --txtl: #6b7280;     /* lighter gray text */
+      --sh: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+    }
 
-      /* ===========================
-         Base body styles
-      ============================ */
+    body {
+      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      background: linear-gradient(135deg, var(--bg), #d1d5db);
+      margin: 0;
+      padding: 1rem;
+      line-height: 1.6;
+      color: var(--txt);
+      min-height: 100vh;
+    }
+
+    h2, h3 {
+      margin: 0 0 1rem;
+      font-weight: 800;
+      color: var(--txt);
+    }
+
+    h2 {
+      font-size: 2rem;
+      text-align: center;
+      letter-spacing: -0.025em;
+      background: linear-gradient(45deg, var(--p), var(--s));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .t-c, .i-b, #t-s, #s2-c {
+      background: var(--bg2);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      box-shadow: var(--sh);
+      margin: 1rem auto;
+      padding: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      max-width: 100%;
+    }
+
+    .t-c:hover, .i-b:hover, #t-s:hover, #s2-c:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 6px 10px rgba(0, 0, 0, 0.08);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: #f9fafb;
+      border-radius: 0.75rem;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    }
+
+    th, td {
+      padding: 0.75rem;
+      text-align: center;
+      font-weight: 600;
+    }
+
+    th {
+      background: linear-gradient(45deg, var(--p), var(--s));
+      color: white;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f3f4f6;
+    }
+
+    td {
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    input[type="number"], select {
+      width: 70px;
+      padding: 0.5rem 0.75rem;
+      border: 2px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+      background: #f9fafb;
+      color: var(--txt);
+      font-weight: 600;
+    }
+
+    input[type="number"]:focus, select:focus {
+      border-color: var(--p);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      outline: none;
+    }
+
+    .t-m {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .t-m input[type="checkbox"] {
+      appearance: none;
+      width: 34px;
+      height: 18px;
+      background: #d1d5db;
+      border-radius: 12px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
+    }
+
+    .t-m input[type="checkbox"]::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: white;
+      top: 2px;
+      left: 2px;
+      transition: transform 0.2s ease;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .t-m input[type="checkbox"]:checked {
+      background: var(--su);
+    }
+
+    .t-m input[type="checkbox"]:checked::before {
+      transform: translateX(16px);
+    }
+
+    button {
+      padding: 0.75rem 1.5rem;
+      background: linear-gradient(45deg, var(--p), var(--s));
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+      font-size: 1rem;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
+      opacity: 0.95;
+    }
+
+    .r-b {
+      background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+      border-radius: 0.75rem;
+      padding: 1rem;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    }
+
+    #f-a, #t-f-a, #s2-f-a {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--p);
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      background: rgba(37, 99, 235, 0.08);
+    }
+
+    .i-b {
+      border-left: 4px solid var(--a);
+    }
+
+    .i-b p {
+      margin: 0.75rem 0;
+      padding: 0.5rem;
+      background: var(--bg);
+      border-radius: 0.5rem;
+      font-weight: 600;
+    }
+
+    .f {
+      text-align: center;
+      margin: 1rem 0;
+      color: var(--txtl);
+      font-size: 0.75rem;
+      padding-top: 1rem;
+      border-top: 1px solid #d1d5db;
+    }
+
+    @media (max-width: 768px) {
       body {
-        font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
-        background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
-        margin: 0;
-        padding: 1rem;
-        line-height: 1.6;
-        color: var(--txt);
-        min-height: 100vh;
-      }
-
-      /* ===========================
-         Headings with gradient text
-      ============================ */
-      h2, h3 {
-        margin: 0 0 1rem;
-        font-weight: 700;
-        color: var(--txt);
-      }
-      h2 {
-        font-size: 2rem;
-        text-align: center;
-        letter-spacing: -0.025em;
-        background: linear-gradient(45deg, var(--p), var(--s));
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-      }
-
-      /* ===========================
-         Glassy card containers
-      ============================ */
-      .t-c, .i-b, #t-s, #s2-c {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 1rem;
-        box-shadow: var(--sh);
-        margin: 1rem auto;
-        padding: 1.5rem;
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-        border: 1px solid rgba(255, 255, 255, 0.3);
-        max-width: 100%;
-      }
-      /* Hover effect on cards */
-      .t-c:hover, .i-b:hover, #t-s:hover, #s2-c:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-      }
-
-      /* ===========================
-         Table styling
-      ============================ */
-      table {
-        width: 100%;
-        border-collapse: separate;
-        border-spacing: 0;
-        background: white;
-        border-radius: 0.75rem;
-        overflow: hidden;
-      }
-      th, td {
-        padding: 0.75rem;
-        text-align: center;
-      }
-      th {
-        background: linear-gradient(45deg, var(--p), var(--s));
-        color: white;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-      tr:nth-child(even) { background-color: #f8fafc; }
-      td { border-bottom: 1px solid #e2e8f0; }
-
-      /* ===========================
-         Form inputs & selects
-      ============================ */
-      input[type="number"], select {
-        width: 70px;
-        padding: 0.5rem 0.75rem;
-        border: 2px solid #e2e8f0;
-        border-radius: 0.5rem;
-        font-size: 0.9rem;
-        transition: all 0.2s ease;
-        background: white;
-        color: var(--txt);
-      }
-      input[type="number"]:focus, select:focus {
-        border-color: var(--p);
-        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-        outline: none;
-      }
-
-      /* ===========================
-         Toggle switch style
-      ============================ */
-      .t-m { display: inline-flex; align-items: center; gap: 0.5rem; }
-      .t-m input[type="checkbox"] {
-        appearance: none;
-        width: 34px;
-        height: 18px;
-        background: #e2e8f0;
-        border-radius: 12px;
-        position: relative;
-        cursor: pointer;
-        transition: background 0.2s ease;
-      }
-      .t-m input[type="checkbox"]::before {
-        content: "";
-        position: absolute;
-        width: 14px; height: 14px;
-        border-radius: 50%;
-        background: white;
-        top: 2px; left: 2px;
-        transition: transform 0.2s ease;
-      }
-      .t-m input[type="checkbox"]:checked {
-        background: var(--su);
-      }
-      .t-m input[type="checkbox"]:checked::before {
-        transform: translateX(16px);
-      }
-
-      /* ===========================
-         Buttons
-      ============================ */
-      button {
-        padding: 0.75rem 1.5rem;
-        background: linear-gradient(45deg, var(--p), var(--s));
-        color: white;
-        border: none;
-        border-radius: 0.75rem;
-        font-weight: 600;
-        cursor: pointer;
-        transition: all 0.2s ease;
-        display: inline-flex;
-        align-items: center;
-        gap: 0.5rem;
-        box-shadow: var(--sh);
-        font-size: 0.9rem;
-      }
-      button:hover {
-        transform: translateY(-1px);
-        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-        opacity: 0.9;
-      }
-
-      /* ===========================
-         Result box styling
-      ============================ */
-      .r-b {
-        background: linear-gradient(45deg, #f8fafc, #ffffff);
-        border-radius: 0.75rem;
-        padding: 1rem;
-        margin-top: 1rem;
-      }
-      #f-a, #t-f-a, #s2-f-a {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: var(--p);
-        display: inline-block;
-        padding: 0.5rem 0.75rem;
-        border-radius: 0.5rem;
-        background: rgba(37, 99, 235, 0.1);
-      }
-
-      /* ===========================
-         Info box
-      ============================ */
-      .i-b {
-        border-left: 4px solid var(--a);
-      }
-      .i-b p {
-        margin: 0.75rem 0;
         padding: 0.5rem;
-        background: #f8fafc;
-        border-radius: 0.5rem;
       }
 
-      /* ===========================
-         Footer
-      ============================ */
-      .f {
-        text-align: center;
-        margin: 1rem 0;
-        color: var(--txtl);
-        font-size: 0.75rem;
-        padding-top: 1rem;
-        border-top: 1px solid #e2e8f0;
+      h2 {
+        font-size: 1.75rem;
       }
 
-      /* ===========================
-         Mobile adjustments
-      ============================ */
-      @media (max-width: 768px) {
-        body { padding: 0.5rem; }
-        h2 { font-size: 1.75rem; }
-        .t-c, .i-b, #t-s, #s2-c { margin: 0.75rem auto; padding: 1rem; }
-        table { display: block; overflow-x: auto; }
-        input[type="number"], select { width: 60px; padding: 0.4rem; }
-        button { padding: 0.4rem 1.25rem; font-size: 0.8rem; }
-      }
-
-      /* ===========================
-         Fade‑in animation for cards
-      ============================ */
-      @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(10px); }
-        to   { opacity: 1; transform: translateY(0); }
-      }
       .t-c, .i-b, #t-s, #s2-c {
-        animation: fadeIn 0.4s ease-out;
+        margin: 0.75rem auto;
+        padding: 1rem;
       }
-    </style>
-  </head>
+
+      table {
+        display: block;
+        overflow-x: auto;
+      }
+
+      input[type="number"], select {
+        width: 60px;
+        padding: 0.4rem;
+      }
+
+      button {
+        padding: 0.4rem 1.25rem;
+        font-size: 0.85rem;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .t-c, .i-b, #t-s, #s2-c {
+      animation: fadeIn 0.4s ease-out;
+    }
+  </style>
+
+   <!-- FONT DOWNLOADING , idk i like this font-->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+</head>
 
   <body>
-    <!-- Page title -->
     <h2 id="main-title">1CP S1 Avg Calc</h2>
 
     <!-- Toggle switches for talents mode & semester switch -->
