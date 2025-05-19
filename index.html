@@ -46,21 +46,60 @@
       --border-radius-md: 0.5rem;   /* 8px */
       --border-radius-lg: 0.75rem;  /* 12px */
 
-      --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-normal: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-      --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      /* --- NEW: Enhanced Easing Functions & Durations --- */
+      --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
+      --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
+      --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
+      --ease-in-quint: cubic-bezier(0.755, 0.05, 0.855, 0.06);
+      --ease-in-expo: cubic-bezier(0.95, 0.05, 0.795, 0.035);
+      --ease-in-circ: cubic-bezier(0.6, 0.04, 0.98, 0.335);
+
+      --ease-out-quad: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --ease-out-cubic: cubic-bezier(0.215, 0.61, 0.355, 1);
+      --ease-out-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+      --ease-out-quint: cubic-bezier(0.23, 1, 0.32, 1);
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-circ: cubic-bezier(0.075, 0.82, 0.165, 1);
+
+      --ease-in-out-quad: cubic-bezier(0.455, 0.03, 0.515, 0.955);
+      --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
+      --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
+      --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
+      --ease-in-out-expo: cubic-bezier(1, 0, 0, 1); /* Note: This is linear-like for extreme values */
+      --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+      
+      /* Material Design Inspired Easing */
+      --md-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
+      --md-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1); /* Good for incoming elements */
+      --md-accelerate: cubic-bezier(0.4, 0.0, 1, 1); /* Good for outgoing elements */
+
+      /* Durations */
+      --duration-fastest: 0.1s;
+      --duration-fast: 0.15s;
+      --duration-normal: 0.25s;
+      --duration-medium: 0.35s;
+      --duration-slow: 0.5s;
+      --duration-slower: 0.6s;
+
+      /* Semantic Transition Definitions */
+      --timing-interactive: var(--ease-out-quad);
+      --timing-enter: var(--ease-out-cubic);
+      --timing-exit: var(--ease-in-cubic);
+      --timing-state-change: var(--ease-in-out-cubic);
+      --timing-collapse: var(--md-standard); /* Good for UI elements like accordions */
+      --timing-reveal: var(--ease-out-quart);
+
 
       /* Original variables for compatibility, mapped to new ones */
       --p: var(--accent-primary);
       --s: var(--accent-secondary);
-      --a: #9333ea; /* Kept purple accent for formula box or can be themed */
+      --a: #9333ea; 
       --su: var(--accent-success);
-      /* --bg, --bg2, --txt, --txtl, --sh are superseded by new system */
     }
 
     [data-theme="dark"] {
-      --bg-primary: #161b22; /* Deep dark blue/gray */
-      --bg-secondary: rgba(29, 36, 47, 0.85); /* Semi-transparent for backdrop-filter */
+      --bg-primary: #161b22;
+      --bg-secondary: rgba(29, 36, 47, 0.85);
       --bg-tertiary: #252e3c;
       --bg-interactive: #354153;
       --bg-interactive-strong: #4a5568;
@@ -68,14 +107,12 @@
       --text-primary: #e2e8f0;
       --text-secondary: #a0aec0;
       --text-muted: #718096;
-      /* --text-on-accent: #ffffff;  remains the same */
-      --text-accent: #60a5fa; /* Lighter blue for dark mode results */
+      --text-accent: #60a5fa;
 
       --border-primary: #3b475c;
       --border-interactive: #5a677d;
       --border-focus: #60a5fa;
 
-      /* Accents can be slightly adjusted if needed, current ones should work */
       --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
       --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.15), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
       --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
@@ -83,7 +120,6 @@
       --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
     }
 
-    /* 2. Global Styles & Typography */
     *, *::before, *::after {
       box-sizing: border-box;
     }
@@ -95,18 +131,18 @@
     body {
       font-family: var(--font-primary);
       background-color: var(--bg-primary);
-      background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive)); /* Subtle gradient */
+      background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive));
       margin: 0;
-      padding: 1.5rem; /* Increased padding */
+      padding: 1.5rem;
       line-height: 1.6;
       color: var(--text-primary);
       min-height: 100vh;
-      transition: background-color var(--transition-normal), color var(--transition-normal);
+      /* UPDATED: Animation timing */
+      transition: background-color var(--duration-normal) var(--timing-state-change), color var(--duration-normal) var(--timing-state-change);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
     
-    /* Utility bar for toggles */
     .app-header {
       display: flex;
       justify-content: space-between;
@@ -126,7 +162,7 @@
       display: flex;
       gap: 1rem;
       align-items: center;
-      flex-wrap: wrap; /* Allow wrapping on small screens */
+      flex-wrap: wrap;
     }
     .app-controls label {
       font-weight: 600;
@@ -135,20 +171,19 @@
       display: inline-flex;
       gap: 0.5rem;
       align-items: center;
-      transition: color var(--transition-fast);
+      /* UPDATED: Animation timing */
+      transition: color var(--duration-fast) var(--timing-interactive);
     }
     .app-controls label:hover {
       color: var(--text-primary);
     }
-    .app-controls input[type="checkbox"] { /* Standard checkbox for semester/talent */
+    .app-controls input[type="checkbox"] {
       width: 18px;
       height: 18px;
       accent-color: var(--accent-primary);
       cursor: pointer;
     }
 
-
-    /* Theme Switcher Styles */
     .theme-switcher-container {
       display: flex;
       align-items: center;
@@ -156,8 +191,8 @@
     .theme-switcher {
       position: relative;
       display: inline-block;
-      width: 50px; /* Wider for better touch */
-      height: 28px; /* Taller */
+      width: 50px;
+      height: 28px;
     }
     .theme-switcher input {
       opacity: 0;
@@ -172,18 +207,20 @@
       right: 0;
       bottom: 0;
       background-color: var(--bg-interactive-strong);
-      transition: var(--transition-normal);
-      border-radius: 28px; /* Fully rounded */
+      /* UPDATED: Animation timing */
+      transition: background-color var(--duration-normal) var(--timing-state-change);
+      border-radius: 28px;
     }
     .slider:before {
       position: absolute;
       content: "";
-      height: 20px; /* Smaller circle */
+      height: 20px;
       width: 20px;
       left: 4px;
       bottom: 4px;
       background-color: white;
-      transition: var(--transition-normal);
+      /* UPDATED: Animation timing */
+      transition: transform var(--duration-normal) var(--timing-state-change);
       border-radius: 50%;
       box-shadow: var(--shadow-xs);
     }
@@ -194,43 +231,38 @@
       box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.3));
     }
     .theme-switcher input:checked + .slider:before {
-      transform: translateX(22px); /* Adjusted for new size */
+      transform: translateX(22px);
     }
-    /* Sun/Moon icons for theme switcher */
-    .slider::after { /* For sun/moon icon - pseudo element */
-      content: '☀️'; /* Sun icon */
+    .slider::after {
+      content: '☀️';
       font-size: 12px;
       position: absolute;
       top: 50%;
-      right: 6px; /* Position sun on the right */
+      right: 6px;
       transform: translateY(-50%);
-      transition: var(--transition-normal);
+      /* UPDATED: Animation timing */
+      transition: opacity var(--duration-normal) var(--timing-state-change), left var(--duration-normal) var(--timing-state-change), right var(--duration-normal) var(--timing-state-change);
       opacity: 0.7;
     }
     .theme-switcher input:checked + .slider::after {
-      content: '🌙'; /* Moon icon */
-      left: 6px; /* Position moon on the left */
+      content: '🌙';
+      left: 6px;
       right: auto;
     }
 
-
     h2, h3 {
       margin: 0 0 1rem;
-      font-weight: 700; /* Slightly less bold for modern feel */
+      font-weight: 700;
       color: var(--text-primary);
-      letter-spacing: -0.01em; /* Subtle letter spacing */
+      letter-spacing: -0.01em;
     }
 
-    h2#main-title { /* Main page title */
+    h2#main-title {
       font-size: 2.25rem;
       text-align: center;
       letter-spacing: -0.025em;
-      margin-bottom: 1.5rem; /* Spacing below title */
-      color: var(--text-primary); /* Solid color for better readability */
-      /* Keep gradient as an option, but solid is often cleaner
-      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent; */
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
     }
     
     h3 {
@@ -238,42 +270,43 @@
       color: var(--text-secondary);
     }
 
-    /* 3. Card Styling (Main Content Blocks) */
-    .content-card { /* New common class for .t-c, .i-b, #t-s, #s2-c */
+    .content-card {
       background-color: var(--bg-secondary);
       backdrop-filter: blur(var(--blur-intensity));
       border-radius: var(--border-radius-lg);
       box-shadow: var(--shadow-lg);
-      margin: 1.5rem auto; /* Increased margin */
-      padding: 2rem; /* Increased padding */
-      transition: transform var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+      margin: 1.5rem auto;
+      padding: 2rem;
+      /* UPDATED: Animation timing */
+      transition: transform var(--duration-normal) var(--timing-interactive), 
+                  box-shadow var(--duration-normal) var(--timing-interactive), 
+                  background-color var(--duration-normal) var(--timing-state-change);
       border: 1px solid var(--border-primary);
-      max-width: 900px; /* Constrain width on larger screens */
+      max-width: 900px;
     }
 
-    /* --- ENHANCEMENT: Sophisticated Hover Effects --- */
     .content-card:hover {
-      transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+      transform: translateY(-5px) scale(1.01);
       box-shadow: var(--shadow-xl);
     }
 
-    /* Table Styling */
     table {
       width: 100%;
-      border-collapse: separate; /* Important for border-radius on cells */
+      border-collapse: separate;
       border-spacing: 0;
-      background-color: transparent; /* Table itself transparent, cells styled */
+      background-color: transparent;
       border-radius: var(--border-radius-md);
-      overflow: hidden; /* Clip content to rounded corners */
+      overflow: hidden;
       box-shadow: var(--shadow-sm);
     }
 
     th, td {
-      padding: 1rem 0.75rem; /* More padding */
+      padding: 1rem 0.75rem;
       text-align: center;
-      font-weight: 500; /* Regular weight for data, medium for headers */
+      font-weight: 500;
       border-bottom: 1px solid var(--border-primary);
-      transition: background-color var(--transition-fast);
+      /* UPDATED: Animation timing */
+      transition: background-color var(--duration-fast) var(--timing-interactive);
     }
 
     th {
@@ -285,34 +318,34 @@
       font-size: 0.875rem;
     }
     
-    /* --- ENHANCEMENT: Sophisticated Hover Effects for Table Rows --- */
-    tr:not(:first-child):hover td { /* Exclude header row from hover */
+    tr:not(:first-child):hover td {
         background-color: var(--bg-interactive);
     }
 
-    tr:nth-child(even) td { /* Subtle striping */
-      background-color: var(--bg-tertiary-alpha, rgba(0,0,0,0.02)); /* Very subtle */
+    tr:nth-child(even) td {
+      background-color: var(--bg-tertiary-alpha, rgba(0,0,0,0.02));
     }
     [data-theme="dark"] tr:nth-child(even) td {
       background-color: var(--bg-tertiary-alpha, rgba(255,255,255,0.03));
     }
 
     tr:last-child td {
-      border-bottom: none; /* Remove border from last row */
+      border-bottom: none;
     }
     td:first-child { border-left: none; }
     td:last-child { border-right: none; }
 
-
-    /* Input Fields & Select Styling */
     input[type="number"], select {
-      width: auto; /* Allow natural width, can be overridden if needed */
+      width: auto;
       min-width: 70px;
       padding: 0.6rem 0.85rem;
       border: 1px solid var(--border-primary);
       border-radius: var(--border-radius-md);
       font-size: 0.95rem;
-      transition: var(--transition-fast);
+      /* UPDATED: Animation timing */
+      transition: border-color var(--duration-fast) var(--timing-interactive), 
+                  box-shadow var(--duration-fast) var(--timing-interactive), 
+                  background-color var(--duration-fast) var(--timing-interactive);
       background-color: var(--bg-tertiary);
       color: var(--text-primary);
       font-weight: 500;
@@ -326,9 +359,8 @@
       border-color: var(--border-focus);
       box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.2));
       outline: none;
-      background-color: var(--bg-secondary); /* Lighten on focus */
+      background-color: var(--bg-secondary);
     }
-    /* Specific for grade inputs for better alignment */
     .g-l + input[type="number"] {
         margin-left: 0.25rem;
         margin-right: 0.5rem;
@@ -337,11 +369,11 @@
         font-size: 0.8rem;
         color: var(--text-muted);
         display: inline-block;
-        min-width: 60px; /* Align labels */
+        min-width: 60px;
         text-align: right;
         margin-right: 0.25rem;
     }
-    .c-g, .m-g { /* Grade input containers */
+    .c-g, .m-g {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -349,77 +381,78 @@
         justify-content: center;
     }
 
-
-    /* Custom Checkbox for Manual Toggle (already good, minor theme adjustments) */
-    .t-m { /* Container for manual toggle checkbox */
+    .t-m {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
     }
-    .t-m input[type="checkbox"] { /* The styled switch */
+    .t-m input[type="checkbox"] {
       appearance: none;
-      width: 38px; /* Slightly larger */
+      width: 38px;
       height: 22px;
       background: var(--bg-interactive-strong);
-      border-radius: var(--border-radius-lg); /* More rounded */
+      border-radius: var(--border-radius-lg);
       position: relative;
       cursor: pointer;
-      transition: background-color var(--transition-fast);
+      /* UPDATED: Animation timing */
+      transition: background-color var(--duration-fast) var(--timing-state-change);
       box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
     }
-    .t-m input[type="checkbox"]::before { /* The thumb */
+    .t-m input[type="checkbox"]::before {
       content: "";
       position: absolute;
-      width: 16px; /* Smaller thumb for more track visibility */
+      width: 16px;
       height: 16px;
       border-radius: 50%;
       background: white;
       top: 3px;
       left: 3px;
-      transition: transform var(--transition-normal);
+      /* UPDATED: Animation timing */
+      transition: transform var(--duration-normal) var(--timing-state-change);
       box-shadow: var(--shadow-sm);
     }
     .t-m input[type="checkbox"]:checked {
-      background: var(--accent-success); /* Use success color */
+      background: var(--accent-success);
     }
     .t-m input[type="checkbox"]:checked::before {
       transform: translateX(16px);
     }
-    .t-m label { /* Hidden label, using ::before for custom switch */
+    .t-m label {
         display: none;
     }
 
-    /* Button Styling */
     button {
       padding: 0.85rem 1.75rem;
       background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
       color: var(--text-on-accent);
       border: none;
       border-radius: var(--border-radius-md);
-      font-weight: 600; /* Bold but not too heavy */
+      font-weight: 600;
       cursor: pointer;
-      transition: var(--transition-fast);
+      /* UPDATED: Animation timing */
+      transition: transform var(--duration-fast) var(--timing-interactive), 
+                  box-shadow var(--duration-fast) var(--timing-interactive), 
+                  opacity var(--duration-fast) var(--timing-interactive),
+                  background var(--duration-fast) var(--timing-interactive); /* For specific buttons */
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 0.5rem;
       box-shadow: var(--shadow-md);
       font-size: 0.95rem;
-      text-transform: uppercase; /* Modern touch */
+      text-transform: uppercase;
       letter-spacing: 0.025em;
     }
-    /* --- ENHANCEMENT: Sophisticated Hover Effects for Buttons --- */
     button:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
-      opacity: 0.9; /* Slight fade for gradient buttons */
+      opacity: 0.9;
     }
     button:active {
-      transform: translateY(0px); /* Press down effect */
+      transform: translateY(0px);
       box-shadow: var(--shadow-sm);
       opacity: 1;
     }
-    /* Special button like "Add 1pt Bonus" */
     #a-b {
         background: var(--accent-secondary);
         font-size: 0.8rem;
@@ -429,46 +462,42 @@
     #a-b:hover {
         background: var(--accent-primary);
     }
-    /* Buttons in talents section */
     #t-s button, #missing-list button {
         background: var(--accent-primary);
         font-size: 0.9rem;
     }
-    #missing-list button { /* Remove button */
+    #missing-list button {
         background: var(--accent-danger);
         padding: 0.5rem 1rem;
     }
      #missing-list button:hover {
-        background: #c33a3a; /* Darken danger color */
+        background: #c33a3a;
      }
 
-
-    /* Result Block Styling */
     .r-b {
       background-color: var(--bg-tertiary);
       border-radius: var(--border-radius-lg);
       padding: 1.5rem;
       margin-top: 1.5rem;
       box-shadow: var(--shadow-md);
-      text-align: center; /* Center content */
+      text-align: center;
     }
     .r-b h3 {
       color: var(--text-secondary);
       margin-bottom: 0.5rem;
     }
-    #f-a, #t-f-a, #s2-f-a { /* The actual average number */
-      font-size: 2rem; /* Larger font for result */
+    #f-a, #t-f-a, #s2-f-a {
+      font-size: 2rem;
       font-weight: 800;
       color: var(--text-accent);
       display: inline-block;
       padding: 0.25rem 0.5rem;
       border-radius: var(--border-radius-sm);
-      background-color: transparent; /* No specific background, just colored text */
+      background-color: transparent;
     }
 
-    /* Info Block (Formula Display) Styling */
-    .i-b { /* Inherits .content-card */
-      border-left: 5px solid var(--a); /* Purple accent kept, or use var(--accent-secondary) */
+    .i-b {
+      border-left: 5px solid var(--a);
     }
     .i-b p {
       margin: 0.75rem 0;
@@ -483,7 +512,6 @@
       color: var(--text-primary);
     }
 
-    /* Footer Styling */
     .f {
       text-align: center;
       margin: 2rem 0 1rem;
@@ -493,8 +521,6 @@
       border-top: 1px solid var(--border-primary);
     }
 
-    /* --- ENHANCEMENT: Engaging Animations & Transitions --- */
-    /* General page load animation for main cards */
     @keyframes cardEnter {
       from {
         opacity: 0;
@@ -506,23 +532,24 @@
       }
     }
     .content-card {
-      animation: cardEnter 0.5s var(--transition-slow) backwards;
+      /* UPDATED: Animation timing for keyframes */
+      animation: cardEnter var(--duration-slow) var(--timing-reveal) backwards;
     }
-    /* Stagger animation for multiple cards if desired via JS or nth-child */
-    /* #s1-table { animation-delay: 0.1s; } */
-    /* #formula-display { animation-delay: 0.2s; } */
+    /* Staggering can be done via JS by adding delays or by nth-child if structure is fixed */
+    /* Example: #s1-table.content-card { animation-delay: 0.1s; } */
 
-    /* Section visibility transitions (collapsible sections) */
+
     .collapsible-section {
-      transition: opacity var(--transition-slow), max-height var(--transition-slow),
-                  transform var(--transition-slow),
-                  margin var(--transition-slow), padding var(--transition-slow),
-                  border-width var(--transition-slow);
+      /* UPDATED: Animation timing */
+      transition-property: opacity, max-height, transform, margin, padding, border-width;
+      transition-duration: var(--duration-medium); /* Consistent duration */
+      transition-timing-function: var(--timing-collapse);
+      /* Specific timing for max-height if default is too bouncy */
+      /* transition: max-height var(--duration-medium) var(--ease-in-out-quad), ... other properties ... */
       overflow: hidden;
       opacity: 1;
-      max-height: 3000px; /* Sufficiently large, adjust if content is taller */
+      max-height: 3000px;
       transform: translateY(0);
-      /* Ensure margin/padding defined here if they need to transition from 0 */
       margin: 1.5rem auto;
       padding: 2rem;
     }
@@ -534,16 +561,12 @@
       padding-bottom: 0 !important;
       margin-top: 0 !important;
       margin-bottom: 0 !important;
-      border-width: 0 !important; /* If it has borders that need to collapse */
-      /* visibility: hidden; remove after transition if needed */
+      border-width: 0 !important;
     }
-    /* Wrapper for content inside grid-collapsible sections if grid was used */
     .collapsible-content-wrapper {
       min-height: 0;
     }
 
-
-    /* Missing Module Item Animation */
     #missing-list {
       display: flex;
       flex-direction: column;
@@ -556,29 +579,33 @@
       box-shadow: var(--shadow-sm);
       opacity: 0;
       transform: translateX(-20px);
-      max-height: 0; /* Start collapsed */
-      transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease, padding 0.3s ease;
+      max-height: 0;
+      /* UPDATED: Animation timing */
+      transition: opacity var(--duration-medium) var(--timing-enter),
+                  transform var(--duration-medium) var(--timing-enter),
+                  max-height var(--duration-slow) var(--ease-in-out-quad), /* Slower for height, smoother ease */
+                  padding var(--duration-medium) var(--timing-enter);
       overflow: hidden;
     }
     .missing-module-item.is-visible {
       opacity: 1;
       transform: translateX(0);
-      max-height: 500px; /* Adjust as needed */
-      padding: 1rem; /* Ensure padding is part of the transition */
+      max-height: 500px;
+      padding: 1rem;
     }
     .missing-module-item h4 {
       margin-top: 0;
       margin-bottom: 0.75rem;
       color: var(--text-primary);
     }
-    .missing-module-item div { /* Input rows */
+    .missing-module-item div {
       display: flex;
       align-items: center;
       gap: 0.5rem;
       margin-bottom: 0.5rem;
     }
     .missing-module-item label {
-      min-width: 80px; /* Adjust for alignment */
+      min-width: 80px;
       font-size: 0.9rem;
       color: var(--text-secondary);
     }
@@ -586,23 +613,22 @@
       width: 80px;
     }
     
-    /* Reveal on Scroll for formula section */
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(30px);
-      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-      transition-delay: 0.2s; /* Slight delay */
+      /* UPDATED: Animation timing */
+      transition: opacity var(--duration-slower) var(--timing-reveal), 
+                  transform var(--duration-slower) var(--timing-reveal);
+      transition-delay: 0.2s; /* Keep delay for staggered effect if desired */
     }
     .reveal-on-scroll.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-
-    /* Responsive Adjustments */
     @media (max-width: 768px) {
       body {
-        padding: 1rem 0.75rem; /* Reduced padding for smaller screens */
+        padding: 1rem 0.75rem;
       }
       .app-header {
         flex-direction: column;
@@ -611,7 +637,7 @@
         top: 0.5rem;
       }
       .app-controls {
-        justify-content: center; /* Center controls when wrapped */
+        justify-content: center;
         gap: 0.75rem;
       }
 
@@ -624,21 +650,21 @@
 
       .content-card, .collapsible-section {
         margin: 1rem auto;
-        padding: 1.25rem; /* Reduced padding for cards */
+        padding: 1.25rem;
       }
 
       table {
-        display: block; /* Enable horizontal scrolling for table */
+        display: block;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
-        border-radius: var(--border-radius-md); /* Ensure radius is maintained */
+        -webkit-overflow-scrolling: touch;
+        border-radius: var(--border-radius-md);
       }
       th, td {
         padding: 0.75rem 0.5rem;
-        white-space: nowrap; /* Prevent text wrapping in cells */
+        white-space: nowrap;
       }
       .c-g, .m-g {
-        flex-direction: column; /* Stack grade inputs vertically */
+        flex-direction: column;
         align-items: stretch;
       }
       .c-g span.g-l, .m-g span.g-l {
@@ -646,7 +672,7 @@
         text-align: left;
       }
       input[type="number"], select {
-        width: 100%; /* Full width for inputs in stacked layout */
+        width: 100%;
         min-width: 0;
       }
 
@@ -660,7 +686,7 @@
     }
     @media (max-width: 480px) {
         .app-controls label {
-            font-size: 0.9rem; /* Smaller text for toggles on very small screens */
+            font-size: 0.9rem;
         }
         .theme-switcher {
             width: 44px;
@@ -677,7 +703,6 @@
         }
         .slider::after { font-size: 10px; }
     }
-
   </style>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
