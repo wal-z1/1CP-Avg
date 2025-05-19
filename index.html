@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <!-- UPDATED: Favicon to a modern calculator SVG icon -->
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Calculator 1CP S1&S2 - Enhanced</title>
@@ -46,7 +45,7 @@
       --border-radius-md: 0.5rem;   /* 8px */
       --border-radius-lg: 0.75rem;  /* 12px */
 
-      /* --- NEW: Enhanced Easing Functions & Durations --- */
+      /* --- Enhanced Easing Functions & Durations --- */
       --ease-in-quad: cubic-bezier(0.55, 0.085, 0.68, 0.53);
       --ease-in-cubic: cubic-bezier(0.55, 0.055, 0.675, 0.19);
       --ease-in-quart: cubic-bezier(0.895, 0.03, 0.685, 0.22);
@@ -65,32 +64,28 @@
       --ease-in-out-cubic: cubic-bezier(0.645, 0.045, 0.355, 1);
       --ease-in-out-quart: cubic-bezier(0.77, 0, 0.175, 1);
       --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
-      --ease-in-out-expo: cubic-bezier(1, 0, 0, 1); /* Note: This is linear-like for extreme values */
+      --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
       --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
       
-      /* Material Design Inspired Easing */
       --md-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
-      --md-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1); /* Good for incoming elements */
-      --md-accelerate: cubic-bezier(0.4, 0.0, 1, 1); /* Good for outgoing elements */
+      --md-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
+      --md-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
 
-      /* Durations */
       --duration-fastest: 0.1s;
       --duration-fast: 0.15s;
       --duration-normal: 0.25s;
       --duration-medium: 0.35s;
       --duration-slow: 0.5s;
       --duration-slower: 0.6s;
+      --duration-slowest: 1s; /* For very gentle animations */
 
-      /* Semantic Transition Definitions */
       --timing-interactive: var(--ease-out-quad);
       --timing-enter: var(--ease-out-cubic);
       --timing-exit: var(--ease-in-cubic);
       --timing-state-change: var(--ease-in-out-cubic);
-      --timing-collapse: var(--md-standard); /* Good for UI elements like accordions */
+      --timing-collapse: var(--md-standard);
       --timing-reveal: var(--ease-out-quart);
 
-
-      /* Original variables for compatibility, mapped to new ones */
       --p: var(--accent-primary);
       --s: var(--accent-secondary);
       --a: #9333ea; 
@@ -131,17 +126,149 @@
     body {
       font-family: var(--font-primary);
       background-color: var(--bg-primary);
-      background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive));
+      /* Removed static background image, animated one will replace it */
       margin: 0;
       padding: 1.5rem;
       line-height: 1.6;
       color: var(--text-primary);
       min-height: 100vh;
-      /* UPDATED: Animation timing */
+      position: relative; /* Needed for z-indexed children if any were to go under the fixed bg */
+      overflow-x: hidden; /* Prevent horizontal scroll from animated bg if any shape peeks */
       transition: background-color var(--duration-normal) var(--timing-state-change), color var(--duration-normal) var(--timing-state-change);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
+
+    /* --- NEW: Animated Background --- */
+    .animated-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1; /* Behind all other content */
+      overflow: hidden;
+      pointer-events: none;
+      /* Use body's gradient as a base, or a solid color */
+      background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive));
+      transition: background-image var(--duration-normal) var(--timing-state-change); /* Transition for theme change */
+    }
+
+    .animated-bg span {
+      position: absolute;
+      display: block;
+      list-style: none;
+      background-color: var(--accent-primary);
+      border-radius: 50%;
+      bottom: -180px; /* Start further off-screen */
+      animation-name: rise;
+      animation-iteration-count: infinite;
+      opacity: 0; /* Start transparent, fade in via animation */
+      will-change: transform, opacity; /* Performance hint */
+    }
+
+    [data-theme="dark"] .animated-bg span {
+      background-color: var(--accent-secondary); /* Slightly different color for dark mode */
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
+        opacity: 0;
+      }
+      10% { /* Fade in quickly */
+        opacity: 0.4; /* Max opacity for light theme */
+      }
+      [data-theme="dark"] & 10% { /* Example of theme-specific keyframe values if needed */
+         opacity: 0.25; /* Max opacity for dark theme - more subtle */
+      }
+      90% { /* Start fading out before loop */
+         opacity: 0.05;
+      }
+      100% {
+        transform: translateY(-130vh) translateX(var(--translateX-end, 50px)) rotate(var(--rotate-end, 720deg)) scale(1.3);
+        opacity: 0;
+      }
+    }
+
+    .animated-bg span:nth-child(1) {
+      left: 20%; width: 80px; height: 80px;
+      animation-duration: 25s; animation-delay: 0s;
+      animation-timing-function: var(--ease-in-out-cubic);
+      --translateX-end: -30px; --rotate-end: 360deg;
+      background-color: rgba(37, 99, 235, 0.5); /* Lighter version of accent */
+    }
+    [data-theme="dark"] .animated-bg span:nth-child(1) {
+      background-color: rgba(79, 70, 229, 0.3);
+    }
+
+    .animated-bg span:nth-child(2) {
+      left: 5%; width: 35px; height: 35px;
+      animation-duration: 18s; animation-delay: 2s;
+      animation-timing-function: var(--ease-out-quint);
+      --translateX-end: 20px; --rotate-end: -200deg;
+      background-color: rgba(79, 70, 229, 0.6);
+    }
+    [data-theme="dark"] .animated-bg span:nth-child(2) {
+      background-color: rgba(37, 99, 235, 0.4);
+    }
+
+    .animated-bg span:nth-child(3) {
+      left: 75%; width: 30px; height: 30px;
+      animation-duration: 22s; animation-delay: 4s;
+      animation-timing-function: var(--ease-in-out-quart);
+      --translateX-end: 60px; --rotate-end: 540deg;
+      background-color: rgba(147, 51, 234, 0.4); /* --a color */
+    }
+     [data-theme="dark"] .animated-bg span:nth-child(3) {
+      background-color: rgba(120, 51, 200, 0.3);
+    }
+
+
+    .animated-bg span:nth-child(4) {
+      left: 35%; width: 65px; height: 65px;
+      animation-duration: 20s; animation-delay: 0.5s;
+      animation-timing-function: var(--ease-out-circ);
+      --translateX-end: -50px; --rotate-end: 270deg;
+      background-color: rgba(37, 99, 235, 0.45);
+    }
+    [data-theme="dark"] .animated-bg span:nth-child(4) {
+      background-color: rgba(79, 70, 229, 0.25);
+    }
+
+    .animated-bg span:nth-child(5) {
+      left: 60%; width: 25px; height: 25px;
+      animation-duration: 16s; animation-delay: 1.5s;
+      animation-timing-function: var(--ease-in-out-expo);
+      --translateX-end: 40px; --rotate-end: -360deg;
+      background-color: rgba(79, 70, 229, 0.55);
+    }
+     [data-theme="dark"] .animated-bg span:nth-child(5) {
+      background-color: rgba(37, 99, 235, 0.35);
+    }
+
+    .animated-bg span:nth-child(6) {
+      left: 88%; width: 130px; height: 130px;
+      animation-duration: 35s; animation-delay: 3s;
+      animation-timing-function: var(--ease-in-out-quint);
+      --translateX-end: -70px; --rotate-end: 180deg;
+      background-color: rgba(147, 51, 234, 0.3);
+    }
+    [data-theme="dark"] .animated-bg span:nth-child(6) {
+      background-color: rgba(120, 51, 200, 0.2);
+    }
+
+    .animated-bg span:nth-child(7) {
+      left: 48%; width: 45px; height: 45px;
+      animation-duration: 19s; animation-delay: 5.5s;
+      animation-timing-function: var(--ease-out-expo);
+      --translateX-end: 10px; --rotate-end: 600deg;
+       background-color: rgba(37, 99, 235, 0.5);
+    }
+     [data-theme="dark"] .animated-bg span:nth-child(7) {
+      background-color: rgba(79, 70, 229, 0.3);
+    }
+    /* --- End Animated Background --- */
     
     .app-header {
       display: flex;
@@ -155,7 +282,7 @@
       backdrop-filter: blur(var(--blur-intensity));
       position: sticky;
       top: 1rem;
-      z-index: 100;
+      z-index: 100; /* Ensure header is above animated bg, but z-index on body not strictly needed now */
     }
 
     .app-controls {
@@ -171,7 +298,6 @@
       display: inline-flex;
       gap: 0.5rem;
       align-items: center;
-      /* UPDATED: Animation timing */
       transition: color var(--duration-fast) var(--timing-interactive);
     }
     .app-controls label:hover {
@@ -207,7 +333,6 @@
       right: 0;
       bottom: 0;
       background-color: var(--bg-interactive-strong);
-      /* UPDATED: Animation timing */
       transition: background-color var(--duration-normal) var(--timing-state-change);
       border-radius: 28px;
     }
@@ -219,7 +344,6 @@
       left: 4px;
       bottom: 4px;
       background-color: white;
-      /* UPDATED: Animation timing */
       transition: transform var(--duration-normal) var(--timing-state-change);
       border-radius: 50%;
       box-shadow: var(--shadow-xs);
@@ -228,7 +352,7 @@
       background-color: var(--accent-primary);
     }
     .theme-switcher input:focus + .slider {
-      box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.3));
+      box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.2));
     }
     .theme-switcher input:checked + .slider:before {
       transform: translateX(22px);
@@ -240,7 +364,6 @@
       top: 50%;
       right: 6px;
       transform: translateY(-50%);
-      /* UPDATED: Animation timing */
       transition: opacity var(--duration-normal) var(--timing-state-change), left var(--duration-normal) var(--timing-state-change), right var(--duration-normal) var(--timing-state-change);
       opacity: 0.7;
     }
@@ -263,6 +386,8 @@
       letter-spacing: -0.025em;
       margin-bottom: 1.5rem;
       color: var(--text-primary);
+      position: relative; /* To ensure it's above the fixed background if z-index stacking context issues arise */
+      z-index: 1;
     }
     
     h3 {
@@ -277,12 +402,13 @@
       box-shadow: var(--shadow-lg);
       margin: 1.5rem auto;
       padding: 2rem;
-      /* UPDATED: Animation timing */
       transition: transform var(--duration-normal) var(--timing-interactive), 
                   box-shadow var(--duration-normal) var(--timing-interactive), 
                   background-color var(--duration-normal) var(--timing-state-change);
       border: 1px solid var(--border-primary);
       max-width: 900px;
+      position: relative; /* For stacking context against animated bg */
+      z-index: 1;
     }
 
     .content-card:hover {
@@ -305,7 +431,6 @@
       text-align: center;
       font-weight: 500;
       border-bottom: 1px solid var(--border-primary);
-      /* UPDATED: Animation timing */
       transition: background-color var(--duration-fast) var(--timing-interactive);
     }
 
@@ -342,7 +467,6 @@
       border: 1px solid var(--border-primary);
       border-radius: var(--border-radius-md);
       font-size: 0.95rem;
-      /* UPDATED: Animation timing */
       transition: border-color var(--duration-fast) var(--timing-interactive), 
                   box-shadow var(--duration-fast) var(--timing-interactive), 
                   background-color var(--duration-fast) var(--timing-interactive);
@@ -394,7 +518,6 @@
       border-radius: var(--border-radius-lg);
       position: relative;
       cursor: pointer;
-      /* UPDATED: Animation timing */
       transition: background-color var(--duration-fast) var(--timing-state-change);
       box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
     }
@@ -407,7 +530,6 @@
       background: white;
       top: 3px;
       left: 3px;
-      /* UPDATED: Animation timing */
       transition: transform var(--duration-normal) var(--timing-state-change);
       box-shadow: var(--shadow-sm);
     }
@@ -429,11 +551,10 @@
       border-radius: var(--border-radius-md);
       font-weight: 600;
       cursor: pointer;
-      /* UPDATED: Animation timing */
       transition: transform var(--duration-fast) var(--timing-interactive), 
                   box-shadow var(--duration-fast) var(--timing-interactive), 
                   opacity var(--duration-fast) var(--timing-interactive),
-                  background var(--duration-fast) var(--timing-interactive); /* For specific buttons */
+                  background var(--duration-fast) var(--timing-interactive);
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -442,6 +563,8 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.025em;
+      position: relative; /* For stacking context */
+      z-index: 1;
     }
     button:hover {
       transform: translateY(-2px);
@@ -474,13 +597,15 @@
         background: #c33a3a;
      }
 
-    .r-b {
+    .r-b { /* result block */
       background-color: var(--bg-tertiary);
       border-radius: var(--border-radius-lg);
       padding: 1.5rem;
       margin-top: 1.5rem;
       box-shadow: var(--shadow-md);
       text-align: center;
+      position: relative; /* For stacking context */
+      z-index: 1;
     }
     .r-b h3 {
       color: var(--text-secondary);
@@ -496,8 +621,10 @@
       background-color: transparent;
     }
 
-    .i-b {
+    .i-b { /* info block - formulas */
       border-left: 5px solid var(--a);
+       position: relative; /* For stacking context */
+      z-index: 1;
     }
     .i-b p {
       margin: 0.75rem 0;
@@ -512,13 +639,15 @@
       color: var(--text-primary);
     }
 
-    .f {
+    .f { /* footer */
       text-align: center;
       margin: 2rem 0 1rem;
       color: var(--text-muted);
       font-size: 0.875rem;
       padding-top: 1.5rem;
       border-top: 1px solid var(--border-primary);
+      position: relative; /* For stacking context */
+      z-index: 1;
     }
 
     @keyframes cardEnter {
@@ -532,20 +661,17 @@
       }
     }
     .content-card {
-      /* UPDATED: Animation timing for keyframes */
       animation: cardEnter var(--duration-slow) var(--timing-reveal) backwards;
     }
-    /* Staggering can be done via JS by adding delays or by nth-child if structure is fixed */
-    /* Example: #s1-table.content-card { animation-delay: 0.1s; } */
-
+    /* Stagger animation example
+    #s1-table.content-card { animation-delay: 0.05s; }
+    #formula-display.content-card { animation-delay: 0.1s; }
+    */
 
     .collapsible-section {
-      /* UPDATED: Animation timing */
       transition-property: opacity, max-height, transform, margin, padding, border-width;
-      transition-duration: var(--duration-medium); /* Consistent duration */
+      transition-duration: var(--duration-medium); 
       transition-timing-function: var(--timing-collapse);
-      /* Specific timing for max-height if default is too bouncy */
-      /* transition: max-height var(--duration-medium) var(--ease-in-out-quad), ... other properties ... */
       overflow: hidden;
       opacity: 1;
       max-height: 3000px;
@@ -580,10 +706,9 @@
       opacity: 0;
       transform: translateX(-20px);
       max-height: 0;
-      /* UPDATED: Animation timing */
       transition: opacity var(--duration-medium) var(--timing-enter),
                   transform var(--duration-medium) var(--timing-enter),
-                  max-height var(--duration-slow) var(--ease-in-out-quad), /* Slower for height, smoother ease */
+                  max-height var(--duration-slow) var(--ease-in-out-quad), 
                   padding var(--duration-medium) var(--timing-enter);
       overflow: hidden;
     }
@@ -616,10 +741,9 @@
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(30px);
-      /* UPDATED: Animation timing */
       transition: opacity var(--duration-slower) var(--timing-reveal), 
                   transform var(--duration-slower) var(--timing-reveal);
-      transition-delay: 0.2s; /* Keep delay for staggered effect if desired */
+      transition-delay: 0.15s; /* Slightly reduced delay */
     }
     .reveal-on-scroll.is-visible {
       opacity: 1;
@@ -683,6 +807,10 @@
       #f-a, #t-f-a, #s2-f-a {
         font-size: 1.75rem;
       }
+      /* Reduce number of animated shapes on mobile for performance */
+      .animated-bg span:nth-child(n+5) {
+        display: none;
+      }
     }
     @media (max-width: 480px) {
         .app-controls label {
@@ -702,6 +830,11 @@
             transform: translateX(20px);
         }
         .slider::after { font-size: 10px; }
+
+        /* Further reduce animated shapes on very small screens */
+        .animated-bg span:nth-child(n+4) {
+            display: none;
+        }
     }
   </style>
 
@@ -709,9 +842,19 @@
 </head>
 
 <body>
+  <!-- ADDED: Animated background element -->
+  <div class="animated-bg">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
   <!-- ENHANCEMENT: App Header for Title and Global Controls -->
   <header class="app-header">
-    <!-- Relocated toggles for Semester and Talents Mode -->
     <div class="app-controls">
       <label>
         <input type="checkbox" id="t-m-global" onchange="tTM()" />
@@ -722,7 +865,6 @@
         S2 Mode
       </label>
     </div>
-    <!-- ENHANCEMENT: Dark Theme Toggle -->
     <div class="theme-switcher-container">
       <label class="theme-switcher" for="theme-toggle" title="Toggle Dark Mode">
         <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
@@ -733,9 +875,7 @@
 
   <h2 id="main-title">1CP S1 Avg Calc</h2>
 
-  <!-- Talents/Missing‑module calculator section -->
-  <!-- ADDED: classes for styling and animation -->
-  <div id="t-s" class="content-card collapsible-section collapsed" style="display: block;"> <!-- Start collapsed, display: block to allow transition -->
+  <div id="t-s" class="content-card collapsible-section collapsed" style="display: block;">
     <div class="collapsible-content-wrapper">
       <h3>Recover Missing Module from Talents Avg</h3>
       <div style="margin-bottom: 1rem">
@@ -744,7 +884,6 @@
         </label>
         <input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" />
       </div>
-
       <div style="margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
         <div>
           <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">
@@ -764,9 +903,7 @@
         </div>
         <button onclick="addMissing()">Add Module</button>
       </div>
-
       <div id="missing-list" style="margin-bottom: 1rem"></div>
-
       <button onclick="cM()">Calc Semester Avg</button>
       <div class="r-b">
         <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
@@ -774,17 +911,15 @@
     </div>
   </div>
 
-  <!-- Semester 1 grades table -->
-  <!-- ADDED: classes for styling and animation -->
   <div id="s1-table" class="content-card collapsible-section" style="display: block;">
      <div class="collapsible-content-wrapper">
       <table>
-        <thead> <!-- THEAD for semantic correctness -->
+        <thead>
           <tr>
             <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
           </tr>
         </thead>
-        <tbody> <!-- TBODY for semantic correctness -->
+        <tbody>
         <script>
           const mC = [
             { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
@@ -837,8 +972,6 @@
     <h3>Semester Avg: <span id="f-a">0.00</span></h3>
   </div>
 
-  <!-- Semester 2 grades table (hidden until toggled) -->
-  <!-- ADDED: classes for styling and animation -->
   <div id="s2-table" class="content-card collapsible-section collapsed" style="display: block;">
      <div class="collapsible-content-wrapper">
       <table>
@@ -893,14 +1026,12 @@
   </div>
 
   <div style="text-align: center; margin: 1.5rem 0">
-    <button id="s2-calc" onclick="cA_S2()" style="display:none">Calc S2 Avg</button> <!-- Text change for clarity -->
+    <button id="s2-calc" onclick="cA_S2()" style="display:none">Calc S2 Avg</button>
   </div>
   <div class="r-b" id="s2-result" style="text-align: center; display:none">
-    <h3>S2 Avg: <span id="s2-f-a">0.00</span></h3> <!-- Text change for clarity -->
+    <h3>S2 Avg: <span id="s2-f-a">0.00</span></h3>
   </div>
 
-  <!-- Static formulas for reference -->
-  <!-- ADDED: classes for styling and animation (reveal-on-scroll) -->
   <div class="i-b content-card reveal-on-scroll" id="formula-display">
     <h3>Calc Formulas (S1)</h3>
     <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
@@ -985,11 +1116,9 @@
         document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
         total += avg * m.coef;
       });
-      document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2); // S2 total coef is 27
+      document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
     }
 
-    // ---------- Add a missing module section ----------
-    // MODIFIED: For entry/exit animations
     const missing = [];
     function addMissing() {
       const modSelect = document.getElementById("m-m");
@@ -998,13 +1127,13 @@
       
       const arr = isS2 ? mC2 : mC;
       const mObj = arr.find(x => x.code === mod);
-      if (!mObj) return; // Should not happen if select is correct
+      if (!mObj) return; 
       missing.push({ code: mod, coef: mObj.coef, fields: mObj.fields });
 
       const container = document.getElementById("missing-list");
       const div = document.createElement("div");
       div.id = `miss-${mod}`;
-      div.className = 'missing-module-item'; // Class for styling and animation
+      div.className = 'missing-module-item';
 
       const title = document.createElement("h4");
       title.textContent = `${mod} (coef ${mObj.coef})`;
@@ -1028,9 +1157,8 @@
       const btn = document.createElement("button");
       btn.textContent = "Remove";
       btn.onclick = () => {
-        div.classList.remove('is-visible'); // Trigger exit animation
+        div.classList.remove('is-visible'); 
         div.addEventListener('transitionend', () => {
-          // Check if still a child before removing, to prevent errors if clicked multiple times fast
           if (div.parentNode === container) { 
             container.removeChild(div);
           }
@@ -1042,19 +1170,17 @@
       div.appendChild(btn);
       container.appendChild(div);
 
-      // Trigger entry animation
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => { // Double RAF for robustness
+        requestAnimationFrame(() => { 
           div.classList.add('is-visible');
         });
       });
-      modSelect.value = ""; // Clear select after adding
+      modSelect.value = "";
     }
 
-    // ---------- Calculate final avg including missing modules (unchanged logic) ----------
     function cM() {
       const tA = parseFloat(document.getElementById("t-a").value) || 0;
-      const coef = isS2 ? 27 : tCoef; // S2 total coef is 27
+      const coef = isS2 ? 27 : tCoef; 
       let totalWeighted = tA * coef;
 
       missing.forEach(m => {
@@ -1064,40 +1190,36 @@
         totalWeighted += avg * m.coef;
       });
 
-      const finalAvg = totalWeighted / coef; // Denominator should be sum of all original module coefs
+      const finalAvg = totalWeighted / coef; 
       document.getElementById("t-f-a").textContent = finalAvg.toFixed(2);
     }
 
-    // ---------- Toggle ARCHI bonus on/off (unchanged) ----------
     function tAB() {
       aB = !aB;
       document.getElementById("a-b").textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
-      cA(); // Recalculate S1
+      cA();
     }
 
-    // ---------- Switch between computed/manual for S1 (unchanged logic, CSS handles visual) ----------
     function tMM(m) {
       const cell = document.querySelector(`.${m}`);
       const comp = cell.querySelector(".c-g");
       const man = cell.querySelector(".m-g");
       const on = document.getElementById(`t-m-${m}`).checked;
-      comp.style.display = on ? "none" : "flex"; // Keep direct style for simplicity here
+      comp.style.display = on ? "none" : "flex"; 
       man.style.display = on ? "block" : "none";
       cA();
     }
 
-    // ---------- Switch between computed/manual for S2 (unchanged logic, CSS handles visual) ----------
     function tMM_S2(m) {
       const cell = document.querySelector(`.s2-${m}`);
       const comp = cell.querySelector(".c-g");
       const man = cell.querySelector(".m-g");
       const on = document.getElementById(`s2-t-m-${m}`).checked;
-      comp.style.display = on ? "none" : "flex"; // Keep direct style
+      comp.style.display = on ? "none" : "flex"; 
       man.style.display = on ? "block" : "none";
       cA_S2();
     }
 
-    // --- ENHANCEMENT: JS for section visibility animations & Dark Theme ---
     const talentModeToggle = document.getElementById('t-m-global');
     const s2ModeToggle = document.getElementById('s2-m-global');
 
@@ -1109,60 +1231,32 @@
     const s1ResultBlock = document.getElementById("s1-result");
     const s2ResultBlock = document.getElementById("s2-result");
 
-    // Ensure initial state of sections matches CSS (collapsed or not)
-    // `talentSection` and `s2TableSection` start with `collapsed` class.
-    // `s1TableSection` starts without `collapsed`.
-    // `s1CalcButton` and `s1ResultBlock` are initially visible.
-    // Others like `s2CalcButton`, `s2ResultBlock` have `display:none` inline initially.
-
-    // Helper to sync global toggles with original hidden toggles
-    function syncToggles(sourceId, targetId) {
-        const source = document.getElementById(sourceId);
-        const target = document.getElementById(targetId);
-        if (source && target) {
-            target.checked = source.checked;
-        }
-    }
-    // Hidden original toggles, if they were still in the DOM (they aren't after HTML changes)
-    // talentModeToggle.addEventListener('change', () => syncToggles('t-m-global', 't-m'));
-    // s2ModeToggle.addEventListener('change', () => syncToggles('s2-m-global', 's2-m'));
-
-
     function tTM() {
-      // Sync global toggle with the original hidden one if it existed, or use global directly
-      const talentOn = talentModeToggle.checked; // document.getElementById("t-m").checked;
-
-      s2ModeToggle.disabled = talentOn; // document.getElementById("s2-m").disabled = talentOn;
+      const talentOn = talentModeToggle.checked;
+      s2ModeToggle.disabled = talentOn;
 
       if (talentOn) {
         talentSection.classList.remove("collapsed");
         s1TableSection.classList.add("collapsed");
         s2TableSection.classList.add("collapsed");
-
-        // For elements initially styled with display:none, we need to manage that too.
-        // Or, ensure they are part of a collapsible section.
-        // For simplicity, keep direct style changes for these buttons/results if they are outside animated containers.
         s1CalcButton.style.display = "none";
         s2CalcButton.style.display = "none";
         s1ResultBlock.style.display = "none";
         s2ResultBlock.style.display = "none";
       } else {
         talentSection.classList.add("collapsed");
-        // Revert to whichever table mode was selected by calling toggleS2
-        // toggleS2 will handle visibility of S1/S2 tables and their associated buttons/results.
         toggleS2();
       }
     }
 
     function toggleS2() {
-      if (talentModeToggle.checked) return; // Skip if talent mode on
+      if (talentModeToggle.checked) return;
 
-      isS2 = s2ModeToggle.checked; // document.getElementById("s2-m").checked;
+      isS2 = s2ModeToggle.checked; 
       const title = document.getElementById("main-title");
       const formula = document.getElementById("formula-display");
-      const sel = document.getElementById("m-m"); // Module selector in talents
+      const sel = document.getElementById("m-m");
 
-      // Formula content (unchanged logic, just for reference)
       const s1Formulas = `
         <h3>Calc Formulas (S1)</h3>
         <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
@@ -1183,7 +1277,6 @@
         <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
         <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
       
-      // Module selector options (unchanged logic)
       const s1ModulesOptions = `
         <option value="">-- Choose Module --</option>
         <option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option>
@@ -1199,34 +1292,27 @@
         title.textContent = "1CP S2 Avg Calc";
         formula.innerHTML = s2Formulas;
         sel.innerHTML = s2ModulesOptions;
-
         s1TableSection.classList.add("collapsed");
         s2TableSection.classList.remove("collapsed");
-        
         s1CalcButton.style.display = "none";
         s1ResultBlock.style.display = "none";
-        s2CalcButton.style.display = "inline-block"; // Or flex, depending on desired layout
+        s2CalcButton.style.display = "inline-block"; 
         s2ResultBlock.style.display = "block";
       } else {
         title.textContent = "1CP S1 Avg Calc";
         formula.innerHTML = s1Formulas;
         sel.innerHTML = s1ModulesOptions;
-
         s2TableSection.classList.add("collapsed");
         s1TableSection.classList.remove("collapsed");
-
         s2CalcButton.style.display = "none";
         s2ResultBlock.style.display = "none";
         s1CalcButton.style.display = "inline-block";
         s1ResultBlock.style.display = "block";
       }
-      // Clear missing modules list when switching semesters, as modules differ
       document.getElementById("missing-list").innerHTML = "";
       missing.length = 0;
     }
 
-
-    // ---------- Reset all inputs & outputs (unchanged logic) ----------
     function resetCalculator() {
       document.getElementById("t-a").value = "";
       document.getElementById("t-f-a").textContent = "0.00";
@@ -1251,33 +1337,24 @@
       document.getElementById("f-a").textContent = "0.00";
       document.getElementById("s2-f-a").textContent = "0.00";
       
-      // Reset global toggles in the header
       talentModeToggle.checked = false;
       s2ModeToggle.checked = false;
       
-      // Manually call tTM and toggleS2 to reset UI to default (S1, non-talent)
-      tTM();      // This will call toggleS2 internally if talent mode is off
+      tTM();      
       
-      // Ensure manual grade inputs are hidden and computed are shown
       document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
       document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
 
-      if (isS2) cA_S2(); else cA(); // Recalculate based on final state
+      if (isS2) cA_S2(); else cA();
     }
     
-    // Initial setup calls
     document.addEventListener('DOMContentLoaded', () => {
-      // Set initial collapsed states explicitly for elements that might not have the class yet
-      // (though CSS sets it, this is a fallback if JS runs before full CSSOM)
       if (talentSection) talentSection.classList.add('collapsed');
       if (s2TableSection) s2TableSection.classList.add('collapsed');
       if (s1TableSection) s1TableSection.classList.remove('collapsed');
 
+      cA(); 
 
-      // Initial calculation on page load
-      cA(); // Calculate S1 by default
-
-      // Theme switcher logic
       const themeToggleSwitch = document.getElementById('theme-toggle');
       const userTheme = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -1300,37 +1377,30 @@
         });
       }
       
-      // Listen to system theme changes
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) { // Only if user hasn't made an explicit choice
+        if (!localStorage.getItem('theme')) { 
             applyTheme(e.matches ? 'dark' : 'light');
         }
       });
 
-      // Reveal on scroll observer for formula section
       const formulaDisplay = document.getElementById('formula-display');
       if (formulaDisplay) {
         const revealOnScrollObserver = new IntersectionObserver((entries) => {
           entries.forEach(entry => {
             if (entry.isIntersecting) {
               entry.target.classList.add('is-visible');
-              revealOnScrollObserver.unobserve(entry.target); // Optional: unobserve after first reveal
+              revealOnScrollObserver.unobserve(entry.target); 
             }
           });
-        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+        }, { threshold: 0.1 }); 
         revealOnScrollObserver.observe(formulaDisplay);
       }
       
-      // Initialize visibility based on toggles (important if page reloads with toggles checked)
       tTM(); 
-      // toggleS2() is called by tTM if talent mode is off. If talent mode is on, toggleS2 handles S1/S2 visibility.
-      // We ensure S2 mode is correctly set by the s2ModeToggle at init.
       if (!talentModeToggle.checked) {
         toggleS2();
       }
-
     });
-
   </script>
 </body>
 </html>
