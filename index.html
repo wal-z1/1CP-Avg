@@ -2,285 +2,717 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQclQRt6Ns8S32kXTZtz3BO2-c30s0Y37ZI-A&s" type="image/png">
+  <!-- UPDATED: Favicon to a modern calculator SVG icon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator 1CP S1&amp;S2</title>
+  <title>Calculator 1CP S1&S2 - Enhanced</title>
 
   <style>
+    /* --- ENHANCEMENT: MODERNIZED LOOK & FEEL + DARK THEME --- */
+    /* 1. CSS Variables for Theming (Light & Dark) */
     :root {
-      --p: #2563eb;
-      --s: #4f46e5;
-      --a: #9333ea;
-      --su: #22c55e;
-      --bg: #e5e7eb;       /* light gray background */
-      --bg2: #f1f5f9;      /* secondary bg for elements */
-      --txt: #1f2937;      /* dark gray text */
-      --txtl: #6b7280;     /* lighter gray text */
-      --sh: 0 10px 25px rgba(0, 0, 0, 0.08), 0 4px 6px rgba(0, 0, 0, 0.04);
+      /* Light Theme (Default) */
+      --font-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
+      
+      --bg-primary: #f4f7f9;
+      --bg-secondary: rgba(255, 255, 255, 0.85); /* Semi-transparent for backdrop-filter */
+      --bg-tertiary: #e9edf1;
+      --bg-interactive: #e0e6eb;
+      --bg-interactive-strong: #d1d8e0;
+
+      --text-primary: #1a202c;
+      --text-secondary: #4a5568;
+      --text-muted: #718096;
+      --text-on-accent: #ffffff;
+      --text-accent: #2563eb; /* For highlighted text like results */
+
+      --border-primary: #d1d8e0;
+      --border-interactive: #a6b4c3;
+      --border-focus: #2563eb;
+
+      --accent-primary: #2563eb;
+      --accent-secondary: #4f46e5;
+      --accent-success: #10b981;
+      --accent-danger: #ef4444;
+
+      --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.03);
+      --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.04), 0 1px 2px -1px rgba(0, 0, 0, 0.02);
+      --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.06), 0 2px 4px -2px rgba(0, 0, 0, 0.03);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+      --blur-intensity: 8px; /* For backdrop blur */
+      --border-radius-sm: 0.375rem; /* 6px */
+      --border-radius-md: 0.5rem;   /* 8px */
+      --border-radius-lg: 0.75rem;  /* 12px */
+
+      --transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-normal: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+      --transition-slow: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+
+      /* Original variables for compatibility, mapped to new ones */
+      --p: var(--accent-primary);
+      --s: var(--accent-secondary);
+      --a: #9333ea; /* Kept purple accent for formula box or can be themed */
+      --su: var(--accent-success);
+      /* --bg, --bg2, --txt, --txtl, --sh are superseded by new system */
+    }
+
+    [data-theme="dark"] {
+      --bg-primary: #161b22; /* Deep dark blue/gray */
+      --bg-secondary: rgba(29, 36, 47, 0.85); /* Semi-transparent for backdrop-filter */
+      --bg-tertiary: #252e3c;
+      --bg-interactive: #354153;
+      --bg-interactive-strong: #4a5568;
+
+      --text-primary: #e2e8f0;
+      --text-secondary: #a0aec0;
+      --text-muted: #718096;
+      /* --text-on-accent: #ffffff;  remains the same */
+      --text-accent: #60a5fa; /* Lighter blue for dark mode results */
+
+      --border-primary: #3b475c;
+      --border-interactive: #5a677d;
+      --border-focus: #60a5fa;
+
+      /* Accents can be slightly adjusted if needed, current ones should work */
+      --shadow-xs: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+      --shadow-sm: 0 2px 4px -1px rgba(0, 0, 0, 0.15), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+      --shadow-md: 0 4px 8px -2px rgba(0, 0, 0, 0.2), 0 2px 4px -2px rgba(0, 0, 0, 0.15);
+      --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.25), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+      --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.25), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+    }
+
+    /* 2. Global Styles & Typography */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
-      background: linear-gradient(135deg, var(--bg), #d1d5db);
+      font-family: var(--font-primary);
+      background-color: var(--bg-primary);
+      background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive)); /* Subtle gradient */
       margin: 0;
-      padding: 1rem;
+      padding: 1.5rem; /* Increased padding */
       line-height: 1.6;
-      color: var(--txt);
+      color: var(--text-primary);
       min-height: 100vh;
+      transition: background-color var(--transition-normal), color var(--transition-normal);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
+    
+    /* Utility bar for toggles */
+    .app-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 1rem;
+      background-color: var(--bg-secondary);
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-md);
+      backdrop-filter: blur(var(--blur-intensity));
+      position: sticky;
+      top: 1rem;
+      z-index: 100;
+    }
+
+    .app-controls {
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      flex-wrap: wrap; /* Allow wrapping on small screens */
+    }
+    .app-controls label {
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      display: inline-flex;
+      gap: 0.5rem;
+      align-items: center;
+      transition: color var(--transition-fast);
+    }
+    .app-controls label:hover {
+      color: var(--text-primary);
+    }
+    .app-controls input[type="checkbox"] { /* Standard checkbox for semester/talent */
+      width: 18px;
+      height: 18px;
+      accent-color: var(--accent-primary);
+      cursor: pointer;
+    }
+
+
+    /* Theme Switcher Styles */
+    .theme-switcher-container {
+      display: flex;
+      align-items: center;
+    }
+    .theme-switcher {
+      position: relative;
+      display: inline-block;
+      width: 50px; /* Wider for better touch */
+      height: 28px; /* Taller */
+    }
+    .theme-switcher input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: var(--bg-interactive-strong);
+      transition: var(--transition-normal);
+      border-radius: 28px; /* Fully rounded */
+    }
+    .slider:before {
+      position: absolute;
+      content: "";
+      height: 20px; /* Smaller circle */
+      width: 20px;
+      left: 4px;
+      bottom: 4px;
+      background-color: white;
+      transition: var(--transition-normal);
+      border-radius: 50%;
+      box-shadow: var(--shadow-xs);
+    }
+    .theme-switcher input:checked + .slider {
+      background-color: var(--accent-primary);
+    }
+    .theme-switcher input:focus + .slider {
+      box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.3));
+    }
+    .theme-switcher input:checked + .slider:before {
+      transform: translateX(22px); /* Adjusted for new size */
+    }
+    /* Sun/Moon icons for theme switcher */
+    .slider::after { /* For sun/moon icon - pseudo element */
+      content: '☀️'; /* Sun icon */
+      font-size: 12px;
+      position: absolute;
+      top: 50%;
+      right: 6px; /* Position sun on the right */
+      transform: translateY(-50%);
+      transition: var(--transition-normal);
+      opacity: 0.7;
+    }
+    .theme-switcher input:checked + .slider::after {
+      content: '🌙'; /* Moon icon */
+      left: 6px; /* Position moon on the left */
+      right: auto;
+    }
+
 
     h2, h3 {
       margin: 0 0 1rem;
-      font-weight: 800;
-      color: var(--txt);
+      font-weight: 700; /* Slightly less bold for modern feel */
+      color: var(--text-primary);
+      letter-spacing: -0.01em; /* Subtle letter spacing */
     }
 
-    h2 {
-      font-size: 2rem;
+    h2#main-title { /* Main page title */
+      font-size: 2.25rem;
       text-align: center;
       letter-spacing: -0.025em;
-      background: linear-gradient(45deg, var(--p), var(--s));
+      margin-bottom: 1.5rem; /* Spacing below title */
+      color: var(--text-primary); /* Solid color for better readability */
+      /* Keep gradient as an option, but solid is often cleaner
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
       -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      -webkit-text-fill-color: transparent; */
+    }
+    
+    h3 {
+      font-size: 1.5rem;
+      color: var(--text-secondary);
     }
 
-    .t-c, .i-b, #t-s, #s2-c {
-      background: var(--bg2);
-      backdrop-filter: blur(10px);
-      border-radius: 1rem;
-      box-shadow: var(--sh);
-      margin: 1rem auto;
-      padding: 1.5rem;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      border: 1px solid rgba(0, 0, 0, 0.05);
-      max-width: 100%;
+    /* 3. Card Styling (Main Content Blocks) */
+    .content-card { /* New common class for .t-c, .i-b, #t-s, #s2-c */
+      background-color: var(--bg-secondary);
+      backdrop-filter: blur(var(--blur-intensity));
+      border-radius: var(--border-radius-lg);
+      box-shadow: var(--shadow-lg);
+      margin: 1.5rem auto; /* Increased margin */
+      padding: 2rem; /* Increased padding */
+      transition: transform var(--transition-normal), box-shadow var(--transition-normal), background-color var(--transition-normal);
+      border: 1px solid var(--border-primary);
+      max-width: 900px; /* Constrain width on larger screens */
     }
 
-    .t-c:hover, .i-b:hover, #t-s:hover, #s2-c:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12), 0 6px 10px rgba(0, 0, 0, 0.08);
+    /* --- ENHANCEMENT: Sophisticated Hover Effects --- */
+    .content-card:hover {
+      transform: translateY(-5px) scale(1.01); /* Subtle lift and scale */
+      box-shadow: var(--shadow-xl);
     }
 
+    /* Table Styling */
     table {
       width: 100%;
-      border-collapse: separate;
+      border-collapse: separate; /* Important for border-radius on cells */
       border-spacing: 0;
-      background: #f9fafb;
-      border-radius: 0.75rem;
-      overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+      background-color: transparent; /* Table itself transparent, cells styled */
+      border-radius: var(--border-radius-md);
+      overflow: hidden; /* Clip content to rounded corners */
+      box-shadow: var(--shadow-sm);
     }
 
     th, td {
-      padding: 0.75rem;
+      padding: 1rem 0.75rem; /* More padding */
       text-align: center;
-      font-weight: 600;
+      font-weight: 500; /* Regular weight for data, medium for headers */
+      border-bottom: 1px solid var(--border-primary);
+      transition: background-color var(--transition-fast);
     }
 
     th {
-      background: linear-gradient(45deg, var(--p), var(--s));
-      color: white;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      color: var(--text-on-accent);
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    tr:nth-child(even) {
-      background-color: #f3f4f6;
-    }
-
-    td {
-      border-bottom: 1px solid #e5e7eb;
-    }
-
-    input[type="number"], select {
-      width: 70px;
-      padding: 0.5rem 0.75rem;
-      border: 2px solid #d1d5db;
-      border-radius: 0.5rem;
-      font-size: 0.95rem;
-      transition: all 0.2s ease;
-      background: #f9fafb;
-      color: var(--txt);
       font-weight: 600;
+      letter-spacing: 0.05em;
+      font-size: 0.875rem;
+    }
+    
+    /* --- ENHANCEMENT: Sophisticated Hover Effects for Table Rows --- */
+    tr:not(:first-child):hover td { /* Exclude header row from hover */
+        background-color: var(--bg-interactive);
     }
 
+    tr:nth-child(even) td { /* Subtle striping */
+      background-color: var(--bg-tertiary-alpha, rgba(0,0,0,0.02)); /* Very subtle */
+    }
+    [data-theme="dark"] tr:nth-child(even) td {
+      background-color: var(--bg-tertiary-alpha, rgba(255,255,255,0.03));
+    }
+
+    tr:last-child td {
+      border-bottom: none; /* Remove border from last row */
+    }
+    td:first-child { border-left: none; }
+    td:last-child { border-right: none; }
+
+
+    /* Input Fields & Select Styling */
+    input[type="number"], select {
+      width: auto; /* Allow natural width, can be overridden if needed */
+      min-width: 70px;
+      padding: 0.6rem 0.85rem;
+      border: 1px solid var(--border-primary);
+      border-radius: var(--border-radius-md);
+      font-size: 0.95rem;
+      transition: var(--transition-fast);
+      background-color: var(--bg-tertiary);
+      color: var(--text-primary);
+      font-weight: 500;
+      box-shadow: var(--shadow-xs);
+    }
+    input[type="number"]:hover, select:hover {
+      border-color: var(--border-interactive);
+      box-shadow: var(--shadow-sm);
+    }
     input[type="number"]:focus, select:focus {
-      border-color: var(--p);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px var(--accent-primary-transparent, rgba(37, 99, 235, 0.2));
       outline: none;
+      background-color: var(--bg-secondary); /* Lighten on focus */
+    }
+    /* Specific for grade inputs for better alignment */
+    .g-l + input[type="number"] {
+        margin-left: 0.25rem;
+        margin-right: 0.5rem;
+    }
+    span.g-l {
+        font-size: 0.8rem;
+        color: var(--text-muted);
+        display: inline-block;
+        min-width: 60px; /* Align labels */
+        text-align: right;
+        margin-right: 0.25rem;
+    }
+    .c-g, .m-g { /* Grade input containers */
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 0.5rem;
+        justify-content: center;
     }
 
-    .t-m {
+
+    /* Custom Checkbox for Manual Toggle (already good, minor theme adjustments) */
+    .t-m { /* Container for manual toggle checkbox */
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
     }
-
-    .t-m input[type="checkbox"] {
+    .t-m input[type="checkbox"] { /* The styled switch */
       appearance: none;
-      width: 34px;
-      height: 18px;
-      background: #d1d5db;
-      border-radius: 12px;
+      width: 38px; /* Slightly larger */
+      height: 22px;
+      background: var(--bg-interactive-strong);
+      border-radius: var(--border-radius-lg); /* More rounded */
       position: relative;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background-color var(--transition-fast);
       box-shadow: inset 0 0 3px rgba(0, 0, 0, 0.1);
     }
-
-    .t-m input[type="checkbox"]::before {
+    .t-m input[type="checkbox"]::before { /* The thumb */
       content: "";
       position: absolute;
-      width: 14px;
-      height: 14px;
+      width: 16px; /* Smaller thumb for more track visibility */
+      height: 16px;
       border-radius: 50%;
       background: white;
-      top: 2px;
-      left: 2px;
-      transition: transform 0.2s ease;
-      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+      top: 3px;
+      left: 3px;
+      transition: transform var(--transition-normal);
+      box-shadow: var(--shadow-sm);
     }
-
     .t-m input[type="checkbox"]:checked {
-      background: var(--su);
+      background: var(--accent-success); /* Use success color */
     }
-
     .t-m input[type="checkbox"]:checked::before {
       transform: translateX(16px);
     }
+    .t-m label { /* Hidden label, using ::before for custom switch */
+        display: none;
+    }
 
+    /* Button Styling */
     button {
-      padding: 0.75rem 1.5rem;
-      background: linear-gradient(45deg, var(--p), var(--s));
-      color: white;
+      padding: 0.85rem 1.75rem;
+      background: linear-gradient(45deg, var(--accent-primary), var(--accent-secondary));
+      color: var(--text-on-accent);
       border: none;
-      border-radius: 0.75rem;
-      font-weight: 700;
+      border-radius: var(--border-radius-md);
+      font-weight: 600; /* Bold but not too heavy */
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: var(--transition-fast);
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-      font-size: 1rem;
+      box-shadow: var(--shadow-md);
+      font-size: 0.95rem;
+      text-transform: uppercase; /* Modern touch */
+      letter-spacing: 0.025em;
     }
-
+    /* --- ENHANCEMENT: Sophisticated Hover Effects for Buttons --- */
     button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 12px 20px rgba(0, 0, 0, 0.2);
-      opacity: 0.95;
+      box-shadow: var(--shadow-lg);
+      opacity: 0.9; /* Slight fade for gradient buttons */
     }
+    button:active {
+      transform: translateY(0px); /* Press down effect */
+      box-shadow: var(--shadow-sm);
+      opacity: 1;
+    }
+    /* Special button like "Add 1pt Bonus" */
+    #a-b {
+        background: var(--accent-secondary);
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+        text-transform: none;
+    }
+    #a-b:hover {
+        background: var(--accent-primary);
+    }
+    /* Buttons in talents section */
+    #t-s button, #missing-list button {
+        background: var(--accent-primary);
+        font-size: 0.9rem;
+    }
+    #missing-list button { /* Remove button */
+        background: var(--accent-danger);
+        padding: 0.5rem 1rem;
+    }
+     #missing-list button:hover {
+        background: #c33a3a; /* Darken danger color */
+     }
 
+
+    /* Result Block Styling */
     .r-b {
-      background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
-      border-radius: 0.75rem;
-      padding: 1rem;
-      margin-top: 1rem;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+      background-color: var(--bg-tertiary);
+      border-radius: var(--border-radius-lg);
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      box-shadow: var(--shadow-md);
+      text-align: center; /* Center content */
     }
-
-    #f-a, #t-f-a, #s2-f-a {
-      font-size: 1.5rem;
+    .r-b h3 {
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+    #f-a, #t-f-a, #s2-f-a { /* The actual average number */
+      font-size: 2rem; /* Larger font for result */
       font-weight: 800;
-      color: var(--p);
+      color: var(--text-accent);
       display: inline-block;
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      background: rgba(37, 99, 235, 0.08);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--border-radius-sm);
+      background-color: transparent; /* No specific background, just colored text */
     }
 
-    .i-b {
-      border-left: 4px solid var(--a);
+    /* Info Block (Formula Display) Styling */
+    .i-b { /* Inherits .content-card */
+      border-left: 5px solid var(--a); /* Purple accent kept, or use var(--accent-secondary) */
     }
-
     .i-b p {
       margin: 0.75rem 0;
-      padding: 0.5rem;
-      background: var(--bg);
-      border-radius: 0.5rem;
-      font-weight: 600;
+      padding: 0.75rem 1rem;
+      background-color: var(--bg-tertiary);
+      border-radius: var(--border-radius-md);
+      font-weight: 500;
+      color: var(--text-secondary);
+      box-shadow: var(--shadow-xs);
+    }
+    .i-b p strong {
+      color: var(--text-primary);
     }
 
+    /* Footer Styling */
     .f {
       text-align: center;
-      margin: 1rem 0;
-      color: var(--txtl);
-      font-size: 0.75rem;
-      padding-top: 1rem;
-      border-top: 1px solid #d1d5db;
+      margin: 2rem 0 1rem;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border-primary);
     }
 
+    /* --- ENHANCEMENT: Engaging Animations & Transitions --- */
+    /* General page load animation for main cards */
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    .content-card {
+      animation: cardEnter 0.5s var(--transition-slow) backwards;
+    }
+    /* Stagger animation for multiple cards if desired via JS or nth-child */
+    /* #s1-table { animation-delay: 0.1s; } */
+    /* #formula-display { animation-delay: 0.2s; } */
+
+    /* Section visibility transitions (collapsible sections) */
+    .collapsible-section {
+      transition: opacity var(--transition-slow), max-height var(--transition-slow),
+                  transform var(--transition-slow),
+                  margin var(--transition-slow), padding var(--transition-slow),
+                  border-width var(--transition-slow);
+      overflow: hidden;
+      opacity: 1;
+      max-height: 3000px; /* Sufficiently large, adjust if content is taller */
+      transform: translateY(0);
+      /* Ensure margin/padding defined here if they need to transition from 0 */
+      margin: 1.5rem auto;
+      padding: 2rem;
+    }
+    .collapsible-section.collapsed {
+      opacity: 0;
+      max-height: 0 !important;
+      transform: translateY(-10px);
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+      border-width: 0 !important; /* If it has borders that need to collapse */
+      /* visibility: hidden; remove after transition if needed */
+    }
+    /* Wrapper for content inside grid-collapsible sections if grid was used */
+    .collapsible-content-wrapper {
+      min-height: 0;
+    }
+
+
+    /* Missing Module Item Animation */
+    #missing-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .missing-module-item {
+      background-color: var(--bg-tertiary);
+      padding: 1rem;
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-sm);
+      opacity: 0;
+      transform: translateX(-20px);
+      max-height: 0; /* Start collapsed */
+      transition: opacity 0.3s ease, transform 0.3s ease, max-height 0.4s ease, padding 0.3s ease;
+      overflow: hidden;
+    }
+    .missing-module-item.is-visible {
+      opacity: 1;
+      transform: translateX(0);
+      max-height: 500px; /* Adjust as needed */
+      padding: 1rem; /* Ensure padding is part of the transition */
+    }
+    .missing-module-item h4 {
+      margin-top: 0;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    .missing-module-item div { /* Input rows */
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .missing-module-item label {
+      min-width: 80px; /* Adjust for alignment */
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+    }
+    .missing-module-item input[type="number"] {
+      width: 80px;
+    }
+    
+    /* Reveal on Scroll for formula section */
+    .reveal-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+      transition-delay: 0.2s; /* Slight delay */
+    }
+    .reveal-on-scroll.is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+
+    /* Responsive Adjustments */
     @media (max-width: 768px) {
       body {
-        padding: 0.5rem;
+        padding: 1rem 0.75rem; /* Reduced padding for smaller screens */
+      }
+      .app-header {
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        top: 0.5rem;
+      }
+      .app-controls {
+        justify-content: center; /* Center controls when wrapped */
+        gap: 0.75rem;
       }
 
-      h2 {
+      h2#main-title {
         font-size: 1.75rem;
       }
+      h3 {
+        font-size: 1.25rem;
+      }
 
-      .t-c, .i-b, #t-s, #s2-c {
-        margin: 0.75rem auto;
-        padding: 1rem;
+      .content-card, .collapsible-section {
+        margin: 1rem auto;
+        padding: 1.25rem; /* Reduced padding for cards */
       }
 
       table {
-        display: block;
+        display: block; /* Enable horizontal scrolling for table */
         overflow-x: auto;
+        -webkit-overflow-scrolling: touch; /* Momentum scrolling on iOS */
+        border-radius: var(--border-radius-md); /* Ensure radius is maintained */
       }
-
+      th, td {
+        padding: 0.75rem 0.5rem;
+        white-space: nowrap; /* Prevent text wrapping in cells */
+      }
+      .c-g, .m-g {
+        flex-direction: column; /* Stack grade inputs vertically */
+        align-items: stretch;
+      }
+      .c-g span.g-l, .m-g span.g-l {
+        min-width: auto;
+        text-align: left;
+      }
       input[type="number"], select {
-        width: 60px;
-        padding: 0.4rem;
+        width: 100%; /* Full width for inputs in stacked layout */
+        min-width: 0;
       }
 
       button {
-        padding: 0.4rem 1.25rem;
-        font-size: 0.85rem;
+        padding: 0.7rem 1.25rem;
+        font-size: 0.875rem;
+      }
+      #f-a, #t-f-a, #s2-f-a {
+        font-size: 1.75rem;
       }
     }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @media (max-width: 480px) {
+        .app-controls label {
+            font-size: 0.9rem; /* Smaller text for toggles on very small screens */
+        }
+        .theme-switcher {
+            width: 44px;
+            height: 24px;
+        }
+        .theme-switcher .slider:before {
+            width: 18px;
+            height: 18px;
+            left: 3px;
+            bottom: 3px;
+        }
+        .theme-switcher input:checked + .slider:before {
+            transform: translateX(20px);
+        }
+        .slider::after { font-size: 10px; }
     }
 
-    .t-c, .i-b, #t-s, #s2-c {
-      animation: fadeIn 0.4s ease-out;
-    }
   </style>
 
-   <!-- FONT DOWNLOADING , idk i like this font-->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
-  <body>
-    <h2 id="main-title">1CP S1 Avg Calc</h2>
-
-    <!-- Toggle switches for talents mode & semester switch -->
-    <div style="text-align: center; margin-bottom: 1rem;">
-      <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
-        <input type="checkbox" id="t-m" onchange="tTM()" style="width: 20px; height: 20px" />
-        Enable Talents Avg + Missing Module Calc
+<body>
+  <!-- ENHANCEMENT: App Header for Title and Global Controls -->
+  <header class="app-header">
+    <!-- Relocated toggles for Semester and Talents Mode -->
+    <div class="app-controls">
+      <label>
+        <input type="checkbox" id="t-m-global" onchange="tTM()" />
+        Talents Mode
       </label>
-      &nbsp;&nbsp;&nbsp;
-      <label style="font-weight: 600; cursor: pointer; display: inline-flex; gap: 0.5rem; align-items: center;">
-        <input type="checkbox" id="s2-m" onchange="toggleS2()" style="width: 20px; height: 20px" />
-        Switch to S2 Mode (will only work if switched from the table view)
+      <label>
+        <input type="checkbox" id="s2-m-global" onchange="toggleS2()" />
+        S2 Mode
       </label>
     </div>
+    <!-- ENHANCEMENT: Dark Theme Toggle -->
+    <div class="theme-switcher-container">
+      <label class="theme-switcher" for="theme-toggle" title="Toggle Dark Mode">
+        <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode">
+        <span class="slider"></span>
+      </label>
+    </div>
+  </header>
 
-    <!-- Talents/Missing‑module calculator section -->
-    <div id="t-s" style="display: none">
+  <h2 id="main-title">1CP S1 Avg Calc</h2>
+
+  <!-- Talents/Missing‑module calculator section -->
+  <!-- ADDED: classes for styling and animation -->
+  <div id="t-s" class="content-card collapsible-section collapsed" style="display: block;"> <!-- Start collapsed, display: block to allow transition -->
+    <div class="collapsible-content-wrapper">
       <h3>Recover Missing Module from Talents Avg</h3>
-      <!-- Talents average input -->
       <div style="margin-bottom: 1rem">
         <label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">
           Enter Talents Avg:
@@ -288,8 +720,7 @@
         <input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" />
       </div>
 
-      <!-- Missing module selector and add button -->
-      <div style="margin-bottom: 1rem; display: flex; gap: 0.5rem; align-items: flex-end; flex-wrap: wrap;">
+      <div style="margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
         <div>
           <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">
             Select Module:
@@ -309,24 +740,27 @@
         <button onclick="addMissing()">Add Module</button>
       </div>
 
-      <!-- Container for dynamically added missing modules -->
       <div id="missing-list" style="margin-bottom: 1rem"></div>
 
-      <!-- Calculate button & result display -->
       <button onclick="cM()">Calc Semester Avg</button>
       <div class="r-b">
         <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
       </div>
     </div>
+  </div>
 
-    <!-- Semester 1 grades table -->
-    <div id="s1-table" class="t-c">
+  <!-- Semester 1 grades table -->
+  <!-- ADDED: classes for styling and animation -->
+  <div id="s1-table" class="content-card collapsible-section" style="display: block;">
+     <div class="collapsible-content-wrapper">
       <table>
-        <tr>
-          <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
-        </tr>
+        <thead> <!-- THEAD for semantic correctness -->
+          <tr>
+            <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
+          </tr>
+        </thead>
+        <tbody> <!-- TBODY for semantic correctness -->
         <script>
-          // S1 module definitions: code, coefficient, and grade fields
           const mC = [
             { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
             { code: "ARCHI", coef: 4, fields: ["CF", "CI"] },
@@ -337,7 +771,6 @@
             { code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"] },
             { code: "ELECT", coef: 3, fields: ["CF", "CI", "CC=INT1+INT2"] }
           ];
-          // Dynamically write table rows for each module
           document.write(
             mC.map(m => `
               <tr>
@@ -351,7 +784,6 @@
                 <td>${m.code}</td>
                 <td>${m.coef}</td>
                 <td class="${m.code.toLowerCase()}">
-                  <!-- Computed grades view -->
                   <div class="c-g">
                     ${m.fields.map(f => `
                       <span class="g-l">${f}</span>
@@ -359,7 +791,6 @@
                     `).join(" ")}
                     ${m.code === "ARCHI" ? '<button id="a-b" onclick="tAB()">Add 1pt Bonus</button>' : ""}
                   </div>
-                  <!-- Manual average override view (hidden by default) -->
                   <div class="m-g" style="display:none;">
                     <input type="number" min="0" max="20" step="0.5" placeholder="Enter avg">
                   </div>
@@ -369,25 +800,30 @@
             ).join("")
           );
         </script>
+        </tbody>
       </table>
-    </div>
+     </div>
+  </div>
 
-    <!-- Button & result display for S1 -->
-    <div style="text-align: center; margin: 1rem 0">
-      <button id="s1-calc" onclick="cA()">Calc Semester Avg</button>
-    </div>
-    <div class="r-b" id="s1-result" style="text-align: center">
-      <h3>Semester Avg: <span id="f-a">0.00</span></h3>
-    </div>
+  <div style="text-align: center; margin: 1.5rem 0">
+    <button id="s1-calc" onclick="cA()">Calc Semester Avg</button>
+  </div>
+  <div class="r-b" id="s1-result" style="text-align: center">
+    <h3>Semester Avg: <span id="f-a">0.00</span></h3>
+  </div>
 
-    <!-- Semester 2 grades table (hidden until toggled) -->
-    <div id="s2-table" class="t-c" style="display: none">
+  <!-- Semester 2 grades table (hidden until toggled) -->
+  <!-- ADDED: classes for styling and animation -->
+  <div id="s2-table" class="content-card collapsible-section collapsed" style="display: block;">
+     <div class="collapsible-content-wrapper">
       <table>
-        <tr>
-          <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
-        </tr>
+        <thead>
+          <tr>
+            <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
+          </tr>
+        </thead>
+        <tbody>
         <script>
-          // S2 module definitions
           const mC2 = [
             { code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"] },
             { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
@@ -398,7 +834,6 @@
             { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
             { code: "ELECTF",coef: 4, fields: ["CF", "CI", "CC"] }
           ];
-          // Dynamically write S2 rows
           document.write(
             mC2.map(m => `
               <tr>
@@ -427,336 +862,450 @@
             ).join("")
           );
         </script>
+        </tbody>
       </table>
-    </div>
+     </div>
+  </div>
 
-    <!-- Button & result display for S2 -->
-    <div style="text-align: center; margin: 1rem 0">
-      <button id="s2-calc" onclick="cA_S2()" style="display:none">Calc Semester Avg</button>
-    </div>
-    <div class="r-b" id="s2-result" style="text-align: center; display:none">
-      <h3>Semester Avg: <span id="s2-f-a">0.00</span></h3>
-    </div>
+  <div style="text-align: center; margin: 1.5rem 0">
+    <button id="s2-calc" onclick="cA_S2()" style="display:none">Calc S2 Avg</button> <!-- Text change for clarity -->
+  </div>
+  <div class="r-b" id="s2-result" style="text-align: center; display:none">
+    <h3>S2 Avg: <span id="s2-f-a">0.00</span></h3> <!-- Text change for clarity -->
+  </div>
 
-    <!-- Static formulas for reference -->
-    <div class="i-b" id="formula-display">
-      <h3>Calc Formulas (S1)</h3>
-      <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
-      <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-      <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
-      <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
-      <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
-      <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
-      <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>
-    </div>
+  <!-- Static formulas for reference -->
+  <!-- ADDED: classes for styling and animation (reveal-on-scroll) -->
+  <div class="i-b content-card reveal-on-scroll" id="formula-display">
+    <h3>Calc Formulas (S1)</h3>
+    <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
+    <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
+    <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
+    <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
+    <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
+    <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
+    <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>
+  </div>
 
-    <!-- Footer credit -->
-    <div class="f">Made by Walid And some AI help (do not judge me)</div>
+  <div class="f">Made by Walid And some AI help (do not judge me) - Enhanced UI by Expert AI</div>
 
-    <script>
-      // ---------- Global state ----------
-      let aB = false;       // ARCHI bonus toggle
-      let isS2 = false;     // false = S1 mode, true = S2 mode
-      const tCoef = 26;     // total coefficient for S1
+  <script>
+    // ---------- Global state (unchanged) ----------
+    let aB = false;
+    let isS2 = false;
+    const tCoef = 26;
 
-      // ---------- Per-module calculation functions ----------
-      const mCal = {
-        SYS1: (td, in8, ci, cf) =>
-          0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
-        ARCHI: (cf, ci, b = false) =>
-          0.5 * cf + 0.5 * ci + (b ? 1 : 0),
-        ALG1: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA1: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        TEE: (cf, p) => (2 / 3) * cf + (1 / 3) * p,
-        ALSDS: (cf, ci, tp1, tp2, tr) =>
-          0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
-        BWEB: (cf, ci, cc) => 0.4 * cf + 0.4 * ci + 0.2 * cc,
-        ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
+    // ---------- Per-module calculation functions (unchanged) ----------
+    const mCal = {
+      SYS1: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
+      ARCHI: (cf, ci, b = false) => 0.5 * cf + 0.5 * ci + (b ? 1 : 0),
+      ALG1: (cf, ci) => 0.67 * cf + 0.33 * ci,
+      ANA1: (cf, ci) => 0.67 * cf + 0.33 * ci,
+      TEE: (cf, p) => (2 / 3) * cf + (1 / 3) * p,
+      ALSDS: (cf, ci, tp1, tp2, tr) => 0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
+      BWEB: (cf, ci, cc) => 0.4 * cf + 0.4 * ci + 0.2 * cc,
+      ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
+    };
+    const mCal2 = {
+      SYS2: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
+      MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
+      ALG2: (cf, ci) => 0.67 * cf + 0.33 * ci,
+      ANA2: (cf, ci) => 0.67 * cf + 0.33 * ci,
+      TEO: (cf, cc) => (2 / 3) * cf + (1 / 3) * cc,
+      ALSDD: (tpc, interos, cc, tpz, cf) => ((tpc + interos + cc) / 3) * 0.25 + tpz * 0.2 + cf * 0.55,
+      ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
+      ELECTF: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
+    };
+
+    // ---------- Helper: get numeric values from inputs (unchanged) ----------
+    function gIV(sel) {
+      return Array.from(document.querySelectorAll(sel)).map(i => parseFloat(i.value) || 0);
+    }
+
+    // ---------- Compute module average (unchanged) ----------
+    function cMA(mod, scores, isManual = false, mode = "S1") {
+      if (isManual) return scores[0] || 0;
+      if (mode === "S1") {
+        const fn = mCal[mod];
+        return mod === "ARCHI" ? fn(...scores, aB) : fn(...scores);
+      } else {
+        return mCal2[mod](...scores);
+      }
+    }
+
+    // ---------- Calculate S1 semester average (unchanged) ----------
+    function cA() {
+      let total = 0;
+      mC.forEach(m => {
+        const key = m.code.toLowerCase();
+        const cell = document.querySelector(`.${key}`);
+        const manualOn = cell.querySelector(".m-g").style.display !== "none";
+        const scores = gIV(`.${key} ${manualOn ? ".m-g" : ".c-g"} input`);
+        const avg = cMA(m.code, scores, manualOn, "S1");
+        document.getElementById(`a-${key}`).textContent = avg.toFixed(2);
+        total += avg * m.coef;
+      });
+      document.getElementById("f-a").textContent = (total / tCoef).toFixed(2);
+    }
+
+    // ---------- Calculate S2 semester average (unchanged) ----------
+    function cA_S2() {
+      let total = 0;
+      mC2.forEach(m => {
+        const key = m.code.toLowerCase();
+        const cell = document.querySelector(`.s2-${key}`);
+        const manualOn = cell.querySelector(".m-g").style.display !== "none";
+        const scores = gIV(`.s2-${key} ${manualOn ? ".m-g" : ".c-g"} input`);
+        const avg = cMA(m.code, scores, manualOn, "S2");
+        document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
+        total += avg * m.coef;
+      });
+      document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2); // S2 total coef is 27
+    }
+
+    // ---------- Add a missing module section ----------
+    // MODIFIED: For entry/exit animations
+    const missing = [];
+    function addMissing() {
+      const modSelect = document.getElementById("m-m");
+      const mod = modSelect.value;
+      if (!mod || missing.find(x => x.code === mod)) return;
+      
+      const arr = isS2 ? mC2 : mC;
+      const mObj = arr.find(x => x.code === mod);
+      if (!mObj) return; // Should not happen if select is correct
+      missing.push({ code: mod, coef: mObj.coef, fields: mObj.fields });
+
+      const container = document.getElementById("missing-list");
+      const div = document.createElement("div");
+      div.id = `miss-${mod}`;
+      div.className = 'missing-module-item'; // Class for styling and animation
+
+      const title = document.createElement("h4");
+      title.textContent = `${mod} (coef ${mObj.coef})`;
+      div.appendChild(title);
+
+      mObj.fields.forEach(f => {
+        const row = document.createElement("div");
+        const label = document.createElement("label");
+        label.textContent = f;
+        const inp = document.createElement("input");
+        inp.type = "number"; inp.min = "0";
+        inp.max = f.includes("/8") ? "8" : "20";
+        inp.step = "0.5";
+        inp.dataset.mod = mod;
+        inp.dataset.field = f;
+        row.appendChild(label);
+        row.appendChild(inp);
+        div.appendChild(row);
+      });
+
+      const btn = document.createElement("button");
+      btn.textContent = "Remove";
+      btn.onclick = () => {
+        div.classList.remove('is-visible'); // Trigger exit animation
+        div.addEventListener('transitionend', () => {
+          // Check if still a child before removing, to prevent errors if clicked multiple times fast
+          if (div.parentNode === container) { 
+            container.removeChild(div);
+          }
+        }, { once: true });
+
+        const idx = missing.findIndex(x => x.code === mod);
+        if (idx > -1) missing.splice(idx, 1);
       };
+      div.appendChild(btn);
+      container.appendChild(div);
 
-      const mCal2 = {
-        SYS2: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
-        MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
-        ALG2: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        ANA2: (cf, ci) => 0.67 * cf + 0.33 * ci,
-        TEO: (cf, cc) => (2 / 3) * cf + (1 / 3) * cc,
-        ALSDD: (tpc, interos, cc, tpz, cf) =>
-          ((tpc + interos + cc) / 3) * 0.25 + tpz * 0.2 + cf * 0.55,
-        ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
-        ELECTF: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
-      };
+      // Trigger entry animation
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => { // Double RAF for robustness
+          div.classList.add('is-visible');
+        });
+      });
+      modSelect.value = ""; // Clear select after adding
+    }
 
-      // ---------- Helper: get numeric values from inputs ----------
-      function gIV(sel) {
-        return Array.from(document.querySelectorAll(sel))
+    // ---------- Calculate final avg including missing modules (unchanged logic) ----------
+    function cM() {
+      const tA = parseFloat(document.getElementById("t-a").value) || 0;
+      const coef = isS2 ? 27 : tCoef; // S2 total coef is 27
+      let totalWeighted = tA * coef;
+
+      missing.forEach(m => {
+        const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input[type="number"]`))
           .map(i => parseFloat(i.value) || 0);
-      }
+        const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
+        totalWeighted += avg * m.coef;
+      });
 
-      // ---------- Compute module average ----------
-      function cMA(mod, scores, isManual = false, mode = "S1") {
-        if (isManual) return scores[0] || 0;     // manual override
-        if (mode === "S1") {
-          const fn = mCal[mod];
-          return mod === "ARCHI" ? fn(...scores, aB) : fn(...scores);
-        } else {
-          return mCal2[mod](...scores);
+      const finalAvg = totalWeighted / coef; // Denominator should be sum of all original module coefs
+      document.getElementById("t-f-a").textContent = finalAvg.toFixed(2);
+    }
+
+    // ---------- Toggle ARCHI bonus on/off (unchanged) ----------
+    function tAB() {
+      aB = !aB;
+      document.getElementById("a-b").textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
+      cA(); // Recalculate S1
+    }
+
+    // ---------- Switch between computed/manual for S1 (unchanged logic, CSS handles visual) ----------
+    function tMM(m) {
+      const cell = document.querySelector(`.${m}`);
+      const comp = cell.querySelector(".c-g");
+      const man = cell.querySelector(".m-g");
+      const on = document.getElementById(`t-m-${m}`).checked;
+      comp.style.display = on ? "none" : "flex"; // Keep direct style for simplicity here
+      man.style.display = on ? "block" : "none";
+      cA();
+    }
+
+    // ---------- Switch between computed/manual for S2 (unchanged logic, CSS handles visual) ----------
+    function tMM_S2(m) {
+      const cell = document.querySelector(`.s2-${m}`);
+      const comp = cell.querySelector(".c-g");
+      const man = cell.querySelector(".m-g");
+      const on = document.getElementById(`s2-t-m-${m}`).checked;
+      comp.style.display = on ? "none" : "flex"; // Keep direct style
+      man.style.display = on ? "block" : "none";
+      cA_S2();
+    }
+
+    // --- ENHANCEMENT: JS for section visibility animations & Dark Theme ---
+    const talentModeToggle = document.getElementById('t-m-global');
+    const s2ModeToggle = document.getElementById('s2-m-global');
+
+    const talentSection = document.getElementById("t-s");
+    const s1TableSection = document.getElementById("s1-table");
+    const s2TableSection = document.getElementById("s2-table");
+    const s1CalcButton = document.getElementById("s1-calc");
+    const s2CalcButton = document.getElementById("s2-calc");
+    const s1ResultBlock = document.getElementById("s1-result");
+    const s2ResultBlock = document.getElementById("s2-result");
+
+    // Ensure initial state of sections matches CSS (collapsed or not)
+    // `talentSection` and `s2TableSection` start with `collapsed` class.
+    // `s1TableSection` starts without `collapsed`.
+    // `s1CalcButton` and `s1ResultBlock` are initially visible.
+    // Others like `s2CalcButton`, `s2ResultBlock` have `display:none` inline initially.
+
+    // Helper to sync global toggles with original hidden toggles
+    function syncToggles(sourceId, targetId) {
+        const source = document.getElementById(sourceId);
+        const target = document.getElementById(targetId);
+        if (source && target) {
+            target.checked = source.checked;
         }
+    }
+    // Hidden original toggles, if they were still in the DOM (they aren't after HTML changes)
+    // talentModeToggle.addEventListener('change', () => syncToggles('t-m-global', 't-m'));
+    // s2ModeToggle.addEventListener('change', () => syncToggles('s2-m-global', 's2-m'));
+
+
+    function tTM() {
+      // Sync global toggle with the original hidden one if it existed, or use global directly
+      const talentOn = talentModeToggle.checked; // document.getElementById("t-m").checked;
+
+      s2ModeToggle.disabled = talentOn; // document.getElementById("s2-m").disabled = talentOn;
+
+      if (talentOn) {
+        talentSection.classList.remove("collapsed");
+        s1TableSection.classList.add("collapsed");
+        s2TableSection.classList.add("collapsed");
+
+        // For elements initially styled with display:none, we need to manage that too.
+        // Or, ensure they are part of a collapsible section.
+        // For simplicity, keep direct style changes for these buttons/results if they are outside animated containers.
+        s1CalcButton.style.display = "none";
+        s2CalcButton.style.display = "none";
+        s1ResultBlock.style.display = "none";
+        s2ResultBlock.style.display = "none";
+      } else {
+        talentSection.classList.add("collapsed");
+        // Revert to whichever table mode was selected by calling toggleS2
+        // toggleS2 will handle visibility of S1/S2 tables and their associated buttons/results.
+        toggleS2();
       }
+    }
 
-      // ---------- Calculate S1 semester average ----------
-      function cA() {
-        let total = 0;
-        mC.forEach(m => {
-          const key = m.code.toLowerCase();
-          const cell = document.querySelector(`.${key}`);
-          const manualOn = cell.querySelector(".m-g").style.display !== "none";
-          const scores = gIV(`.${key} ${manualOn ? ".m-g" : ".c-g"} input`);
-          const avg = cMA(m.code, scores, manualOn, "S1");
-          document.getElementById(`a-${key}`).textContent = avg.toFixed(2);
-          total += avg * m.coef;
-        });
-        document.getElementById("f-a").textContent = (total / tCoef).toFixed(2);
+    function toggleS2() {
+      if (talentModeToggle.checked) return; // Skip if talent mode on
+
+      isS2 = s2ModeToggle.checked; // document.getElementById("s2-m").checked;
+      const title = document.getElementById("main-title");
+      const formula = document.getElementById("formula-display");
+      const sel = document.getElementById("m-m"); // Module selector in talents
+
+      // Formula content (unchanged logic, just for reference)
+      const s1Formulas = `
+        <h3>Calc Formulas (S1)</h3>
+        <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
+        <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
+        <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
+        <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
+        <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
+        <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
+        <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
+      const s2Formulas = `
+        <h3>Calc Formulas (S2)</h3>
+        <p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
+        <p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>
+        <p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p>
+        <p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p>
+        <p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p>
+        <p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p>
+        <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
+        <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
+      
+      // Module selector options (unchanged logic)
+      const s1ModulesOptions = `
+        <option value="">-- Choose Module --</option>
+        <option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option>
+        <option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option>
+        <option value="BWEB">BWEB</option><option value="ELECT">ELECT</option>`;
+      const s2ModulesOptions = `
+        <option value="">-- Choose Module --</option>
+        <option value="SYS2">SYS2</option><option value="MECA">MECA</option><option value="ALG2">ALG2</option>
+        <option value="ANA2">ANA2</option><option value="TEO">TEO</option><option value="ALSDD">ALSDD</option>
+        <option value="ANG">ANG</option><option value="ELECTF">ELECTF</option>`;
+
+      if (isS2) {
+        title.textContent = "1CP S2 Avg Calc";
+        formula.innerHTML = s2Formulas;
+        sel.innerHTML = s2ModulesOptions;
+
+        s1TableSection.classList.add("collapsed");
+        s2TableSection.classList.remove("collapsed");
+        
+        s1CalcButton.style.display = "none";
+        s1ResultBlock.style.display = "none";
+        s2CalcButton.style.display = "inline-block"; // Or flex, depending on desired layout
+        s2ResultBlock.style.display = "block";
+      } else {
+        title.textContent = "1CP S1 Avg Calc";
+        formula.innerHTML = s1Formulas;
+        sel.innerHTML = s1ModulesOptions;
+
+        s2TableSection.classList.add("collapsed");
+        s1TableSection.classList.remove("collapsed");
+
+        s2CalcButton.style.display = "none";
+        s2ResultBlock.style.display = "none";
+        s1CalcButton.style.display = "inline-block";
+        s1ResultBlock.style.display = "block";
       }
+      // Clear missing modules list when switching semesters, as modules differ
+      document.getElementById("missing-list").innerHTML = "";
+      missing.length = 0;
+    }
 
-      // ---------- Calculate S2 semester average ----------
-      function cA_S2() {
-        let total = 0;
-        mC2.forEach(m => {
-          const key = m.code.toLowerCase();
-          const cell = document.querySelector(`.s2-${key}`);
-          const manualOn = cell.querySelector(".m-g").style.display !== "none";
-          const scores = gIV(`.s2-${key} ${manualOn ? ".m-g" : ".c-g"} input`);
-          const avg = cMA(m.code, scores, manualOn, "S2");
-          document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
-          total += avg * m.coef;
-        });
-        document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
-      }
 
-      // ---------- Add a missing module section ----------
-      const missing = [];
-      function addMissing() {
-        const mod = document.getElementById("m-m").value;
-        if (!mod || missing.find(x => x.code === mod)) return;
-        const arr = isS2 ? mC2 : mC;
-        const mObj = arr.find(x => x.code === mod);
-        missing.push({ code: mod, coef: mObj.coef, fields: mObj.fields });
+    // ---------- Reset all inputs & outputs (unchanged logic) ----------
+    function resetCalculator() {
+      document.getElementById("t-a").value = "";
+      document.getElementById("t-f-a").textContent = "0.00";
+      document.getElementById("missing-list").innerHTML = "";
+      missing.length = 0;
 
-        // Create UI block for this missing module
-        const container = document.getElementById("missing-list");
-        const div = document.createElement("div");
-        div.id = `miss-${mod}`;
-        div.style = "margin:8px 0; padding:8px; border:1px solid #ddd; border-radius:4px;";
-        const title = document.createElement("h4");
-        title.textContent = `${mod} (coef ${mObj.coef})`;
-        div.appendChild(title);
+      mC.forEach(m => {
+        const key = m.code.toLowerCase();
+        document.querySelectorAll(`.${key} input[type="number"]`).forEach(i => i.value = "");
+        document.getElementById(`a-${key}`).textContent = "0.00";
+        const manualToggle = document.getElementById(`t-m-${key}`);
+        if(manualToggle) manualToggle.checked = false;
+      });
+      mC2.forEach(m => {
+        const key = m.code.toLowerCase();
+        document.querySelectorAll(`.s2-${key} input[type="number"]`).forEach(i => i.value = "");
+        document.getElementById(`a-s2-${key}`).textContent = "0.00";
+        const manualToggle = document.getElementById(`s2-t-m-${key}`);
+        if(manualToggle) manualToggle.checked = false;
+      });
 
-        // Add each field input
-        mObj.fields.forEach(f => {
-          const row = document.createElement("div");
-          row.style = "display:flex; align-items:center; gap:8px;";
-          const label = document.createElement("label");
-          label.textContent = f;
-          label.style.minWidth = "120px";
-          const inp = document.createElement("input");
-          inp.type = "number"; inp.min = "0";
-          inp.max = f.includes("/8") ? "8" : "20";
-          inp.step = "0.5";
-          inp.dataset.mod = mod;
-          inp.dataset.field = f;
-          row.appendChild(label);
-          row.appendChild(inp);
-          div.appendChild(row);
-        });
+      document.getElementById("f-a").textContent = "0.00";
+      document.getElementById("s2-f-a").textContent = "0.00";
+      
+      // Reset global toggles in the header
+      talentModeToggle.checked = false;
+      s2ModeToggle.checked = false;
+      
+      // Manually call tTM and toggleS2 to reset UI to default (S1, non-talent)
+      tTM();      // This will call toggleS2 internally if talent mode is off
+      
+      // Ensure manual grade inputs are hidden and computed are shown
+      document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
+      document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
 
-        // Remove button
-        const btn = document.createElement("button");
-        btn.textContent = "Remove";
-        btn.onclick = () => {
-          const idx = missing.findIndex(x => x.code === mod);
-          missing.splice(idx, 1);
-          container.removeChild(div);
-        };
-        div.appendChild(btn);
-        container.appendChild(div);
-      }
+      if (isS2) cA_S2(); else cA(); // Recalculate based on final state
+    }
+    
+    // Initial setup calls
+    document.addEventListener('DOMContentLoaded', () => {
+      // Set initial collapsed states explicitly for elements that might not have the class yet
+      // (though CSS sets it, this is a fallback if JS runs before full CSSOM)
+      if (talentSection) talentSection.classList.add('collapsed');
+      if (s2TableSection) s2TableSection.classList.add('collapsed');
+      if (s1TableSection) s1TableSection.classList.remove('collapsed');
 
-      // ---------- Calculate final avg including missing modules ----------
-      function cM() {
-        const tA = parseFloat(document.getElementById("t-a").value) || 0;
-        const coef = isS2 ? 27 : tCoef;
-        let totalWeighted = tA * coef;
-
-        missing.forEach(m => {
-          const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input`))
-            .map(i => parseFloat(i.value) || 0);
-          const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
-          totalWeighted += avg * m.coef;
-        });
-
-        const finalAvg = totalWeighted / coef;
-        document.getElementById("t-f-a").textContent = finalAvg.toFixed(2);
-      }
-
-      // ---------- Toggle ARCHI bonus on/off ----------
-      function tAB() {
-        aB = !aB;
-        document.getElementById("a-b").textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
-        cA();
-      }
-
-      // ---------- Switch between computed/manual for S1 ----------
-      function tMM(m) {
-        const cell = document.querySelector(`.${m}`);
-        const comp = cell.querySelector(".c-g");
-        const man = cell.querySelector(".m-g");
-        const on = document.getElementById(`t-m-${m}`).checked;
-        comp.style.display = on ? "none" : "flex";
-        man.style.display = on ? "block" : "none";
-        cA();
-      }
-
-      // ---------- Switch between computed/manual for S2 ----------
-      function tMM_S2(m) {
-        const cell = document.querySelector(`.s2-${m}`);
-        const comp = cell.querySelector(".c-g");
-        const man = cell.querySelector(".m-g");
-        const on = document.getElementById(`s2-t-m-${m}`).checked;
-        comp.style.display = on ? "none" : "flex";
-        man.style.display = on ? "block" : "none";
-        cA_S2();
-      }
-
-      // ---------- Toggle talents section visibility ----------
-      function tTM() {
-        const talentOn = document.getElementById("t-m").checked;
-        // disable S2 toggle when talent mode is on
-        document.getElementById("s2-m").disabled = talentOn;
-        if (talentOn) {
-          document.getElementById("t-s").style.display = "block";
-          // hide both tables/calculators
-          document.getElementById("s1-table").style.display = "none";
-          document.getElementById("s2-table").style.display = "none";
-          document.getElementById("s1-calc").style.display = "none";
-          document.getElementById("s2-calc").style.display = "none";
-          document.getElementById("s1-result").style.display = "none";
-          document.getElementById("s2-result").style.display = "none";
-        } else {
-          document.getElementById("t-s").style.display = "none";
-          toggleS2();  // revert to whichever table mode was selected
-        }
-      }
-
-      // ---------- Switch between S1 and S2 table modes ----------
-      function toggleS2() {
-        if (document.getElementById("t-m").checked) return; // skip if talent mode on
-        isS2 = document.getElementById("s2-m").checked;
-        const title = document.getElementById("main-title");
-        const formula = document.getElementById("formula-display");
-        const s1t = document.getElementById("s1-table");
-        const s2t = document.getElementById("s2-table");
-        const s1c = document.getElementById("s1-calc");
-        const s2c = document.getElementById("s2-calc");
-        const s1r = document.getElementById("s1-result");
-        const s2r = document.getElementById("s2-result");
-        const sel = document.getElementById("m-m");
-
-        if (isS2) {
-          title.textContent = "1CP S2 Avg Calc";
-          formula.innerHTML = `
-            <h3>Calc Formulas (S2)</h3>
-            <p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
-            <p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>
-            <p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p>
-            <p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p>
-            <p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p>
-            <p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p>
-            <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
-            <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
-          s2t.style.display = "block";
-          s2c.style.display = "inline-block";
-          s2r.style.display = "block";
-          s1t.style.display = "none";
-          s1c.style.display = "none";
-          s1r.style.display = "none";
-          sel.innerHTML = `
-            <option value="">-- Choose Module --</option>
-            <option value="SYS2">SYS2</option>
-            <option value="MECA">MECA</option>
-            <option value="ALG2">ALG2</option>
-            <option value="ANA2">ANA2</option>
-            <option value="TEO">TEO</option>
-            <option value="ALSDD">ALSDD</option>
-            <option value="ANG">ANG</option>
-            <option value="ELECTF">ELECTF</option>`;
-        } else {
-          title.textContent = "1CP S1 Avg Calc";
-          formula.innerHTML = `
-            <h3>Calc Formulas (S1)</h3>
-            <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
-            <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-            <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
-            <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
-            <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
-            <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
-            <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
-          s1t.style.display = "block";
-          s1c.style.display = "inline-block";
-          s1r.style.display = "block";
-          s2t.style.display = "none";
-          s2c.style.display = "none";
-          s2r.style.display = "none";
-          sel.innerHTML = `
-            <option value="">-- Choose Module --</option>
-            <option value="SYS1">SYS1</option>
-            <option value="ARCHI">ARCHI</option>
-            <option value="ALG1">ALG1</option>
-            <option value="ANA1">ANA1</option>
-            <option value="TEE">TEE</option>
-            <option value="ALSDS">ALSDS</option>
-            <option value="BWEB">BWEB</option>
-            <option value="ELECT">ELECT</option>`;
-        }
-      }
-
-      // ---------- Reset all inputs & outputs ----------
-      function resetCalculator() {
-        // Clear talents & missing
-        document.getElementById("t-a").value = "";
-        document.getElementById("t-f-a").textContent = "0.00";
-        document.getElementById("missing-list").innerHTML = "";
-        missing.length = 0;
-
-        // Clear S1 fields
-        mC.forEach(m => {
-          const key = m.code.toLowerCase();
-          document.querySelectorAll(`.${key} input[type="number"]`)
-            .forEach(i => i.value = "");
-          document.getElementById(`a-${key}`).textContent = "0.00";
-        });
-
-        // Clear S2 fields
-        mC2.forEach(m => {
-          const key = m.code.toLowerCase();
-          document.querySelectorAll(`.s2-${key} input[type="number"]`)
-            .forEach(i => i.value = "");
-          document.getElementById(`a-s2-${key}`).textContent = "0.00";
-        });
-
-        // Reset overall results & toggles
-        document.getElementById("f-a").textContent = "0.00";
-        document.getElementById("s2-f-a").textContent = "0.00";
-        document.querySelectorAll('input[type="checkbox"]').forEach(cb => cb.checked = false);
-        document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
-        document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
-
-        // Re-run appropriate calc
-        if (document.getElementById("s2-m").checked) cA_S2();
-        else cA();
-      }
 
       // Initial calculation on page load
-      cA();
-    </script>
-  </body>
+      cA(); // Calculate S1 by default
+
+      // Theme switcher logic
+      const themeToggleSwitch = document.getElementById('theme-toggle');
+      const userTheme = localStorage.getItem('theme');
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
+        if (themeToggleSwitch) themeToggleSwitch.checked = theme === 'dark';
+      }
+
+      if (userTheme) {
+        applyTheme(userTheme);
+      } else {
+        applyTheme(systemPrefersDark ? 'dark' : 'light');
+      }
+
+      if (themeToggleSwitch) {
+        themeToggleSwitch.addEventListener('change', function() {
+          applyTheme(this.checked ? 'dark' : 'light');
+        });
+      }
+      
+      // Listen to system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+        if (!localStorage.getItem('theme')) { // Only if user hasn't made an explicit choice
+            applyTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+
+      // Reveal on scroll observer for formula section
+      const formulaDisplay = document.getElementById('formula-display');
+      if (formulaDisplay) {
+        const revealOnScrollObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealOnScrollObserver.unobserve(entry.target); // Optional: unobserve after first reveal
+            }
+          });
+        }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+        revealOnScrollObserver.observe(formulaDisplay);
+      }
+      
+      // Initialize visibility based on toggles (important if page reloads with toggles checked)
+      tTM(); 
+      // toggleS2() is called by tTM if talent mode is off. If talent mode is on, toggleS2 handles S1/S2 visibility.
+      // We ensure S2 mode is correctly set by the s2ModeToggle at init.
+      if (!talentModeToggle.checked) {
+        toggleS2();
+      }
+
+    });
+
+  </script>
+</body>
 </html>
