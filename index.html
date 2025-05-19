@@ -126,49 +126,41 @@
     body {
       font-family: var(--font-primary);
       background-color: var(--bg-primary);
-      /* Removed static background image, animated one will replace it */
       margin: 0;
       padding: 1.5rem;
       line-height: 1.6;
       color: var(--text-primary);
       min-height: 100vh;
-      position: relative; /* Needed for z-indexed children if any were to go under the fixed bg */
-      overflow-x: hidden; /* Prevent horizontal scroll from animated bg if any shape peeks */
+      position: relative; 
+      overflow-x: hidden; 
       transition: background-color var(--duration-normal) var(--timing-state-change), color var(--duration-normal) var(--timing-state-change);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* --- NEW: Animated Background --- */
     .animated-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; /* Behind all other content */
+      z-index: -1; 
       overflow: hidden;
       pointer-events: none;
-      /* Use body's gradient as a base, or a solid color */
       background-image: linear-gradient(135deg, var(--bg-primary), var(--bg-interactive));
-      transition: background-image var(--duration-normal) var(--timing-state-change); /* Transition for theme change */
+      transition: background-image var(--duration-normal) var(--timing-state-change);
     }
 
     .animated-bg span {
       position: absolute;
       display: block;
       list-style: none;
-      background-color: var(--accent-primary);
       border-radius: 50%;
-      bottom: -180px; /* Start further off-screen */
+      bottom: -180px; 
       animation-name: rise;
       animation-iteration-count: infinite;
-      opacity: 0; /* Start transparent, fade in via animation */
-      will-change: transform, opacity; /* Performance hint */
-    }
-
-    [data-theme="dark"] .animated-bg span {
-      background-color: var(--accent-secondary); /* Slightly different color for dark mode */
+      opacity: 0; 
+      will-change: transform, opacity; 
     }
 
     @keyframes rise {
@@ -176,13 +168,13 @@
         transform: translateY(0) translateX(0) rotate(0deg) scale(0.5);
         opacity: 0;
       }
-      10% { /* Fade in quickly */
-        opacity: 0.4; /* Max opacity for light theme */
+      10% { 
+        opacity: 0.4; 
       }
-      [data-theme="dark"] & 10% { /* Example of theme-specific keyframe values if needed */
-         opacity: 0.25; /* Max opacity for dark theme - more subtle */
-      }
-      90% { /* Start fading out before loop */
+      /* For dark theme opacity can be different, example:
+      [data-theme="dark"] & 10% { opacity: 0.25; }
+      */
+      90% { 
          opacity: 0.05;
       }
       100% {
@@ -196,35 +188,31 @@
       animation-duration: 25s; animation-delay: 0s;
       animation-timing-function: var(--ease-in-out-cubic);
       --translateX-end: -30px; --rotate-end: 360deg;
-      background-color: rgba(37, 99, 235, 0.5); /* Lighter version of accent */
+      background-color: rgba(37, 99, 235, 0.5); 
     }
     [data-theme="dark"] .animated-bg span:nth-child(1) {
-      background-color: rgba(79, 70, 229, 0.3);
+      background-color: rgba(79, 70, 229, 0.3); 
     }
-
     .animated-bg span:nth-child(2) {
       left: 5%; width: 35px; height: 35px;
       animation-duration: 18s; animation-delay: 2s;
       animation-timing-function: var(--ease-out-quint);
       --translateX-end: 20px; --rotate-end: -200deg;
-      background-color: rgba(79, 70, 229, 0.6);
+      background-color: rgba(79, 70, 229, 0.6); 
     }
     [data-theme="dark"] .animated-bg span:nth-child(2) {
       background-color: rgba(37, 99, 235, 0.4);
     }
-
     .animated-bg span:nth-child(3) {
       left: 75%; width: 30px; height: 30px;
       animation-duration: 22s; animation-delay: 4s;
       animation-timing-function: var(--ease-in-out-quart);
       --translateX-end: 60px; --rotate-end: 540deg;
-      background-color: rgba(147, 51, 234, 0.4); /* --a color */
+      background-color: rgba(147, 51, 234, 0.4); 
     }
      [data-theme="dark"] .animated-bg span:nth-child(3) {
       background-color: rgba(120, 51, 200, 0.3);
     }
-
-
     .animated-bg span:nth-child(4) {
       left: 35%; width: 65px; height: 65px;
       animation-duration: 20s; animation-delay: 0.5s;
@@ -235,7 +223,6 @@
     [data-theme="dark"] .animated-bg span:nth-child(4) {
       background-color: rgba(79, 70, 229, 0.25);
     }
-
     .animated-bg span:nth-child(5) {
       left: 60%; width: 25px; height: 25px;
       animation-duration: 16s; animation-delay: 1.5s;
@@ -246,7 +233,6 @@
      [data-theme="dark"] .animated-bg span:nth-child(5) {
       background-color: rgba(37, 99, 235, 0.35);
     }
-
     .animated-bg span:nth-child(6) {
       left: 88%; width: 130px; height: 130px;
       animation-duration: 35s; animation-delay: 3s;
@@ -257,7 +243,6 @@
     [data-theme="dark"] .animated-bg span:nth-child(6) {
       background-color: rgba(120, 51, 200, 0.2);
     }
-
     .animated-bg span:nth-child(7) {
       left: 48%; width: 45px; height: 45px;
       animation-duration: 19s; animation-delay: 5.5s;
@@ -268,7 +253,6 @@
      [data-theme="dark"] .animated-bg span:nth-child(7) {
       background-color: rgba(79, 70, 229, 0.3);
     }
-    /* --- End Animated Background --- */
     
     .app-header {
       display: flex;
@@ -282,7 +266,7 @@
       backdrop-filter: blur(var(--blur-intensity));
       position: sticky;
       top: 1rem;
-      z-index: 100; /* Ensure header is above animated bg, but z-index on body not strictly needed now */
+      z-index: 100; 
     }
 
     .app-controls {
@@ -386,7 +370,7 @@
       letter-spacing: -0.025em;
       margin-bottom: 1.5rem;
       color: var(--text-primary);
-      position: relative; /* To ensure it's above the fixed background if z-index stacking context issues arise */
+      position: relative; 
       z-index: 1;
     }
     
@@ -407,7 +391,7 @@
                   background-color var(--duration-normal) var(--timing-state-change);
       border: 1px solid var(--border-primary);
       max-width: 900px;
-      position: relative; /* For stacking context against animated bg */
+      position: relative; 
       z-index: 1;
     }
 
@@ -563,7 +547,7 @@
       font-size: 0.95rem;
       text-transform: uppercase;
       letter-spacing: 0.025em;
-      position: relative; /* For stacking context */
+      position: relative; 
       z-index: 1;
     }
     button:hover {
@@ -597,14 +581,14 @@
         background: #c33a3a;
      }
 
-    .r-b { /* result block */
+    .r-b { 
       background-color: var(--bg-tertiary);
       border-radius: var(--border-radius-lg);
       padding: 1.5rem;
       margin-top: 1.5rem;
       box-shadow: var(--shadow-md);
       text-align: center;
-      position: relative; /* For stacking context */
+      position: relative; 
       z-index: 1;
     }
     .r-b h3 {
@@ -621,9 +605,9 @@
       background-color: transparent;
     }
 
-    .i-b { /* info block - formulas */
+    .i-b { 
       border-left: 5px solid var(--a);
-       position: relative; /* For stacking context */
+       position: relative; 
       z-index: 1;
     }
     .i-b p {
@@ -639,14 +623,14 @@
       color: var(--text-primary);
     }
 
-    .f { /* footer */
+    .f { 
       text-align: center;
       margin: 2rem 0 1rem;
       color: var(--text-muted);
       font-size: 0.875rem;
       padding-top: 1.5rem;
       border-top: 1px solid var(--border-primary);
-      position: relative; /* For stacking context */
+      position: relative; 
       z-index: 1;
     }
 
@@ -663,10 +647,6 @@
     .content-card {
       animation: cardEnter var(--duration-slow) var(--timing-reveal) backwards;
     }
-    /* Stagger animation example
-    #s1-table.content-card { animation-delay: 0.05s; }
-    #formula-display.content-card { animation-delay: 0.1s; }
-    */
 
     .collapsible-section {
       transition-property: opacity, max-height, transform, margin, padding, border-width;
@@ -743,12 +723,53 @@
       transform: translateY(30px);
       transition: opacity var(--duration-slower) var(--timing-reveal), 
                   transform var(--duration-slower) var(--timing-reveal);
-      transition-delay: 0.15s; /* Slightly reduced delay */
+      transition-delay: 0.15s;
     }
     .reveal-on-scroll.is-visible {
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* --- NEW: Konami Code Easter Egg Styles --- */
+    @keyframes partyBackground {
+        0%   { background-color: #FF0000; } /* Red */
+        10%  { background-color: #FF7F00; } /* Orange */
+        20%  { background-color: #FFFF00; } /* Yellow */
+        30%  { background-color: #00FF00; } /* Lime */
+        40%  { background-color: #00FFFF; } /* Cyan */
+        50%  { background-color: #0000FF; } /* Blue */
+        60%  { background-color: #8B00FF; } /* Violet */
+        70%  { background-color: #FF00FF; } /* Magenta */
+        80%  { background-color: #FF1493; } /* Deep Pink */
+        90%  { background-color: #32CD32; } /* Lime Green */
+        100% { background-color: #FF0000; } /* Red */
+    }
+
+    @keyframes partyDance {
+        0%, 100% { transform: rotate(0deg) translateX(0px) translateY(0px); }
+        25% { transform: rotate(-1.5deg) translateX(-2px) translateY(-1px); }
+        50% { transform: rotate(0deg) translateX(0px) translateY(0px); }
+        75% { transform: rotate(1.5deg) translateX(2px) translateY(1px); }
+    }
+
+    html.party-mode .animated-bg {
+        animation: partyBackground 0.7s linear infinite;
+        background-image: none !important; /* Override gradient for solid color flash */
+    }
+
+    html.party-mode .animated-bg span {
+        opacity: 0.9 !important; /* Make them more vibrant */
+        animation-duration: var(--duration-fastest) !important; /* Speed up their animation loop */
+        animation-timing-function: linear !important;
+    }
+
+    html.party-mode .content-card,
+    html.party-mode .app-header,
+    html.party-mode #main-title {
+        animation: partyDance 0.25s linear infinite alternate;
+    }
+    /* --- End Konami Code Styles --- */
+
 
     @media (max-width: 768px) {
       body {
@@ -764,19 +785,12 @@
         justify-content: center;
         gap: 0.75rem;
       }
-
-      h2#main-title {
-        font-size: 1.75rem;
-      }
-      h3 {
-        font-size: 1.25rem;
-      }
-
+      h2#main-title { font-size: 1.75rem; }
+      h3 { font-size: 1.25rem; }
       .content-card, .collapsible-section {
         margin: 1rem auto;
         padding: 1.25rem;
       }
-
       table {
         display: block;
         overflow-x: auto;
@@ -799,23 +813,15 @@
         width: 100%;
         min-width: 0;
       }
-
       button {
         padding: 0.7rem 1.25rem;
         font-size: 0.875rem;
       }
-      #f-a, #t-f-a, #s2-f-a {
-        font-size: 1.75rem;
-      }
-      /* Reduce number of animated shapes on mobile for performance */
-      .animated-bg span:nth-child(n+5) {
-        display: none;
-      }
+      #f-a, #t-f-a, #s2-f-a { font-size: 1.75rem; }
+      .animated-bg span:nth-child(n+5) { display: none; }
     }
     @media (max-width: 480px) {
-        .app-controls label {
-            font-size: 0.9rem;
-        }
+        .app-controls label { font-size: 0.9rem; }
         .theme-switcher {
             width: 44px;
             height: 24px;
@@ -826,15 +832,9 @@
             left: 3px;
             bottom: 3px;
         }
-        .theme-switcher input:checked + .slider:before {
-            transform: translateX(20px);
-        }
+        .theme-switcher input:checked + .slider:before { transform: translateX(20px); }
         .slider::after { font-size: 10px; }
-
-        /* Further reduce animated shapes on very small screens */
-        .animated-bg span:nth-child(n+4) {
-            display: none;
-        }
+        .animated-bg span:nth-child(n+4) { display: none; }
     }
   </style>
 
@@ -842,18 +842,10 @@
 </head>
 
 <body>
-  <!-- ADDED: Animated background element -->
   <div class="animated-bg">
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
+    <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
   </div>
 
-  <!-- ENHANCEMENT: App Header for Title and Global Controls -->
   <header class="app-header">
     <div class="app-controls">
       <label>
@@ -891,14 +883,7 @@
           </label>
           <select id="m-m" style="width: 100%; max-width: 200px">
             <option value="">-- Choose Module --</option>
-            <option value="SYS1">SYS1</option>
-            <option value="ARCHI">ARCHI</option>
-            <option value="ALG1">ALG1</option>
-            <option value="ANA1">ANA1</option>
-            <option value="TEE">TEE</option>
-            <option value="ALSDS">ALSDS</option>
-            <option value="BWEB">BWEB</option>
-            <option value="ELECT">ELECT</option>
+            <option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option><option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option><option value="BWEB">BWEB</option><option value="ELECT">ELECT</option>
           </select>
         </div>
         <button onclick="addMissing()">Add Module</button>
@@ -915,49 +900,15 @@
      <div class="collapsible-content-wrapper">
       <table>
         <thead>
-          <tr>
-            <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
-          </tr>
+          <tr><th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th></tr>
         </thead>
         <tbody>
         <script>
           const mC = [
-            { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] },
-            { code: "ARCHI", coef: 4, fields: ["CF", "CI"] },
-            { code: "ALG1", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA1", coef: 5, fields: ["CF", "CI"] },
-            { code: "TEE", coef: 2, fields: ["CF", "CC (/20)"] },
-            { code: "ALSDS", coef: 5, fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"] },
-            { code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"] },
-            { code: "ELECT", coef: 3, fields: ["CF", "CI", "CC=INT1+INT2"] }
+            { code: "SYS1", coef: 3, fields: ["TD", "IN (/8)", "CI", "CF"] }, { code: "ARCHI", coef: 4, fields: ["CF", "CI"] }, { code: "ALG1", coef: 3, fields: ["CF", "CI"] }, { code: "ANA1", coef: 5, fields: ["CF", "CI"] }, { code: "TEE", coef: 2, fields: ["CF", "CC (/20)"] }, { code: "ALSDS", coef: 5, fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"] }, { code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"] }, { code: "ELECT", coef: 3, fields: ["CF", "CI", "CC=INT1+INT2"] }
           ];
           document.write(
-            mC.map(m => `
-              <tr>
-                <td>
-                  <div class="t-m">
-                    <input type="checkbox" id="t-m-${m.code.toLowerCase()}"
-                      onchange="tMM('${m.code.toLowerCase()}')" />
-                    <label for="t-m-${m.code.toLowerCase()}"></label>
-                  </div>
-                </td>
-                <td>${m.code}</td>
-                <td>${m.coef}</td>
-                <td class="${m.code.toLowerCase()}">
-                  <div class="c-g">
-                    ${m.fields.map(f => `
-                      <span class="g-l">${f}</span>
-                      <input type="number" min="0" max="${f.includes("/8") ? 8 : 20}" step="0.5">
-                    `).join(" ")}
-                    ${m.code === "ARCHI" ? '<button id="a-b" onclick="tAB()">Add 1pt Bonus</button>' : ""}
-                  </div>
-                  <div class="m-g" style="display:none;">
-                    <input type="number" min="0" max="20" step="0.5" placeholder="Enter avg">
-                  </div>
-                </td>
-                <td id="a-${m.code.toLowerCase()}">0.00</td>
-              </tr>`
-            ).join("")
+            mC.map(m => `<tr><td><div class="t-m"><input type="checkbox" id="t-m-${m.code.toLowerCase()}" onchange="tMM('${m.code.toLowerCase()}')" /><label for="t-m-${m.code.toLowerCase()}"></label></div></td><td>${m.code}</td><td>${m.coef}</td><td class="${m.code.toLowerCase()}"><div class="c-g">${m.fields.map(f => `<span class="g-l">${f}</span><input type="number" min="0" max="${f.includes("/8") ? 8 : 20}" step="0.5">`).join(" ")}${m.code === "ARCHI" ? '<button id="a-b" onclick="tAB()">Add 1pt Bonus</button>' : ""}</div><div class="m-g" style="display:none;"><input type="number" min="0" max="20" step="0.5" placeholder="Enter avg"></div></td><td id="a-${m.code.toLowerCase()}">0.00</td></tr>`).join("")
           );
         </script>
         </tbody>
@@ -976,48 +927,15 @@
      <div class="collapsible-content-wrapper">
       <table>
         <thead>
-          <tr>
-            <th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th>
-          </tr>
+          <tr><th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th></tr>
         </thead>
         <tbody>
         <script>
           const mC2 = [
-            { code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"] },
-            { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] },
-            { code: "ALG2", coef: 3, fields: ["CF", "CI"] },
-            { code: "ANA2", coef: 5, fields: ["CF", "CI"] },
-            { code: "TEO", coef: 2, fields: ["CF", "CC"] },
-            { code: "ALSDD",coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"] },
-            { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] },
-            { code: "ELECTF",coef: 4, fields: ["CF", "CI", "CC"] }
+            { code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"] }, { code: "MECA", coef: 3, fields: ["CF", "CI", "CC"] }, { code: "ALG2", coef: 3, fields: ["CF", "CI"] }, { code: "ANA2", coef: 5, fields: ["CF", "CI"] }, { code: "TEO", coef: 2, fields: ["CF", "CC"] }, { code: "ALSDD",coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"] }, { code: "ANG", coef: 2, fields: ["CI", "CC", "CF"] }, { code: "ELECTF",coef: 4, fields: ["CF", "CI", "CC"] }
           ];
           document.write(
-            mC2.map(m => `
-              <tr>
-                <td>
-                  <div class="t-m">
-                    <input type="checkbox" id="s2-t-m-${m.code.toLowerCase()}"
-                      onchange="tMM_S2('${m.code.toLowerCase()}')" />
-                    <label for="s2-t-m-${m.code.toLowerCase()}"></label>
-                  </div>
-                </td>
-                <td>${m.code}</td>
-                <td>${m.coef}</td>
-                <td class="s2-${m.code.toLowerCase()}">
-                  <div class="c-g">
-                    ${m.fields.map(f => `
-                      <span class="g-l">${f}</span>
-                      <input type="number" min="0" max="20" step="0.5">
-                    `).join(" ")}
-                  </div>
-                  <div class="m-g" style="display:none;">
-                    <input type="number" min="0" max="20" step="0.5" placeholder="Enter avg">
-                  </div>
-                </td>
-                <td id="a-s2-${m.code.toLowerCase()}">0.00</td>
-              </tr>`
-            ).join("")
+            mC2.map(m => `<tr><td><div class="t-m"><input type="checkbox" id="s2-t-m-${m.code.toLowerCase()}" onchange="tMM_S2('${m.code.toLowerCase()}')" /><label for="s2-t-m-${m.code.toLowerCase()}"></label></div></td><td>${m.code}</td><td>${m.coef}</td><td class="s2-${m.code.toLowerCase()}"><div class="c-g">${m.fields.map(f => `<span class="g-l">${f}</span><input type="number" min="0" max="20" step="0.5">`).join(" ")}</div><div class="m-g" style="display:none;"><input type="number" min="0" max="20" step="0.5" placeholder="Enter avg"></div></td><td id="a-s2-${m.code.toLowerCase()}">0.00</td></tr>`).join("")
           );
         </script>
         </tbody>
@@ -1046,183 +964,42 @@
   <div class="f">Made by Walid And some AI help (do not judge me) - Enhanced UI by Expert AI</div>
 
   <script>
-    // ---------- Global state (unchanged) ----------
-    let aB = false;
-    let isS2 = false;
-    const tCoef = 26;
+    // --- Global state (unchanged) ---
+    let aB = false; let isS2 = false; const tCoef = 26;
 
-    // ---------- Per-module calculation functions (unchanged) ----------
-    const mCal = {
-      SYS1: (td, in8, ci, cf) => 0.1 * td + 0.1 * (in8 * 2.5) + 0.3 * ci + 0.5 * cf,
-      ARCHI: (cf, ci, b = false) => 0.5 * cf + 0.5 * ci + (b ? 1 : 0),
-      ALG1: (cf, ci) => 0.67 * cf + 0.33 * ci,
-      ANA1: (cf, ci) => 0.67 * cf + 0.33 * ci,
-      TEE: (cf, p) => (2 / 3) * cf + (1 / 3) * p,
-      ALSDS: (cf, ci, tp1, tp2, tr) => 0.3 * cf + 0.2 * ci + 0.4 * ((tp1 + tp2) / 2) + 0.1 * tr,
-      BWEB: (cf, ci, cc) => 0.4 * cf + 0.4 * ci + 0.2 * cc,
-      ELECT: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
-    };
-    const mCal2 = {
-      SYS2: (fe, me, cc) => 0.5 * fe + 0.3 * me + 0.2 * cc,
-      MECA: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc,
-      ALG2: (cf, ci) => 0.67 * cf + 0.33 * ci,
-      ANA2: (cf, ci) => 0.67 * cf + 0.33 * ci,
-      TEO: (cf, cc) => (2 / 3) * cf + (1 / 3) * cc,
-      ALSDD: (tpc, interos, cc, tpz, cf) => ((tpc + interos + cc) / 3) * 0.25 + tpz * 0.2 + cf * 0.55,
-      ANG: (ci, cc, cf) => 0.33 * ci + 0.33 * cc + 0.34 * cf,
-      ELECTF: (cf, ci, cc) => 0.5 * cf + 0.25 * ci + 0.25 * cc
-    };
+    // --- Per-module calculation functions (unchanged) ---
+    const mCal = { SYS1: (td, in8, ci, cf) => 0.1*td + 0.1*(in8*2.5) + 0.3*ci + 0.5*cf, ARCHI: (cf, ci, b=false) => 0.5*cf + 0.5*ci + (b?1:0), ALG1: (cf, ci) => 0.67*cf + 0.33*ci, ANA1: (cf, ci) => 0.67*cf + 0.33*ci, TEE: (cf, p) => (2/3)*cf + (1/3)*p, ALSDS: (cf, ci, tp1, tp2, tr) => 0.3*cf + 0.2*ci + 0.4*((tp1+tp2)/2) + 0.1*tr, BWEB: (cf, ci, cc) => 0.4*cf + 0.4*ci + 0.2*cc, ELECT: (cf, ci, cc) => 0.5*cf + 0.25*ci + 0.25*cc };
+    const mCal2 = { SYS2: (fe, me, cc) => 0.5*fe + 0.3*me + 0.2*cc, MECA: (cf, ci, cc) => 0.5*cf + 0.25*ci + 0.25*cc, ALG2: (cf, ci) => 0.67*cf + 0.33*ci, ANA2: (cf, ci) => 0.67*cf + 0.33*ci, TEO: (cf, cc) => (2/3)*cf + (1/3)*cc, ALSDD: (tpc,i,c,tp,cf) => ((tpc+i+c)/3)*0.25 + tp*0.2 + cf*0.55, ANG: (ci, cc, cf) => 0.33*ci + 0.33*cc + 0.34*cf, ELECTF: (cf, ci, cc) => 0.5*cf + 0.25*ci + 0.25*cc };
 
-    // ---------- Helper: get numeric values from inputs (unchanged) ----------
-    function gIV(sel) {
-      return Array.from(document.querySelectorAll(sel)).map(i => parseFloat(i.value) || 0);
-    }
+    // --- Helper: get numeric values from inputs (unchanged) ---
+    function gIV(sel) { return Array.from(document.querySelectorAll(sel)).map(i => parseFloat(i.value)||0); }
 
-    // ---------- Compute module average (unchanged) ----------
-    function cMA(mod, scores, isManual = false, mode = "S1") {
-      if (isManual) return scores[0] || 0;
-      if (mode === "S1") {
-        const fn = mCal[mod];
-        return mod === "ARCHI" ? fn(...scores, aB) : fn(...scores);
-      } else {
-        return mCal2[mod](...scores);
-      }
-    }
+    // --- Compute module average (unchanged) ---
+    function cMA(mod, scores, isManual=false, mode="S1") { if(isManual) return scores[0]||0; if(mode==="S1"){ const fn=mCal[mod]; return mod==="ARCHI"?fn(...scores,aB):fn(...scores); } else { return mCal2[mod](...scores); } }
 
-    // ---------- Calculate S1 semester average (unchanged) ----------
-    function cA() {
-      let total = 0;
-      mC.forEach(m => {
-        const key = m.code.toLowerCase();
-        const cell = document.querySelector(`.${key}`);
-        const manualOn = cell.querySelector(".m-g").style.display !== "none";
-        const scores = gIV(`.${key} ${manualOn ? ".m-g" : ".c-g"} input`);
-        const avg = cMA(m.code, scores, manualOn, "S1");
-        document.getElementById(`a-${key}`).textContent = avg.toFixed(2);
-        total += avg * m.coef;
-      });
-      document.getElementById("f-a").textContent = (total / tCoef).toFixed(2);
-    }
+    // --- Calculate S1 semester average (unchanged) ---
+    function cA() { let t=0; mC.forEach(m => { const k=m.code.toLowerCase(),c=document.querySelector(`.${k}`),o=c.querySelector(".m-g").style.display!=="none",s=gIV(`.${k} ${o?".m-g":".c-g"} input`),a=cMA(m.code,s,o,"S1"); document.getElementById(`a-${k}`).textContent=a.toFixed(2); t+=a*m.coef; }); document.getElementById("f-a").textContent=(t/tCoef).toFixed(2); }
 
-    // ---------- Calculate S2 semester average (unchanged) ----------
-    function cA_S2() {
-      let total = 0;
-      mC2.forEach(m => {
-        const key = m.code.toLowerCase();
-        const cell = document.querySelector(`.s2-${key}`);
-        const manualOn = cell.querySelector(".m-g").style.display !== "none";
-        const scores = gIV(`.s2-${key} ${manualOn ? ".m-g" : ".c-g"} input`);
-        const avg = cMA(m.code, scores, manualOn, "S2");
-        document.getElementById(`a-s2-${key}`).textContent = avg.toFixed(2);
-        total += avg * m.coef;
-      });
-      document.getElementById("s2-f-a").textContent = (total / 27).toFixed(2);
-    }
+    // --- Calculate S2 semester average (unchanged) ---
+    function cA_S2() { let t=0; mC2.forEach(m => { const k=m.code.toLowerCase(),c=document.querySelector(`.s2-${k}`),o=c.querySelector(".m-g").style.display!=="none",s=gIV(`.s2-${k} ${o?".m-g":".c-g"} input`),a=cMA(m.code,s,o,"S2"); document.getElementById(`a-s2-${k}`).textContent=a.toFixed(2); t+=a*m.coef; }); document.getElementById("s2-f-a").textContent=(t/27).toFixed(2); }
 
+    // --- Add a missing module section (logic unchanged, uses CSS for anim) ---
     const missing = [];
-    function addMissing() {
-      const modSelect = document.getElementById("m-m");
-      const mod = modSelect.value;
-      if (!mod || missing.find(x => x.code === mod)) return;
-      
-      const arr = isS2 ? mC2 : mC;
-      const mObj = arr.find(x => x.code === mod);
-      if (!mObj) return; 
-      missing.push({ code: mod, coef: mObj.coef, fields: mObj.fields });
+    function addMissing() { const s=document.getElementById("m-m"),m=s.value; if(!m||missing.find(x=>x.code===m))return; const a=isS2?mC2:mC, o=a.find(x=>x.code===m); if(!o)return; missing.push({code:m,coef:o.coef,fields:o.fields}); const c=document.getElementById("missing-list"),d=document.createElement("div"); d.id=`miss-${m}`;d.className='missing-module-item'; const t=document.createElement("h4");t.textContent=`${m} (coef ${o.coef})`;d.appendChild(t); o.fields.forEach(f=>{const r=document.createElement("div"),l=document.createElement("label");l.textContent=f;const i=document.createElement("input");i.type="number";i.min="0";i.max=f.includes("/8")?"8":"20";i.step="0.5";i.dataset.mod=m;i.dataset.field=f;r.appendChild(l);r.appendChild(i);d.appendChild(r);}); const b=document.createElement("button");b.textContent="Remove";b.onclick=()=>{d.classList.remove('is-visible');d.addEventListener('transitionend',()=>{if(d.parentNode===c){c.removeChild(d);}},{once:true});const idx=missing.findIndex(x=>x.code===m);if(idx>-1)missing.splice(idx,1);}; d.appendChild(b);c.appendChild(d); requestAnimationFrame(()=>{requestAnimationFrame(()=>{d.classList.add('is-visible');});});s.value=""; }
 
-      const container = document.getElementById("missing-list");
-      const div = document.createElement("div");
-      div.id = `miss-${mod}`;
-      div.className = 'missing-module-item';
+    // --- Calculate final avg including missing modules (logic unchanged) ---
+    function cM() { const tA=parseFloat(document.getElementById("t-a").value)||0,c=isS2?27:tCoef;let w=tA*c; missing.forEach(m=>{const i=Array.from(document.querySelectorAll(`#miss-${m.code} input[type="number"]`)).map(x=>parseFloat(x.value)||0),a=cMA(m.code,i,false,isS2?"S2":"S1");w+=a*m.coef;}); document.getElementById("t-f-a").textContent=(w/c).toFixed(2); }
+    
+    // --- Toggle ARCHI bonus (logic unchanged) ---
+    function tAB() { aB=!aB; document.getElementById("a-b").textContent=aB?"Remove 1pt Bonus":"Add 1pt Bonus"; cA(); }
 
-      const title = document.createElement("h4");
-      title.textContent = `${mod} (coef ${mObj.coef})`;
-      div.appendChild(title);
+    // --- Switch computed/manual S1 & S2 (logic unchanged) ---
+    function tMM(m) { const c=document.querySelector(`.${m}`),g=c.querySelector(".c-g"),a=c.querySelector(".m-g"),o=document.getElementById(`t-m-${m}`).checked; g.style.display=o?"none":"flex";a.style.display=o?"block":"none"; cA(); }
+    function tMM_S2(m) { const c=document.querySelector(`.s2-${m}`),g=c.querySelector(".c-g"),a=c.querySelector(".m-g"),o=document.getElementById(`s2-t-m-${m}`).checked; g.style.display=o?"none":"flex";a.style.display=o?"block":"none"; cA_S2(); }
 
-      mObj.fields.forEach(f => {
-        const row = document.createElement("div");
-        const label = document.createElement("label");
-        label.textContent = f;
-        const inp = document.createElement("input");
-        inp.type = "number"; inp.min = "0";
-        inp.max = f.includes("/8") ? "8" : "20";
-        inp.step = "0.5";
-        inp.dataset.mod = mod;
-        inp.dataset.field = f;
-        row.appendChild(label);
-        row.appendChild(inp);
-        div.appendChild(row);
-      });
-
-      const btn = document.createElement("button");
-      btn.textContent = "Remove";
-      btn.onclick = () => {
-        div.classList.remove('is-visible'); 
-        div.addEventListener('transitionend', () => {
-          if (div.parentNode === container) { 
-            container.removeChild(div);
-          }
-        }, { once: true });
-
-        const idx = missing.findIndex(x => x.code === mod);
-        if (idx > -1) missing.splice(idx, 1);
-      };
-      div.appendChild(btn);
-      container.appendChild(div);
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => { 
-          div.classList.add('is-visible');
-        });
-      });
-      modSelect.value = "";
-    }
-
-    function cM() {
-      const tA = parseFloat(document.getElementById("t-a").value) || 0;
-      const coef = isS2 ? 27 : tCoef; 
-      let totalWeighted = tA * coef;
-
-      missing.forEach(m => {
-        const inputs = Array.from(document.querySelectorAll(`#miss-${m.code} input[type="number"]`))
-          .map(i => parseFloat(i.value) || 0);
-        const avg = cMA(m.code, inputs, false, isS2 ? "S2" : "S1");
-        totalWeighted += avg * m.coef;
-      });
-
-      const finalAvg = totalWeighted / coef; 
-      document.getElementById("t-f-a").textContent = finalAvg.toFixed(2);
-    }
-
-    function tAB() {
-      aB = !aB;
-      document.getElementById("a-b").textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
-      cA();
-    }
-
-    function tMM(m) {
-      const cell = document.querySelector(`.${m}`);
-      const comp = cell.querySelector(".c-g");
-      const man = cell.querySelector(".m-g");
-      const on = document.getElementById(`t-m-${m}`).checked;
-      comp.style.display = on ? "none" : "flex"; 
-      man.style.display = on ? "block" : "none";
-      cA();
-    }
-
-    function tMM_S2(m) {
-      const cell = document.querySelector(`.s2-${m}`);
-      const comp = cell.querySelector(".c-g");
-      const man = cell.querySelector(".m-g");
-      const on = document.getElementById(`s2-t-m-${m}`).checked;
-      comp.style.display = on ? "none" : "flex"; 
-      man.style.display = on ? "block" : "none";
-      cA_S2();
-    }
-
+    // --- JS for section visibility, dark theme, and other UI interactions ---
     const talentModeToggle = document.getElementById('t-m-global');
     const s2ModeToggle = document.getElementById('s2-m-global');
-
     const talentSection = document.getElementById("t-s");
     const s1TableSection = document.getElementById("s1-table");
     const s2TableSection = document.getElementById("s2-table");
@@ -1234,15 +1011,12 @@
     function tTM() {
       const talentOn = talentModeToggle.checked;
       s2ModeToggle.disabled = talentOn;
-
       if (talentOn) {
         talentSection.classList.remove("collapsed");
         s1TableSection.classList.add("collapsed");
         s2TableSection.classList.add("collapsed");
-        s1CalcButton.style.display = "none";
-        s2CalcButton.style.display = "none";
-        s1ResultBlock.style.display = "none";
-        s2ResultBlock.style.display = "none";
+        s1CalcButton.style.display = "none"; s2CalcButton.style.display = "none";
+        s1ResultBlock.style.display = "none"; s2ResultBlock.style.display = "none";
       } else {
         talentSection.classList.add("collapsed");
         toggleS2();
@@ -1251,155 +1025,103 @@
 
     function toggleS2() {
       if (talentModeToggle.checked) return;
-
-      isS2 = s2ModeToggle.checked; 
+      isS2 = s2ModeToggle.checked;
       const title = document.getElementById("main-title");
       const formula = document.getElementById("formula-display");
       const sel = document.getElementById("m-m");
-
-      const s1Formulas = `
-        <h3>Calc Formulas (S1)</h3>
-        <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p>
-        <p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p>
-        <p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p>
-        <p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p>
-        <p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p>
-        <p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p>
-        <p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
-      const s2Formulas = `
-        <h3>Calc Formulas (S2)</h3>
-        <p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p>
-        <p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>
-        <p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p>
-        <p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p>
-        <p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p>
-        <p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p>
-        <p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p>
-        <p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
-      
-      const s1ModulesOptions = `
-        <option value="">-- Choose Module --</option>
-        <option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option>
-        <option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option>
-        <option value="BWEB">BWEB</option><option value="ELECT">ELECT</option>`;
-      const s2ModulesOptions = `
-        <option value="">-- Choose Module --</option>
-        <option value="SYS2">SYS2</option><option value="MECA">MECA</option><option value="ALG2">ALG2</option>
-        <option value="ANA2">ANA2</option><option value="TEO">TEO</option><option value="ALSDD">ALSDD</option>
-        <option value="ANG">ANG</option><option value="ELECTF">ELECTF</option>`;
+      const s1F=`<h3>Calc Formulas (S1)</h3><p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p><p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p><p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p><p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p><p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p><p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
+      const s2F=`<h3>Calc Formulas (S2)</h3><p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p><p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p><p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p><p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p><p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
+      const s1Opt=`<option value="">-- Choose Module --</option><option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option><option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option><option value="BWEB">BWEB</option><option value="ELECT">ELECT</option>`;
+      const s2Opt=`<option value="">-- Choose Module --</option><option value="SYS2">SYS2</option><option value="MECA">MECA</option><option value="ALG2">ALG2</option><option value="ANA2">ANA2</option><option value="TEO">TEO</option><option value="ALSDD">ALSDD</option><option value="ANG">ANG</option><option value="ELECTF">ELECTF</option>`;
 
       if (isS2) {
-        title.textContent = "1CP S2 Avg Calc";
-        formula.innerHTML = s2Formulas;
-        sel.innerHTML = s2ModulesOptions;
-        s1TableSection.classList.add("collapsed");
-        s2TableSection.classList.remove("collapsed");
-        s1CalcButton.style.display = "none";
-        s1ResultBlock.style.display = "none";
-        s2CalcButton.style.display = "inline-block"; 
-        s2ResultBlock.style.display = "block";
+        title.textContent = "1CP S2 Avg Calc"; formula.innerHTML = s2F; sel.innerHTML = s2Opt;
+        s1TableSection.classList.add("collapsed"); s2TableSection.classList.remove("collapsed");
+        s1CalcButton.style.display = "none"; s1ResultBlock.style.display = "none";
+        s2CalcButton.style.display = "inline-block"; s2ResultBlock.style.display = "block";
       } else {
-        title.textContent = "1CP S1 Avg Calc";
-        formula.innerHTML = s1Formulas;
-        sel.innerHTML = s1ModulesOptions;
-        s2TableSection.classList.add("collapsed");
-        s1TableSection.classList.remove("collapsed");
-        s2CalcButton.style.display = "none";
-        s2ResultBlock.style.display = "none";
-        s1CalcButton.style.display = "inline-block";
-        s1ResultBlock.style.display = "block";
+        title.textContent = "1CP S1 Avg Calc"; formula.innerHTML = s1F; sel.innerHTML = s1Opt;
+        s2TableSection.classList.add("collapsed"); s1TableSection.classList.remove("collapsed");
+        s2CalcButton.style.display = "none"; s2ResultBlock.style.display = "none";
+        s1CalcButton.style.display = "inline-block"; s1ResultBlock.style.display = "block";
       }
-      document.getElementById("missing-list").innerHTML = "";
-      missing.length = 0;
+      document.getElementById("missing-list").innerHTML = ""; missing.length = 0;
     }
 
     function resetCalculator() {
-      document.getElementById("t-a").value = "";
-      document.getElementById("t-f-a").textContent = "0.00";
-      document.getElementById("missing-list").innerHTML = "";
-      missing.length = 0;
-
-      mC.forEach(m => {
-        const key = m.code.toLowerCase();
-        document.querySelectorAll(`.${key} input[type="number"]`).forEach(i => i.value = "");
-        document.getElementById(`a-${key}`).textContent = "0.00";
-        const manualToggle = document.getElementById(`t-m-${key}`);
-        if(manualToggle) manualToggle.checked = false;
-      });
-      mC2.forEach(m => {
-        const key = m.code.toLowerCase();
-        document.querySelectorAll(`.s2-${key} input[type="number"]`).forEach(i => i.value = "");
-        document.getElementById(`a-s2-${key}`).textContent = "0.00";
-        const manualToggle = document.getElementById(`s2-t-m-${key}`);
-        if(manualToggle) manualToggle.checked = false;
-      });
-
-      document.getElementById("f-a").textContent = "0.00";
-      document.getElementById("s2-f-a").textContent = "0.00";
-      
-      talentModeToggle.checked = false;
-      s2ModeToggle.checked = false;
-      
-      tTM();      
-      
-      document.querySelectorAll(".c-g").forEach(div => div.style.display = "flex");
-      document.querySelectorAll(".m-g").forEach(div => div.style.display = "none");
-
-      if (isS2) cA_S2(); else cA();
+      document.getElementById("t-a").value=""; document.getElementById("t-f-a").textContent="0.00";
+      document.getElementById("missing-list").innerHTML=""; missing.length=0;
+      mC.forEach(m=>{const k=m.code.toLowerCase();document.querySelectorAll(`.${k} input[type="number"]`).forEach(i=>i.value="");document.getElementById(`a-${k}`).textContent="0.00";const t=document.getElementById(`t-m-${k}`);if(t)t.checked=false;});
+      mC2.forEach(m=>{const k=m.code.toLowerCase();document.querySelectorAll(`.s2-${k} input[type="number"]`).forEach(i=>i.value="");document.getElementById(`a-s2-${k}`).textContent="0.00";const t=document.getElementById(`s2-t-m-${k}`);if(t)t.checked=false;});
+      document.getElementById("f-a").textContent="0.00";document.getElementById("s2-f-a").textContent="0.00";
+      talentModeToggle.checked=false; s2ModeToggle.checked=false;
+      tTM(); 
+      document.querySelectorAll(".c-g").forEach(d=>d.style.display="flex"); document.querySelectorAll(".m-g").forEach(d=>d.style.display="none");
+      if(isS2)cA_S2();else cA();
     }
     
     document.addEventListener('DOMContentLoaded', () => {
-      if (talentSection) talentSection.classList.add('collapsed');
-      if (s2TableSection) s2TableSection.classList.add('collapsed');
-      if (s1TableSection) s1TableSection.classList.remove('collapsed');
-
-      cA(); 
+      if(talentSection)talentSection.classList.add('collapsed');
+      if(s2TableSection)s2TableSection.classList.add('collapsed');
+      if(s1TableSection)s1TableSection.classList.remove('collapsed');
+      cA();
 
       const themeToggleSwitch = document.getElementById('theme-toggle');
       const userTheme = localStorage.getItem('theme');
       const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-      function applyTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        if (themeToggleSwitch) themeToggleSwitch.checked = theme === 'dark';
-      }
-
-      if (userTheme) {
-        applyTheme(userTheme);
-      } else {
-        applyTheme(systemPrefersDark ? 'dark' : 'light');
-      }
-
-      if (themeToggleSwitch) {
-        themeToggleSwitch.addEventListener('change', function() {
-          applyTheme(this.checked ? 'dark' : 'light');
-        });
-      }
-      
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        if (!localStorage.getItem('theme')) { 
-            applyTheme(e.matches ? 'dark' : 'light');
-        }
-      });
+      function applyTheme(theme) { document.documentElement.setAttribute('data-theme',theme); localStorage.setItem('theme',theme); if(themeToggleSwitch)themeToggleSwitch.checked = theme === 'dark'; }
+      if(userTheme){ applyTheme(userTheme); } else { applyTheme(systemPrefersDark?'dark':'light'); }
+      if(themeToggleSwitch){ themeToggleSwitch.addEventListener('change', function(){ applyTheme(this.checked?'dark':'light'); }); }
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => { if(!localStorage.getItem('theme')){ applyTheme(e.matches?'dark':'light'); } });
 
       const formulaDisplay = document.getElementById('formula-display');
-      if (formulaDisplay) {
-        const revealOnScrollObserver = new IntersectionObserver((entries) => {
-          entries.forEach(entry => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('is-visible');
-              revealOnScrollObserver.unobserve(entry.target); 
-            }
-          });
-        }, { threshold: 0.1 }); 
-        revealOnScrollObserver.observe(formulaDisplay);
-      }
+      if (formulaDisplay) { const obs = new IntersectionObserver((e)=>{e.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('is-visible');obs.unobserve(entry.target);}});},{threshold:0.1}); obs.observe(formulaDisplay); }
       
       tTM(); 
-      if (!talentModeToggle.checked) {
-        toggleS2();
-      }
+      if (!talentModeToggle.checked) { toggleS2(); }
+
+      // --- Konami Code Easter Egg Logic ---
+      const konamiSequence = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight', 'b', 'a'];
+      let konamiInputIndex = 0;
+      let partyModeTimeoutId = null; 
+
+      document.addEventListener('keydown', function(event) {
+        // If party mode is active, typing the code again will turn it off
+        if (document.documentElement.classList.contains('party-mode')) {
+           if (event.key.toLowerCase() === konamiSequence[konamiInputIndex].toLowerCase()) {
+                konamiInputIndex++;
+                if (konamiInputIndex === konamiSequence.length) {
+                    clearTimeout(partyModeTimeoutId); // Clear existing timeout
+                    document.documentElement.classList.remove('party-mode');
+                    konamiInputIndex = 0; 
+                }
+            } else {
+                konamiInputIndex = 0; 
+            }
+            return; // Stop further processing if party mode was active
+        }
+
+        // Normal Konami code detection
+        if (event.key.toLowerCase() === konamiSequence[konamiInputIndex].toLowerCase()) {
+            konamiInputIndex++;
+            if (konamiInputIndex === konamiSequence.length) {
+                document.documentElement.classList.add('party-mode');
+                konamiInputIndex = 0; // Reset for next time
+                
+                // Clear any previous timeout to prevent multiple removals
+                if (partyModeTimeoutId) {
+                    clearTimeout(partyModeTimeoutId);
+                }
+                // Automatically turn off party mode after 10 seconds
+                partyModeTimeoutId = setTimeout(() => {
+                    document.documentElement.classList.remove('party-mode');
+                }, 10000); 
+            }
+        } else {
+            konamiInputIndex = 0; // Reset if wrong key pressed
+        }
+      });
+      // --- End Konami Code Logic ---
     });
   </script>
 </body>
