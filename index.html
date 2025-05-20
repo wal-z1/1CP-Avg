@@ -4,14 +4,14 @@
   <meta charset="UTF-8" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧮</text></svg>" type="image/svg+xml">
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Calculator 1CP S1&S2 - Enhanced</title>
+  <title>Calculator 1CP S1&S2 - Enhanced Mobile</title>
 <style>
     /* --- ENHANCEMENT: MODERNIZED LOOK & FEEL + DARK THEME - EVEN BETTERRRR --- */
     /* 1. CSS Variables for Theming (Light & Dark) */
     :root {
       /* Light Theme (Default) */
       --font-primary: 'Inter', 'Segoe UI', system-ui, sans-serif;
-      
+
       --bg-primary: #f4f7f9;
       --bg-secondary: rgba(255, 255, 255, 0.80); /* Slightly less opaque for better blur */
       --bg-tertiary: #e9edf1;
@@ -77,7 +77,7 @@
       --ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
       --ease-in-out-expo: cubic-bezier(1, 0, 0, 1);
       --ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
-      
+
       --md-standard: cubic-bezier(0.4, 0.0, 0.2, 1);
       --md-decelerate: cubic-bezier(0.0, 0.0, 0.2, 1);
       --md-accelerate: cubic-bezier(0.4, 0.0, 1, 1);
@@ -153,8 +153,8 @@
       line-height: 1.6;
       color: var(--text-primary);
       min-height: 100vh;
-      position: relative; 
-      overflow-x: hidden; 
+      position: relative;
+      overflow-x: hidden;
       transition: background-color var(--duration-normal) var(--timing-state-change), color var(--duration-normal) var(--timing-state-change);
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -191,7 +191,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      z-index: -1; 
+      z-index: -1;
       overflow: hidden;
       pointer-events: none;
       background-image: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-interactive) 100%);
@@ -206,7 +206,7 @@
       bottom: -200px; /* Start further down */
       animation-name: rise;
       animation-iteration-count: infinite;
-      opacity: 0; 
+      opacity: 0;
       will-change: transform, opacity;
       box-shadow: 0 0 10px 2px currentColor, 0 0 20px 5px currentColor inset; /* Inner and outer glow */
       filter: brightness(1.15); /* Pop more */
@@ -217,10 +217,10 @@
         transform: translateY(0) translateX(0) rotate(0deg) scale(0.3);
         opacity: 0;
       }
-      10% { 
+      10% {
         opacity: 0.5; /* More visible earlier */
       }
-      90% { 
+      90% {
          opacity: 0.05;
       }
       100% {
@@ -234,17 +234,17 @@
       animation-duration: 28s; animation-delay: 0s;
       animation-timing-function: var(--ease-in-out-quint);
       --translateX-end: -30px; --rotate-end: 360deg;
-      background-color: rgba(37, 99, 235, 0.6); 
+      background-color: rgba(37, 99, 235, 0.6);
     }
     [data-theme="dark"] .animated-bg span:nth-child(1) {
-      background-color: rgba(79, 70, 229, 0.35); 
+      background-color: rgba(79, 70, 229, 0.35);
     }
     .animated-bg span:nth-child(2) {
       left: 5%; width: 35px; height: 35px;
       animation-duration: 20s; animation-delay: 2s;
       animation-timing-function: var(--ease-out-back); /* Bouncy */
       --translateX-end: 20px; --rotate-end: -200deg;
-      background-color: rgba(79, 70, 229, 0.7); 
+      background-color: rgba(79, 70, 229, 0.7);
       border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Blob */
     }
     [data-theme="dark"] .animated-bg span:nth-child(2) {
@@ -303,7 +303,7 @@
      [data-theme="dark"] .animated-bg span:nth-child(7) {
       background-color: rgba(79, 70, 229, 0.35);
     }
-    
+
     .app-header {
       display: flex;
       justify-content: space-between;
@@ -416,9 +416,9 @@
       top: 50%;
       right: 7px; /* Adjusted for larger knob */
       transform: translateY(-50%) rotate(0deg);
-      transition: opacity var(--duration-normal) var(--timing-state-change), 
+      transition: opacity var(--duration-normal) var(--timing-state-change),
                   transform var(--duration-normal) var(--ease-out-expo),
-                  left var(--duration-normal) var(--ease-out-expo), 
+                  left var(--duration-normal) var(--ease-out-expo),
                   right var(--duration-normal) var(--ease-out-expo);
       opacity: 0.8;
     }
@@ -446,10 +446,10 @@
       letter-spacing: -0.03em; /* Tighter */
       margin-bottom: 2rem;
       color: var(--text-primary);
-      position: relative; 
+      position: relative;
       z-index: 1;
       font-weight: 800; /* Bolder */
-      
+
       background: linear-gradient(120deg, var(--p) 20%, var(--s) 50%, var(--a) 80%);
       -webkit-background-clip: text;
       -moz-background-clip: text;
@@ -470,7 +470,7 @@
       from { text-shadow: 0 0 8px var(--accent-primary-transparent-weak); }
       to { text-shadow: 0 0 16px var(--accent-primary-transparent-medium); }
     }
-    
+
     h3 {
       font-size: 1.6rem; /* Slightly larger */
       color: var(--text-secondary);
@@ -485,79 +485,18 @@
       margin: 2rem auto; /* More spacing */
       padding: 2.5rem; /* More padding */
       transition: transform var(--duration-medium) var(--ease-out-back), /* Bouncy hover */
-                  box-shadow var(--duration-medium) var(--ease-out-cubic), 
+                  box-shadow var(--duration-medium) var(--ease-out-cubic),
                   background-color var(--duration-normal) var(--timing-state-change),
                   border-color var(--duration-medium) var(--timing-interactive);
       border: 1px solid var(--border-primary);
       max-width: 900px;
-      position: relative; 
+      position: relative;
       z-index: 1;
     }
 
-    .content-card:hover {
-      transform: translateY(-8px) scale(1.02); /* More pronounced hover */
-      box-shadow: var(--shadow-xl), 0 0 30px -5px var(--accent-primary-transparent-medium); /* Enhanced glow */
-      border-color: var(--accent-primary);
-    }
-
-    table {
-      width: 100%;
-      border-collapse: separate;
-      border-spacing: 0;
-      background-color: transparent;
-      border-radius: var(--border-radius-lg); /* Match card rounding more */
-      overflow: hidden; /* Important for rounded corners on th/td */
-      box-shadow: var(--shadow-md); /* Slightly more defined */
-    }
-
-    th, td {
-      padding: 1.1rem 0.85rem; /* More padding */
-      text-align: center;
-      font-weight: 500;
-      border-bottom: 1px solid var(--border-primary);
-      transition: background-color var(--duration-fast) var(--timing-interactive),
-                  color var(--duration-fast) var(--timing-interactive),
-                  box-shadow var(--duration-fast) var(--timing-interactive);
-    }
-
-    th {
-      background: linear-gradient(65deg, var(--accent-primary), var(--accent-secondary));
-      color: var(--text-on-accent);
-      text-transform: uppercase;
-      font-weight: 700; /* Bolder */
-      letter-spacing: 0.06em;
-      font-size: 0.9rem;
-      position: sticky; /* For potential scrollable table body */
-      top: 0;
-      z-index: 2;
-    }
-    tr:first-child th:first-child { border-top-left-radius: var(--border-radius-lg); }
-    tr:first-child th:last-child { border-top-right-radius: var(--border-radius-lg); }
-    /* No bottom radius for th if table continues */
-
-    tr:not(:first-child) td {
-        position: relative; /* For pseudo elements if needed */
-    }
-    
-    tr:not(:first-child):hover td {
-        background-color: var(--bg-interactive-strong);
-        color: var(--text-primary);
-        box-shadow: inset 4px 0 0 0 var(--accent-primary), inset -4px 0 0 0 var(--accent-primary); /* Highlight bars on sides */
-    }
-
-    tr:nth-child(even) td {
-      background-color: var(--bg-tertiary-alpha, rgba(0,0,0,0.025)); /* Subtler stripe */
-    }
-    [data-theme="dark"] tr:nth-child(even) td {
-      background-color: var(--bg-tertiary-alpha, rgba(255,255,255,0.035));
-    }
-
-    tr:last-child td { border-bottom: none; }
-    tr:last-child td:first-child { border-bottom-left-radius: var(--border-radius-lg); }
-    tr:last-child td:last-child { border-bottom-right-radius: var(--border-radius-lg); }
-    
-    td:first-child { border-left: none; }
-    td:last-child { border-right: none; }
+    /* Removed table specific styling */
+    table { display: none; } /* Hide original tables */
+    th, td, tr { display: block; border: none; padding: 0; margin: 0; } /* Remove default table display */
 
 
     input[type="number"], select {
@@ -567,14 +506,15 @@
       border: 1px solid var(--border-primary);
       border-radius: var(--border-radius-md);
       font-size: 0.95rem;
-      transition: border-color var(--duration-fast) var(--timing-interactive), 
-                  box-shadow var(--duration-fast) var(--timing-interactive), 
+      transition: border-color var(--duration-fast) var(--timing-interactive),
+                  box-shadow var(--duration-fast) var(--timing-interactive),
                   background-color var(--duration-fast) var(--timing-interactive),
                   transform var(--duration-fast) var(--ease-out-quad);
       background-color: var(--bg-tertiary);
       color: var(--text-primary);
       font-weight: 500;
       box-shadow: var(--shadow-inset); /* Default inset shadow */
+      flex-grow: 1; /* Allow inputs to grow in flex containers */
     }
     input[type="number"]:hover, select:hover {
       border-color: var(--border-interactive);
@@ -596,25 +536,55 @@
     span.g-l {
         font-size: 0.85rem; /* Clearer */
         color: var(--text-muted);
-        display: inline-block; 
-        min-width: 60px; 
+        display: inline-block;
+        min-width: 60px;
         text-align: right;
         font-weight: 500;
     }
 
-    .c-g, .m-g { 
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center; 
+    .c-g, .m-g {
+        display: flex; /* Use flex for input groups */
+        flex-wrap: wrap; /* Wrap inputs/labels */
+        align-items: center;
         gap: 0.75rem; /* More space */
-        justify-content: center; 
+        justify-content: flex-start; /* Align to start in the new layout */
+        padding: 0.75rem 0; /* Padding within the group */
+        border-top: 1px dashed var(--border-primary); /* Visual separation */
+        margin-top: 0.75rem;
     }
+     .c-g:first-child, .m-g:first-child { border-top: none; margin-top: 0;} /* No top border for the first group */
+
+    .c-g > div, .m-g > div { /* Individual input+label container */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        flex-grow: 1; /* Allow to grow in the flex wrap */
+        min-width: 200px; /* Ensure they don't get too small before wrapping */
+    }
+
+    .c-g > div label, .m-g > div label { /* Specific label styling within groups */
+       min-width: 80px; /* Give labels some consistent width */
+       text-align: right;
+       color: var(--text-secondary);
+       font-weight: 500;
+       font-size: 0.9rem;
+    }
+     .c-g > div input, .m-g > div input {
+        flex-grow: 1; /* Inputs take up remaining space */
+     }
 
     .t-m { /* Manual toggle switch */
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
+      margin-bottom: 1rem; /* Space below toggle */
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      font-weight: 500;
     }
+     .t-m span { /* Text label for the toggle */
+        flex-shrink: 0;
+     }
     .t-m input[type="checkbox"] {
       appearance: none;
       width: 42px; /* Wider */
@@ -625,6 +595,8 @@
       cursor: pointer;
       transition: background-color var(--duration-normal) var(--timing-state-change);
       box-shadow: inset 0 1px 3px rgba(0,0,0,0.15);
+      flex-shrink: 0; /* Prevent it from shrinking */
+      min-width: auto; /* Override input[type="number"] flex rule */
     }
     .t-m input[type="checkbox"]::before { /* The knob */
       content: "";
@@ -645,6 +617,7 @@
       transform: translateX(18px); /* Adjusted */
     }
     .t-m label {
+        /* Hide the default label text linked via 'for', keep only the span text */
         display: none;
     }
 
@@ -664,13 +637,13 @@
       font-size: 1rem; /* Larger base */
       text-transform: uppercase;
       letter-spacing: 0.05em; /* Wider spacing */
-      position: relative; 
+      position: relative;
       z-index: 1;
       overflow: hidden; /* For shimmer/effects */
       background-size: 200% auto; /* For gradient animation on hover */
       background-position: left center;
       transition: transform var(--duration-fast) var(--ease-out-back), /* Bouncy */
-                  box-shadow var(--duration-fast) var(--ease-out-quad), 
+                  box-shadow var(--duration-fast) var(--ease-out-quad),
                   opacity var(--duration-fast) var(--timing-interactive),
                   background-position var(--duration-medium) var(--ease-in-out-cubic);
       will-change: transform, box-shadow, background-position;
@@ -686,7 +659,7 @@
       box-shadow: var(--shadow-sm);
       opacity: 0.95;
     }
-    /* Optional: Shimmer effect on primary buttons
+    /* Optional: Shimmer effect on primary buttons*/
     button.primary-action::after {
         content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
         background-image: linear-gradient(to right, transparent 0%, transparent 40%, rgba(255,255,255,0.25) 50%, transparent 60%, transparent 100%);
@@ -695,7 +668,7 @@
     button.primary-action:hover::after {
         transform: rotate(25deg) translateX(120%); transition: transform var(--duration-slower) var(--ease-out-quint);
     }
-    */
+    
 
     #a-b { /* Archi bonus button */
         background: linear-gradient(65deg, var(--s), var(--p)); /* Different gradient */
@@ -703,6 +676,7 @@
         padding: 0.5rem 1rem;
         text-transform: none;
         letter-spacing: 0.01em;
+         flex-shrink: 0; /* Prevent button from shrinking in flex */
     }
 
     #t-s button, #missing-list button {
@@ -712,6 +686,9 @@
     #missing-list button { /* Remove button */
         background: linear-gradient(65deg, var(--accent-danger), #c33a3a);
         padding: 0.6rem 1.1rem;
+         flex-shrink: 0;
+         margin-top: 0.75rem; /* Space above button */
+         align-self: flex-end; /* Align to the right if flex container */
     }
 
     .r-b { /* Result block */
@@ -721,7 +698,7 @@
       margin-top: 2rem;
       box-shadow: var(--shadow-lg);
       text-align: center;
-      position: relative; 
+      position: relative;
       z-index: 1;
       border: 1px solid var(--border-primary);
     }
@@ -739,7 +716,7 @@
       border-radius: var(--border-radius-sm);
       background-color: var(--accent-primary-transparent-weak); /* Subtle background */
       text-shadow: 0 0 12px var(--accent-primary-transparent-strong);
-      transition: color var(--duration-fast) var(--timing-state-change), 
+      transition: color var(--duration-fast) var(--timing-state-change),
                   text-shadow var(--duration-fast) var(--timing-state-change),
                   transform var(--duration-fast) var(--ease-out-quad);
     }
@@ -756,7 +733,7 @@
 
     .i-b { /* Info block */
       border-left: 6px solid var(--a); /* Thicker border */
-      position: relative; 
+      position: relative;
       z-index: 1;
       background: linear-gradient(to right, var(--bg-tertiary-alpha-info, rgba(147,51,234,0.05)), transparent 70%);
       transition: border-left-color var(--duration-medium) var(--timing-interactive),
@@ -794,7 +771,7 @@
       font-size: 0.9rem;
       padding-top: 2rem;
       border-top: 1px solid var(--border-primary);
-      position: relative; 
+      position: relative;
       z-index: 1;
       opacity: 0.8;
     }
@@ -819,11 +796,11 @@
 
     .collapsible-section {
       transition-property: opacity, max-height, transform, margin, padding, border-width;
-      transition-duration: var(--duration-medium); 
+      transition-duration: var(--duration-medium);
       transition-timing-function: var(--timing-collapse); /* Updated easing */
       overflow: hidden;
       opacity: 1;
-      max-height: 3000px; /* Ensure enough height */
+      max-height: 5000px; /* Ensure enough height for the new layout */
       transform: translateY(0);
     }
     .collapsible-section.collapsed {
@@ -836,10 +813,69 @@
       margin-bottom: 0 !important;
       border-width: 0 !important;
       overflow: hidden; /* Ensure content is clipped during collapse */
+      /* Ensure the card shadow and border also collapse visually */
+      box-shadow: none !important;
+      border-color: transparent !important;
     }
     .collapsible-content-wrapper {
       min-height: 0; /* For flexbox/grid children */
     }
+
+    /* --- New Module Card Styling --- */
+    .module-item {
+        background-color: var(--bg-tertiary);
+        border-radius: var(--border-radius-lg);
+        padding: 1.5rem; /* Padding inside module card */
+        margin-bottom: 1.5rem; /* Space between module cards */
+        box-shadow: var(--shadow-md);
+        border: 1px solid var(--border-primary);
+        transition: transform var(--duration-fast) var(--ease-out-quad),
+                    box-shadow var(--duration-fast) var(--ease-out-quad),
+                    background-color var(--duration-normal) var(--timing-state-change),
+                    border-color var(--duration-fast) var(--timing-interactive);
+        will-change: transform, box-shadow;
+    }
+    .module-item:last-child {
+        margin-bottom: 0; /* No bottom margin on the last one */
+    }
+     .module-item:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-lg);
+        border-color: var(--accent-primary-transparent-medium);
+     }
+
+    .module-item h4 {
+        margin: 0 0 0.5rem;
+        font-size: 1.2rem; /* Module title size */
+        color: var(--text-primary);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap; /* Allow wrap on small screens */
+        gap: 0.5rem;
+    }
+
+    .module-item h4 span { /* Coefficient styling */
+        font-size: 0.9rem;
+        font-weight: 500;
+        color: var(--text-secondary);
+         flex-shrink: 0;
+    }
+
+    .module-average {
+        margin-top: 1.5rem; /* Space above average display */
+        text-align: center;
+        padding-top: 1rem;
+        border-top: 1px dashed var(--border-primary); /* Visual separation */
+    }
+
+     .module-average strong {
+         font-size: 1.4rem; /* Larger average text */
+         color: var(--text-accent);
+     }
+
+    /* --- END New Module Card Styling --- */
+
 
     #missing-list {
       display: flex;
@@ -856,43 +892,57 @@
       max-height: 0;
       transition: opacity var(--duration-medium) var(--ease-out-cubic),
                   transform var(--duration-medium) var(--ease-out-back), /* Bouncy entry */
-                  max-height var(--duration-slow) var(--ease-in-out-quart), 
-                  padding var(--duration-medium) var(--ease-out-cubic);
+                  max-height var(--duration-slow) var(--ease-in-out-quart),
+                  padding var(--duration-medium) var(--ease-out-cubic),
+                  margin var(--duration-medium) var(--ease-out-cubic); /* Animate margin too */
       overflow: hidden;
       border-left: 4px solid var(--accent-secondary); /* Indicator */
+      margin-bottom: 0 !important; /* Initially no margin when collapsed */
+      padding-top: 0 !important;
+      padding-bottom: 0 !important;
     }
     .missing-module-item.is-visible {
       opacity: 1;
       transform: translateX(0) scale(1);
       max-height: 500px; /* Ensure enough space */
-      padding: 1.25rem;
+      padding: 1.25rem !important;
+      margin-bottom: 1.25rem !important; /* Restore margin */
     }
+     .missing-module-item.is-visible:last-child {
+         margin-bottom: 0 !important;
+     }
     .missing-module-item h4 {
       margin-top: 0;
       margin-bottom: 1rem;
       color: var(--text-primary);
       font-size: 1.1rem;
     }
-    .missing-module-item div { /* Label-input pair */
+    .missing-module-item > div { /* Label-input pair */
       display: flex;
       align-items: center;
       gap: 0.75rem;
       margin-bottom: 0.75rem;
     }
-    .missing-module-item label {
+    .missing-module-item > div label {
       min-width: 85px; /* Wider */
       font-size: 0.9rem;
       color: var(--text-secondary);
       font-weight: 500;
+      text-align: right; /* Align labels */
     }
     .missing-module-item input[type="number"] {
       width: 90px; /* Wider */
+       flex-grow: 1;
     }
-    
+    .missing-module-item button {
+        align-self: flex-end;
+    }
+
+
     .reveal-on-scroll {
       opacity: 0;
       transform: translateY(40px) scale(0.95); /* More noticeable entry */
-      transition: opacity var(--duration-slower) var(--timing-reveal), 
+      transition: opacity var(--duration-slower) var(--timing-reveal),
                   transform var(--duration-slower) var(--timing-reveal);
       transition-delay: 0.2s; /* Slightly longer delay */
     }
@@ -939,7 +989,10 @@
     }
     html.party-mode .content-card,
     html.party-mode .app-header,
-    html.party-mode button {
+    html.party-mode button,
+    html.party-mode .module-item, /* Add module item */
+    html.party-mode .missing-module-item /* Add missing item */
+     {
       animation: partyDance 0.2s linear infinite alternate, partyHueRotate 1s linear infinite;
     }
     html.party-mode h2#main-title {
@@ -959,16 +1012,40 @@
       .app-controls { justify-content: center; gap: 1rem; }
       h2#main-title { font-size: 2rem; } h3 { font-size: 1.35rem; }
       .content-card, .collapsible-section { margin: 1.25rem auto; padding: 1.5rem; border-radius: var(--border-radius-lg); }
-      table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: var(--border-radius-md); }
-      th, td { padding: 0.85rem 0.6rem; white-space: nowrap; }
-      .c-g, .m-g { flex-direction: column; align-items: stretch; gap: 0.6rem; }
-      .c-g span.g-l, .m-g span.g-l { min-width: auto; text-align: left; margin-bottom: 0.2rem; }
-      input[type="number"], select { width: 100%; min-width: 0; }
+
+      /* New mobile specific adjustments for module items */
+      .module-item { padding: 1rem; margin-bottom: 1rem; }
+      .module-item h4 { font-size: 1.1rem; flex-direction: column; align-items: flex-start;}
+      .module-item h4 span { font-size: 0.85rem; margin-top: 0.2rem;}
+
+      .c-g > div, .m-g > div { /* Stack labels and inputs */
+           flex-direction: column;
+           align-items: flex-start;
+           gap: 0.25rem; /* Reduce gap when stacked */
+           min-width: 100%; /* Take full width */
+      }
+      .c-g > div label, .m-g > div label {
+          text-align: left; /* Align labels left */
+          min-width: auto; /* Don't need min-width when stacked */
+      }
+       .c-g, .m-g {
+           flex-direction: column; /* Stack input groups */
+           gap: 0.5rem; /* Reduced gap between stacked input groups */
+           padding: 0.5rem 0;
+       }
+
       button { padding: 0.8rem 1.5rem; font-size: 0.9rem; letter-spacing: 0.03em; }
       #f-a, #t-f-a, #s2-f-a { font-size: 2rem; }
       .animated-bg span:nth-child(n+6) { display: none; } /* Show fewer particles */
+
+      .missing-module-item { padding: 1rem !important; margin-bottom: 1rem !important;}
+      .missing-module-item > div { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+      .missing-module-item > div label { text-align: left; min-width: auto; }
+      .missing-module-item button { align-self: stretch; margin-top: 0.5rem; } /* Full width button */
     }
     @media (max-width: 480px) {
+        body { padding: 0.5rem; }
+        .app-header { padding: 0.75rem; top: 0.5rem; }
         .app-controls label { font-size: 0.9rem; gap: 0.5rem; }
         .app-controls input[type="checkbox"] { width: 18px; height: 18px; }
         .theme-switcher { width: 48px; height: 26px; } /* Adjusted */
@@ -977,10 +1054,16 @@
         .slider::after { font-size: 11px; right: 6px; }
         .theme-switcher input:checked + .slider::after { left: 6px; }
         h2#main-title { font-size: 1.7rem; } h3 { font-size: 1.2rem; }
-        .content-card, .collapsible-section { padding: 1rem; }
+        .content-card, .collapsible-section { padding: 1rem; margin: 1rem auto;}
+        .module-item { padding: 0.75rem; margin-bottom: 0.75rem;}
+        .module-item h4 { font-size: 1rem; }
+        .c-g > div, .m-g > div { min-width: 100%; } /* Ensure stacking */
+
         button { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
         #f-a, #t-f-a, #s2-f-a { font-size: 1.75rem; }
         .animated-bg span:nth-child(n+4) { display: none; } /* Even fewer particles */
+
+        .missing-module-item { padding: 0.75rem !important; margin-bottom: 0.75rem !important;}
     }
   </style>
 
@@ -1006,12 +1089,13 @@
 
   <h2 id="main-title">1CP S1 Avg Calc</h2>
 
+  <!-- Talents Mode Section (Already card-like) -->
   <div id="t-s" class="content-card collapsible-section collapsed" style="display: block;">
     <div class="collapsible-content-wrapper">
       <h3>Recover Missing Module from Talents Avg</h3>
-      <div style="margin-bottom: 1rem"><label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Enter Talents Avg:</label><input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" /></div>
+      <div style="margin-bottom: 1rem;"><label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Enter Talents Avg:</label><input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" /></div>
       <div style="margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
-        <div><label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Select Module:</label><select id="m-m" style="width: 100%; max-width: 200px"><option value="">-- Choose Module --</option><option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option><option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option><option value="BWEB">BWEB</option><option value="ELECT">ELECT</option></select></div>
+        <div><label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Select Module:</label><select id="m-m" style="width: 100%; max-width: 200px"><option value="">-- Choose Module --</option><option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option><option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option><option value="BWEB">BWEB</option><option value="ELECT">ELECT</option><option value="SYS2">SYS2</option><option value="MECA">MECA</option><option value="ALG2">ALG2</option><option value="ANA2">ANA2</option><option value="TEO">TEO</option><option value="ALSDD">ALSDD</option><option value="ANG">ANG</option><option value="ELECTF">ELECTF</option></select></div>
         <button onclick="addMissing()">Add Module</button>
       </div>
       <div id="missing-list" style="margin-bottom: 1rem"></div>
@@ -1020,36 +1104,30 @@
     </div>
   </div>
 
-  <div id="s1-table" class="content-card collapsible-section" style="display: block;">
+  <!-- S1 Modules List (Replaces S1 table) -->
+  <div id="s1-modules" class="content-card collapsible-section" style="display: block;">
      <div class="collapsible-content-wrapper">
-      <table>
-        <thead><tr><th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th></tr></thead>
-        <tbody><script>
-          const mC=[{code:"SYS1",coef:3,fields:["TD","IN (/8)","CI","CF"]},{code:"ARCHI",coef:4,fields:["CF","CI"]},{code:"ALG1",coef:3,fields:["CF","CI"]},{code:"ANA1",coef:5,fields:["CF","CI"]},{code:"TEE",coef:2,fields:["CF","CC (/20)"]},{code:"ALSDS",coef:5,fields:["CF","CI","TP1","TP2","TR (/20)"]},{code:"BWEB",coef:1,fields:["CF","CI","CC"]},{code:"ELECT",coef:3,fields:["CF","CI","CC=INT1+INT2"]}];
-          document.write(mC.map(m=>`<tr><td><div class="t-m"><input type="checkbox" id="t-m-${m.code.toLowerCase()}" onchange="tMM('${m.code.toLowerCase()}')" /><label for="t-m-${m.code.toLowerCase()}"></label></div></td><td>${m.code}</td><td>${m.coef}</td><td class="${m.code.toLowerCase()}"><div class="c-g">${m.fields.map(f=>`<span class="g-l">${f}</span><input type="number" min="0" max="${f.includes("/8")?8:20}" step="0.5">`).join(" ")}${m.code==="ARCHI"?`<button id="a-b" onclick="tAB()">Add 1pt Bonus</button>`:""}</div><div class="m-g" style="display:none;"><input type="number" min="0" max="20" step="0.5" placeholder="Enter avg"></div></td><td id="a-${m.code.toLowerCase()}">0.00</td></tr>`).join(""));
-        </script></tbody>
-      </table>
+        <!-- Modules will be injected here by JS -->
      </div>
   </div>
 
-  <div style="text-align: center; margin: 1.5rem 0"><button id="s1-calc" onclick="cA()">Calc Semester Avg</button></div>
-  <div class="r-b" id="s1-result" style="text-align: center"><h3>Semester Avg: <span id="f-a">0.00</span></h3></div>
+  <!-- S1 Calculation Button and Result -->
+  <div style="text-align: center; margin: 1.5rem 0"><button id="s1-calc" onclick="cA()">Calc S1 Avg</button></div>
+  <div class="r-b" id="s1-result" style="text-align: center"><h3>S1 Avg: <span id="f-a">0.00</span></h3></div>
 
-  <div id="s2-table" class="content-card collapsible-section collapsed" style="display: block;">
+  <!-- S2 Modules List (Replaces S2 table) -->
+  <div id="s2-modules" class="content-card collapsible-section collapsed" style="display: block;">
      <div class="collapsible-content-wrapper">
-      <table>
-        <thead><tr><th>Manual</th><th>Module</th><th>Coef</th><th>Grades</th><th>Avg</th></tr></thead>
-        <tbody><script>
-          const mC2=[{code:"SYS2",coef:3,fields:["FE","ME","CC"]},{code:"MECA",coef:3,fields:["CF","CI","CC"]},{code:"ALG2",coef:3,fields:["CF","CI"]},{code:"ANA2",coef:5,fields:["CF","CI"]},{code:"TEO",coef:2,fields:["CF","CC"]},{code:"ALSDD",coef:5,fields:["TPc","interos","CC","TP","CF"]},{code:"ANG",coef:2,fields:["CI","CC","CF"]},{code:"ELECTF",coef:4,fields:["CF","CI","CC"]}];
-          document.write(mC2.map(m=>`<tr><td><div class="t-m"><input type="checkbox" id="s2-t-m-${m.code.toLowerCase()}" onchange="tMM_S2('${m.code.toLowerCase()}')" /><label for="s2-t-m-${m.code.toLowerCase()}"></label></div></td><td>${m.code}</td><td>${m.coef}</td><td class="s2-${m.code.toLowerCase()}"><div class="c-g">${m.fields.map(f=>`<span class="g-l">${f}</span><input type="number" min="0" max="20" step="0.5">`).join(" ")}</div><div class="m-g" style="display:none;"><input type="number" min="0" max="20" step="0.5" placeholder="Enter avg"></div></td><td id="a-s2-${m.code.toLowerCase()}">0.00</td></tr>`).join(""));
-        </script></tbody>
-      </table>
+       <!-- Modules will be injected here by JS -->
      </div>
   </div>
 
+   <!-- S2 Calculation Button and Result -->
   <div style="text-align: center; margin: 1.5rem 0"><button id="s2-calc" onclick="cA_S2()" style="display:none">Calc S2 Avg</button></div>
   <div class="r-b" id="s2-result" style="text-align: center; display:none"><h3>S2 Avg: <span id="s2-f-a">0.00</span></h3></div>
 
+
+  <!-- Formula Display (Already card-like) -->
   <div class="i-b content-card reveal-on-scroll" id="formula-display">
     <h3>Calc Formulas (S1)</h3>
     <p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p><p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p><p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p><p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p><p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p><p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>
@@ -1058,7 +1136,700 @@
   <div class="f">Made by Walid And some AI help (do not judge me) - Enhanced UI by Expert AI</div>
 
   <script>
-    let aB=!1,isS2=!1;const tCoef=26,mCal={SYS1:(t,e,n,o)=>0.1*t+0.1*2.5*e+0.3*n+0.5*o,ARCHI:(t,e,n=!1)=>0.5*t+0.5*e+(n?1:0),ALG1:(t,e)=>0.67*t+0.33*e,ANA1:(t,e)=>0.67*t+0.33*e,TEE:(t,e)=>2/3*t+1/3*e,ALSDS:(t,e,n,o,a)=>0.3*t+0.2*e+0.4*((n+o)/2)+0.1*a,BWEB:(t,e,n)=>0.4*t+0.4*e+0.2*n,ELECT:(t,e,n)=>0.5*t+0.25*e+0.25*n},mCal2={SYS2:(t,e,n)=>0.5*t+0.3*e+0.2*n,MECA:(t,e,n)=>0.5*t+0.25*e+0.25*n,ALG2:(t,e)=>0.67*t+0.33*e,ANA2:(t,e)=>0.67*t+0.33*e,TEO:(t,e)=>2/3*t+1/3*e,ALSDD:(t,e,n,o,a)=>(t+e+n)/3*0.25+0.2*o+0.55*a,ANG:(t,e,n)=>0.33*t+0.33*e+0.34*n,ELECTF:(t,e,n)=>0.5*t+0.25*e+0.25*n};function gIV(t){return Array.from(document.querySelectorAll(t)).map(t=>parseFloat(t.value)||0)}function cMA(t,e,n=!1,o="S1"){if(n)return e[0]||0;if("S1"===o){const n=mCal[t];return"ARCHI"===t?n(...e,aB):n(...e)}return mCal2[t](...e)}function cA(){let t=0;mC.forEach(e=>{const n=e.code.toLowerCase(),o=document.querySelector(`.${n}`),a=o.querySelector(".m-g").style.display!=="none",l=gIV(`.${n} ${a?".m-g":".c-g"} input`),c=cMA(e.code,l,a,"S1");document.getElementById(`a-${n}`).textContent=c.toFixed(2),t+=c*e.coef}),document.getElementById("f-a").textContent=(t/tCoef).toFixed(2)}function cA_S2(){let t=0;mC2.forEach(e=>{const n=e.code.toLowerCase(),o=document.querySelector(`.s2-${n}`),a=o.querySelector(".m-g").style.display!=="none",l=gIV(`.s2-${n} ${a?".m-g":".c-g"} input`),c=cMA(e.code,l,a,"S2");document.getElementById(`a-s2-${n}`).textContent=c.toFixed(2),t+=c*e.coef}),document.getElementById("s2-f-a").textContent=(t/27).toFixed(2)}const missing=[];function addMissing(){const t=document.getElementById("m-m"),e=t.value;if(!e||missing.find(t=>t.code===e))return;const n=isS2?mC2:mC,o=n.find(t=>t.code===e);if(!o)return;missing.push({code:e,coef:o.coef,fields:o.fields});const a=document.getElementById("missing-list"),l=document.createElement("div");l.id=`miss-${e}`,l.className="missing-module-item";const c=document.createElement("h4");c.textContent=`${e} (coef ${o.coef})`,l.appendChild(c),o.fields.forEach(t=>{const e=document.createElement("div"),n=document.createElement("label");n.textContent=t;const o=document.createElement("input");o.type="number",o.min="0",o.max=t.includes("/8")?"8":"20",o.step="0.5",o.dataset.mod=e,o.dataset.field=t,e.appendChild(n),e.appendChild(o),l.appendChild(e)});const s=document.createElement("button");s.textContent="Remove",s.onclick=()=>{l.classList.remove("is-visible"),l.addEventListener("transitionend",()=>{l.parentNode===a&&a.removeChild(l)},{once:!0});const t=missing.findIndex(t=>t.code===e);t>-1&&missing.splice(t,1)},l.appendChild(s),a.appendChild(l),requestAnimationFrame(()=>{requestAnimationFrame(()=>{l.classList.add("is-visible")})}),t.value=""}function cM(){const t=parseFloat(document.getElementById("t-a").value)||0,e=isS2?27:tCoef;let n=t*e;missing.forEach(t=>{const o=Array.from(document.querySelectorAll(`#miss-${t.code} input[type="number"]`)).map(t=>parseFloat(t.value)||0),a=cMA(t.code,o,!1,isS2?"S2":"S1");n+=a*t.coef}),document.getElementById("t-f-a").textContent=(n/e).toFixed(2)}function tAB(){aB=!aB,document.getElementById("a-b").textContent=aB?"Remove 1pt Bonus":"Add 1pt Bonus",cA()}function tMM(t){const e=document.querySelector(`.${t}`),n=e.querySelector(".c-g"),o=e.querySelector(".m-g"),a=document.getElementById(`t-m-${t}`).checked;n.style.display=a?"none":"flex",o.style.display=a?"block":"none",cA()}function tMM_S2(t){const e=document.querySelector(`.s2-${t}`),n=e.querySelector(".c-g"),o=e.querySelector(".m-g"),a=document.getElementById(`s2-t-m-${t}`).checked;n.style.display=a?"none":"flex",o.style.display=a?"block":"none",cA_S2()}const talentModeToggle=document.getElementById("t-m-global"),s2ModeToggle=document.getElementById("s2-m-global"),talentSection=document.getElementById("t-s"),s1TableSection=document.getElementById("s1-table"),s2TableSection=document.getElementById("s2-table"),s1CalcButton=document.getElementById("s1-calc"),s2CalcButton=document.getElementById("s2-calc"),s1ResultBlock=document.getElementById("s1-result"),s2ResultBlock=document.getElementById("s2-result");function tTM(){const t=talentModeToggle.checked;s2ModeToggle.disabled=t,t?(talentSection.classList.remove("collapsed"),s1TableSection.classList.add("collapsed"),s2TableSection.classList.add("collapsed"),s1CalcButton.style.display="none",s2CalcButton.style.display="none",s1ResultBlock.style.display="none",s2ResultBlock.style.display="none"):(talentSection.classList.add("collapsed"),toggleS2())}function toggleS2(){if(talentModeToggle.checked)return;isS2=s2ModeToggle.checked;const t=document.getElementById("main-title"),e=document.getElementById("formula-display"),n=document.getElementById("m-m"),o=`<h3>Calc Formulas (S1)</h3><p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p><p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p><p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p><p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p><p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p><p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`,a=`<h3>Calc Formulas (S2)</h3><p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p><p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p><p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p><p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p><p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`,l=`<option value="">-- Choose Module --</option><option value="SYS1">SYS1</option><option value="ARCHI">ARCHI</option><option value="ALG1">ALG1</option><option value="ANA1">ANA1</option><option value="TEE">TEE</option><option value="ALSDS">ALSDS</option><option value="BWEB">BWEB</option><option value="ELECT">ELECT</option>`,c=`<option value="">-- Choose Module --</option><option value="SYS2">SYS2</option><option value="MECA">MECA</option><option value="ALG2">ALG2</option><option value="ANA2">ANA2</option><option value="TEO">TEO</option><option value="ALSDD">ALSDD</option><option value="ANG">ANG</option><option value="ELECTF">ELECTF</option>`;isS2?(t.textContent="1CP S2 Avg Calc",e.innerHTML=a,n.innerHTML=c,s1TableSection.classList.add("collapsed"),s2TableSection.classList.remove("collapsed"),s1CalcButton.style.display="none",s1ResultBlock.style.display="none",s2CalcButton.style.display="inline-block",s2ResultBlock.style.display="block"):(t.textContent="1CP S1 Avg Calc",e.innerHTML=o,n.innerHTML=l,s2TableSection.classList.add("collapsed"),s1TableSection.classList.remove("collapsed"),s2CalcButton.style.display="none",s2ResultBlock.style.display="none",s1CalcButton.style.display="inline-block",s1ResultBlock.style.display="block"),document.getElementById("missing-list").innerHTML="",missing.length=0}function resetCalculator(){document.getElementById("t-a").value="",document.getElementById("t-f-a").textContent="0.00",document.getElementById("missing-list").innerHTML="",missing.length=0,mC.forEach(t=>{const e=t.code.toLowerCase();document.querySelectorAll(`.${e} input[type="number"]`).forEach(t=>t.value=""),document.getElementById(`a-${e}`).textContent="0.00";const n=document.getElementById(`t-m-${e}`);n&&n.checked&&n.click()}),mC2.forEach(t=>{const e=t.code.toLowerCase();document.querySelectorAll(`.s2-${e} input[type="number"]`).forEach(t=>t.value=""),document.getElementById(`a-s2-${e}`).textContent="0.00";const n=document.getElementById(`s2-t-m-${e}`);n&&n.checked&&n.click()}),document.getElementById("f-a").textContent="0.00",document.getElementById("s2-f-a").textContent="0.00",talentModeToggle.checked=!1,s2ModeToggle.checked=!1,tTM(),document.querySelectorAll(".c-g").forEach(t=>t.style.display="flex"),document.querySelectorAll(".m-g").forEach(t=>t.style.display="none"),isS2?cA_S2():cA()}document.addEventListener("DOMContentLoaded",()=>{talentSection&&talentSection.classList.add("collapsed"),s2TableSection&&s2TableSection.classList.add("collapsed"),s1TableSection&&s1TableSection.classList.remove("collapsed"),cA();const t=document.getElementById("theme-toggle"),e=localStorage.getItem("theme"),n=window.matchMedia("(prefers-color-scheme: dark)").matches;function o(e){document.documentElement.setAttribute("data-theme",e),localStorage.setItem("theme",e),t&&(t.checked="dark"===e)}e?o(e):o(n?"dark":"light"),t&&t.addEventListener("change",(function(){o(this.checked?"dark":"light")})),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",t=>{localStorage.getItem("theme")||o(t.matches?"dark":"light")});const a=document.getElementById("formula-display");if(a){const t=new IntersectionObserver(e=>{e.forEach(e=>{e.isIntersecting&&(e.target.classList.add("is-visible"),t.unobserve(e.target))})},{threshold:.1});t.observe(a)}tTM(),talentModeToggle.checked||toggleS2();const l=["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];let c=0,s=null;document.addEventListener("keydown",(function(t){if(document.documentElement.classList.contains("party-mode")){if(t.key.toLowerCase()===l[c].toLowerCase()){if(c++,c===l.length)clearTimeout(s),document.documentElement.classList.remove("party-mode"),c=0}else c=0;return}if(t.key.toLowerCase()===l[c].toLowerCase()){if(c++,c===l.length)document.documentElement.classList.add("party-mode"),c=0,s&&clearTimeout(s),s=setTimeout(()=>{document.documentElement.classList.remove("party-mode")},1e4)}else c=0}))});
+    // Module definitions (kept identical)
+    const mC=[{code:"SYS1",coef:3,fields:["TD","IN (/8)","CI","CF"]},{code:"ARCHI",coef:4,fields:["CF","CI"]},{code:"ALG1",coef:3,fields:["CF","CI"]},{code:"ANA1",coef:5,fields:["CF","CI"]},{code:"TEE",coef:2,fields:["CF","CC (/20)"]},{code:"ALSDS",coef:5,fields:["CF","CI","TP1","TP2","TR (/20)"]},{code:"BWEB",coef:1,fields:["CF","CI","CC"]},{code:"ELECT",coef:3,fields:["CF","CI","CC=INT1+INT2"]}];
+    const mC2=[{code:"SYS2",coef:3,fields:["FE","ME","CC"]},{code:"MECA",coef:3,fields:["CF","CI","CC"]},{code:"ALG2",coef:3,fields:["CF","CI"]},{code:"ANA2",coef:5,fields:["CF","CI"]},{code:"TEO",coef:2,fields:["CF","CC"]},{code:"ALSDD",coef:5,fields:["TPc","interos","CC","TP","CF"]},{code:"ANG",coef:2,fields:["CI","CC","CF"]},{code:"ELECTF",coef:4,fields:["CF","CI","CC"]}];
+
+    let aB=false; // Archi Bonus flag
+    let isS2=false; // S2 Mode flag
+    const tCoef = 26; // S1 Total Coef
+    const tCoefS2 = 27; // S2 Total Coef
+
+    // Module calculation logic (kept identical)
+    const mCal={SYS1:(t,e,n,o)=>0.1*t+0.1*2.5*e+0.3*n+0.5*o,ARCHI:(t,e,n=!1)=>0.5*t+0.5*e+(n?1:0),ALG1:(t,e)=>0.67*t+0.33*e,ANA1:(t,e)=>0.67*t+0.33*e,TEE:(t,e)=>2/3*t+1/3*e,ALSDS:(t,e,n,o,a)=>0.3*t+0.2*e+0.4*((n+o)/2)+0.1*a,BWEB:(t,e,n)=>0.4*t+0.4*e+0.2*n,ELECT:(t,e,n)=>0.5*t+0.25*e+0.25*n};
+    const mCal2={SYS2:(t,e,n)=>0.5*t+0.3*e+0.2*n,MECA:(t,e,n)=>0.5*t+0.25*e+0.25*n,ALG2:(t,e)=>0.67*t+0.33*e,ANA2:(t,e)=>0.67*t+0.33*e,TEO:(t,e)=>2/3*t+1/3*e,ALSDD:(t,e,n,o,a)=>(t+e+n)/3*0.25+0.2*o+0.55*a,ANG:(t,e,n)=>0.33*t+0.33*e+0.34*n,ELECTF:(t,e,n)=>0.5*t+0.25*e+0.25*n};
+
+    // Helper to get input values from a container (updated selector logic)
+    function gIV(containerSelector){
+        // Find the container first, then get inputs within it
+        const container = document.querySelector(containerSelector);
+        if (!container) return [];
+        return Array.from(container.querySelectorAll('input[type="number"]')).map(input => parseFloat(input.value) || 0);
+    }
+
+    // Calculate single module average (kept identical)
+    function cMA(t,e,n=!1,o="S1"){if(n)return e[0]||0;if("S1"===o){const n=mCal[t];return"ARCHI"===t?n(...e,aB):n(...e)}return mCal2[t](...e)}
+
+    // Calculate S1 Semester Average (updated element selection)
+    function cA(){
+        let totalWeightedAvg = 0;
+        mC.forEach(module => {
+            const moduleCode = module.code.toLowerCase();
+            // Select the correct input group container based on manual toggle
+            const manualToggle = document.getElementById(`t-m-${moduleCode}`);
+            const isManual = manualToggle ? manualToggle.checked : false; // Check if toggle exists and is checked
+
+            const inputsContainerSelector = `.module-item[data-code="${module.code}"] ${isManual ? '.m-g' : '.c-g'}`;
+            const grades = gIV(inputsContainerSelector);
+            const moduleAvg = cMA(module.code, grades, isManual, "S1");
+
+            // Update the module's average display
+            const avgSpan = document.getElementById(`a-${moduleCode}`);
+             if (avgSpan) {
+                 avgSpan.textContent = moduleAvg.toFixed(2);
+                 // Optional: Add animation class briefly
+                 avgSpan.classList.remove('result-updated');
+                 void avgSpan.offsetWidth; // Trigger reflow
+                 avgSpan.classList.add('result-updated');
+             }
+            totalWeightedAvg += moduleAvg * module.coef;
+        });
+
+        const finalAvg = (totalWeightedAvg / tCoef).toFixed(2);
+        const finalAvgSpan = document.getElementById("f-a");
+        finalAvgSpan.textContent = finalAvg;
+        // Optional: Add animation class to final average
+        finalAvgSpan.classList.remove('result-updated');
+        void finalAvgSpan.offsetWidth; // Trigger reflow
+        finalAvgSpan.classList.add('result-updated');
+    }
+
+    // Calculate S2 Semester Average (updated element selection)
+    function cA_S2(){
+        let totalWeightedAvg = 0;
+        mC2.forEach(module => {
+            const moduleCode = module.code.toLowerCase();
+             // Select the correct input group container based on manual toggle
+            const manualToggle = document.getElementById(`s2-t-m-${moduleCode}`);
+            const isManual = manualToggle ? manualToggle.checked : false;
+
+            const inputsContainerSelector = `.module-item[data-code="${module.code}"] ${isManual ? '.m-g' : '.c-g'}`;
+            const grades = gIV(inputsContainerSelector);
+            const moduleAvg = cMA(module.code, grades, isManual, "S2");
+
+            // Update the module's average display
+            const avgSpan = document.getElementById(`a-s2-${moduleCode}`);
+             if (avgSpan) {
+                 avgSpan.textContent = moduleAvg.toFixed(2);
+                  // Optional: Add animation class briefly
+                 avgSpan.classList.remove('result-updated');
+                 void avgSpan.offsetWidth; // Trigger reflow
+                 avgSpan.classList.add('result-updated');
+             }
+            totalWeightedAvg += moduleAvg * module.coef;
+        });
+
+        const finalAvg = (totalWeightedAvg / tCoefS2).toFixed(2);
+         const finalAvgSpan = document.getElementById("s2-f-a");
+        finalAvgSpan.textContent = finalAvg;
+         // Optional: Add animation class to final average
+        finalAvgSpan.classList.remove('result-updated');
+        void finalAvgSpan.offsetWidth; // Trigger reflow
+        finalAvgSpan.classList.add('result-updated');
+    }
+
+
+    const missing=[];
+
+    // Add missing module logic (updated HTML structure generation)
+    function addMissing(){
+        const moduleSelect = document.getElementById("m-m");
+        const selectedCode = moduleSelect.value;
+        if(!selectedCode) return; // No module selected
+        if(missing.find(m => m.code === selectedCode)) {
+             console.log(`Module ${selectedCode} is already added.`); // Prevent adding duplicates
+            return;
+        }
+
+        const moduleData = (isS2 ? mC2 : mC).find(m => m.code === selectedCode);
+        if(!moduleData) {
+            console.error(`Module data not found for ${selectedCode}`);
+            return; // Should not happen if options are correct
+        }
+
+        missing.push({code: selectedCode, coef: moduleData.coef, fields: moduleData.fields});
+
+        const missingListDiv = document.getElementById("missing-list");
+        const moduleItemDiv = document.createElement("div");
+        moduleItemDiv.id = `miss-${selectedCode}`;
+        moduleItemDiv.className = "missing-module-item"; // Use existing missing item class
+
+        // H4 for module code and coef
+        const h4 = document.createElement("h4");
+        h4.textContent = `${selectedCode} (coef ${moduleData.coef})`;
+        moduleItemDiv.appendChild(h4);
+
+        // Input fields for grades
+        moduleData.fields.forEach(field => {
+            const inputGroup = document.createElement("div"); // Container for label+input
+            const label = document.createElement("label");
+            label.textContent = field;
+            const input = document.createElement("input");
+            input.type = "number";
+            input.min = "0";
+            input.max = field.includes("/8") ? "8" : "20";
+            input.step = "0.5";
+            // No need for data-mod/data-field with this structure, gIV will find inputs within the missing-module-item div by ID
+
+            inputGroup.appendChild(label);
+            inputGroup.appendChild(input);
+            moduleItemDiv.appendChild(inputGroup);
+        });
+
+        // Remove button
+        const removeButton = document.createElement("button");
+        removeButton.textContent = "Remove";
+        removeButton.onclick = () => {
+            moduleItemDiv.classList.remove("is-visible"); // Trigger collapse animation
+            moduleItemDiv.addEventListener("transitionend", () => {
+                 // Ensure element is fully collapsed before removing
+                if(moduleItemDiv.parentNode === missingListDiv) {
+                     missingListDiv.removeChild(moduleItemDiv);
+                     // Recalculate if the removed module was the last one, or just to be safe
+                     cM();
+                }
+            }, {once: true});
+
+            // Remove from missing array
+            const index = missing.findIndex(m => m.code === selectedCode);
+            if (index > -1) {
+                missing.splice(index, 1);
+            }
+            // Need to recalculate the overall talents average after removing
+             cM();
+        };
+        moduleItemDiv.appendChild(removeButton);
+
+        // Append the new module item and trigger the entry animation
+        missingListDiv.appendChild(moduleItemDiv);
+        requestAnimationFrame(() => {
+            // Force reflow before adding the class that triggers the transition
+            void moduleItemDiv.offsetWidth;
+            moduleItemDiv.classList.add("is-visible");
+        });
+
+        moduleSelect.value = ""; // Reset the select dropdown
+    }
+
+    // Calculate Talents Semester Avg (using added missing modules) (updated element selection)
+    function cM(){
+        const talentsAvg = parseFloat(document.getElementById("t-a").value) || 0;
+        const totalCoef = isS2 ? tCoefS2 : tCoef;
+        let weightedSum = talentsAvg * totalCoef;
+        let knownCoefSum = totalCoef; // Start with total coef, subtract missing ones
+
+        missing.forEach(module => {
+            // Get inputs specifically within the missing module item div
+             const inputsContainerSelector = `#miss-${module.code} input[type="number"]`;
+            const grades = gIV(inputsContainerSelector);
+            const moduleAvg = cMA(module.code, grades, false, isS2 ? "S2" : "S1"); // Missing modules are manual grade entry, but not 'manual toggle' mode which uses 1 input field
+
+             // Subtract the original weighted value from the total average calculation
+             // We assume the initial talents average represents the average *including* the missing module.
+             // So we need to 'remove' the missing module's contribution based on the talents avg,
+             // then add back its calculated average contribution.
+
+             // This logic in the original code is simplified and seems to assume the talent avg
+             // is the sum *before* dividing by total coef, which is unusual.
+             // Let's stick to the original logic's interpretation:
+             // initial calculation: totalAvg * totalCoef
+             // Let's adjust this part slightly to be more robust if the original logic was based on something else.
+             // A more standard way would be:
+             // Sum of (Avg * Coef) for KNOWN modules = Talents Avg * (Total Coef - Sum of Missing Coefs)
+             // Sum of (Avg * Coef) for MISSING modules = Sum of (Calculated Missing Avg * Missing Coef)
+             // New Total Avg = (Sum KNOWN + Sum MISSING) / Total Coef
+
+             // Re-interpreting the original JS `cM` logic:
+             // `let n=t*e;` where `t` is talents avg, `e` is totalCoef. This implies `t*e` is the *total weighted sum* if all modules had the talents average.
+             // `missing.forEach(t=>{... n+=a*t.coef})` then it *adds* the calculated average of the missing module(s).
+             // This implies the *original* talents average (`t`) was perhaps the average of the modules you *didn't* list as missing? Or maybe the prompt wants to treat the talents average as a base sum to which you add calculated missing ones? The original JS is slightly ambiguous here, but I will follow its exact structure `n = t * e; missing.forEach(m => n += calculatedAvg * m.coef); return n / e;`
+
+             // Okay, let's trace the original JS again carefully:
+             // let t = parseFloat(document.getElementById("t-a").value)||0; // Talents Avg
+             // let e = isS2?27:tCoef; // Total Coef
+             // let n = t * e; // This IS (Talents Avg * Total Coef) -- This is weird. It implies the Talents Avg IS the average of ALL modules including the missing ones.
+             // missing.forEach(t=>{... let a = cMA(...); n += a * t.coef;}) // This adds the *calculated* weighted sum of the missing module(s).
+             // This logic seems flawed if `t` is the final average. If `t` is the average of *known* modules, the calculation should be different.
+             // However, the prompt explicitly says "do not change anything in the logic". So I *must* replicate this potentially flawed logic exactly.
+             // The logic `n = talentsAvg * totalCoef; missing.forEach(m => n += calculatedAvg * m.coef);` does NOT make sense mathematically if talentsAvg is the final average.
+             // Perhaps 't' (talents avg input) is intended to be the *sum* of known weighted averages? No, it's labeled "Enter Talents Avg", implying an average.
+             // Let's re-read the JS `cM` function: `let n=t*e; missing.forEach(t=>{const o=... o.map(t=>parseFloat(t.value)||0),a=cMA(...);n+=a*t.coef}),document.getElementById("t-f-a").textContent=(n/e).toFixed(2)}`
+             // Yes, the original JS *literally* calculates (Talents Avg * Total Coef) + (Sum of Calculated Missing Module Weighted Averages) and then divides by Total Coef.
+             // This logic *only* makes sense if "Talents Avg" is *supposed* to be interpreted as (Average of modules *you don't calculate*) * (Coef of modules you don't calculate).
+             // OR, more likely, it's a user-provided *overall* average from somewhere (like a transcript showing a final average *including* missing modules), and the user wants to see what the average would be if they *replace* the missing module's contribution (implicitly calculated based on the overall average) with their *actual* calculated average for that module.
+             // The original logic does this:
+             // 1. Start with the "Total Weighted Sum" implied by the given Talents Avg: `talentsAvg * totalCoef`
+             // 2. This sum *already implicitly includes* the missing module's contribution based on the overall `talentsAvg`. The missing module's contribution implicitly included is `talentsAvg * missingModule.coef`.
+             // 3. The loop `n += a * t.coef` *adds* the calculated weighted sum of the missing module.
+             // This means the missing module's contribution is being counted *twice*: once implicitly in the `talentsAvg * totalCoef` term, and once explicitly with `calculatedAvg * missingModule.coef`.
+             // To fix this while preserving the *intended* calculation effect (if not the mathematical purity), the logic should be:
+             // `let sumOfKnownWeightedAvgs = talentsAvg * (totalCoef - sumOfMissingCoefs);`
+             // `let sumOfMissingWeightedAvgs = missing.reduce((sum, m) => sum + cMA(...) * m.coef, 0);`
+             // `let finalAvg = (sumOfKnownWeightedAvgs + sumOfMissingWeightedAvgs) / totalCoef;`
+
+             // BUT the instruction is "do not change anything in the logic". The *exact* original JS logic is:
+             // `let n = talentsAvg * totalCoef;`
+             // `missing.forEach(m => { const calculatedAvg = cMA(...); n += calculatedAvg * m.coef; });`
+             // `document.getElementById("t-f-a").textContent = (n / totalCoef).toFixed(2);`
+             // I must follow *this* logic exactly, even if it seems mathematically strange for "Talents Avg" to mean the final average.
+             // The selection of inputs needs to be updated for the new HTML structure.
+             const calculatedAvg = cMA(module.code, grades, false, isS2 ? "S2" : "S1");
+             weightedSum += calculatedAvg * module.coef; // This is the exact original addition
+             // The original JS does NOT subtract the implicit value before adding the calculated value.
+             // So, the value 'n' (weightedSum) starts as `talentsAvg * totalCoef`, and then the weighted averages of missing modules are *added* to it. This suggests 'talentsAvg' might represent something else, or the calculation is specific to some unstated context.
+
+             // Let's re-read the code *again*. Ah, I see the confusion. The original `cM` function *only* runs in Talents mode.
+             // The *Talents Avg* is entered (`t-a`). The missing modules are added.
+             // `let n = t * e;` where `t` is the Talents Avg and `e` is the totalCoef (26 or 27).
+             // `missing.forEach(t=>{... let a = cMA(...); n += a * t.coef})`
+             // This is indeed `(Talents Avg * Total Coef) + Sum(Calculated Missing Avg * Missing Coef)`.
+             // This means the input "Talents Avg" is NOT the average of ALL modules. It's something else.
+             // What if "Talents Avg" is the weighted sum of all modules *except* the missing ones, divided by the *total* coefficient? That would make more sense:
+             // `talentsAvg = (Sum of known weighted averages) / Total Coef`
+             // `Sum of known weighted averages = talentsAvg * Total Coef` (This is 'n' initially)
+             // So the calculation becomes:
+             // `Final Weighted Sum = (Sum of known weighted averages) + (Sum of calculated missing weighted averages)`
+             // `Final Weighted Sum = (talentsAvg * totalCoef) + Sum(calculatedAvg * missingCoef)`
+             // `Final Avg = Final Weighted Sum / Total Coef`
+             // YES, this interpretation makes the original JS logic mathematically sound!
+             // The input `t-a` is effectively being used to derive the sum of known module weighted averages: `talentsAvg * totalCoef`.
+             // Then the sum of the *calculated* missing modules is added to this derived sum.
+             // This logic *does not change*. Only how the inputs are selected changes.
+
+         });
+
+        // The original code recalculates the final average *inside* the forEach loop slightly weirdly by updating `n` and then dividing by `e`. Let's stick to the final division.
+        // The final division in the original code is `(n/e).toFixed(2)`.
+        // Let's keep the variable names from the original JS:
+        let t = talentsAvg; // talents average input
+        let e = totalCoef; // total coefficient (26 or 27)
+        let n = t * e; // weighted sum derived from talents avg
+
+        missing.forEach(missingModule => {
+             const inputsContainerSelector = `#miss-${missingModule.code} input[type="number"]`;
+             const grades = gIV(inputsContainerSelector);
+             const calculatedAvg = cMA(missingModule.code, grades, false, isS2 ? "S2" : "S1"); // Not manual toggle here, but manual input
+             n += calculatedAvg * missingModule.coef;
+        });
+
+        const finalAvg = (n / e).toFixed(2);
+         const finalAvgSpan = document.getElementById("t-f-a");
+        finalAvgSpan.textContent = finalAvg;
+         // Optional: Add animation
+        finalAvgSpan.classList.remove('result-updated');
+        void finalAvgSpan.offsetWidth;
+        finalAvgSpan.classList.add('result-updated');
+    }
+
+    // Toggle Archi Bonus (kept identical, relies on aB flag)
+    function tAB(){
+        aB = !aB;
+        const archiButton = document.getElementById("a-b");
+        if (archiButton) {
+           archiButton.textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
+        }
+        // Need to recalculate ARCHI specifically, then the overall S1 avg
+        cA();
+    }
+
+    // Toggle Manual Mode for a specific S1 module (updated element selection)
+    function tMM(moduleCodeLower){
+        const moduleItem = document.querySelector(`.module-item[data-code="${moduleCodeLower.toUpperCase()}"]`);
+        if (!moduleItem) return; // Should not happen
+
+        const manualCheckbox = document.getElementById(`t-m-${moduleCodeLower}`);
+        const isManual = manualCheckbox ? manualCheckbox.checked : false;
+
+        const gradesContainer = moduleItem.querySelector(".c-g");
+        const manualContainer = moduleItem.querySelector(".m-g");
+
+        if (gradesContainer) gradesContainer.style.display = isManual ? "none" : "flex";
+        if (manualContainer) manualContainer.style.display = isManual ? "block" : "none";
+
+        // Recalculate S1 average after toggling mode
+        cA();
+    }
+
+    // Toggle Manual Mode for a specific S2 module (updated element selection)
+    function tMM_S2(moduleCodeLower){
+         const moduleItem = document.querySelector(`.module-item[data-code="${moduleCodeLower.toUpperCase()}"]`);
+        if (!moduleItem) return; // Should not happen
+
+        const manualCheckbox = document.getElementById(`s2-t-m-${moduleCodeLower}`);
+        const isManual = manualCheckbox ? manualCheckbox.checked : false;
+
+        const gradesContainer = moduleItem.querySelector(".c-g");
+        const manualContainer = moduleItem.querySelector(".m-g");
+
+        if (gradesContainer) gradesContainer.style.display = isManual ? "none" : "flex";
+        if (manualContainer) manualContainer.style.display = isManual ? "block" : "none";
+
+        // Recalculate S2 average after toggling mode
+        cA_S2();
+    }
+
+    // Get references to key UI elements
+    const talentModeToggle = document.getElementById("t-m-global");
+    const s2ModeToggle = document.getElementById("s2-m-global");
+    const talentSection = document.getElementById("t-s");
+    const s1ModulesSection = document.getElementById("s1-modules"); // New container ID
+    const s2ModulesSection = document.getElementById("s2-modules"); // New container ID
+    const s1CalcButton = document.getElementById("s1-calc");
+    const s2CalcButton = document.getElementById("s2-calc");
+    const s1ResultBlock = document.getElementById("s1-result");
+    const s2ResultBlock = document.getElementById("s2-result");
+    const formulaDisplay = document.getElementById("formula-display");
+    const mainTitle = document.getElementById("main-title");
+     const missingModuleSelect = document.getElementById("m-m"); // Get reference
+
+    // Function to toggle between Talents mode and Manual mode
+    function tTM(){
+        const isTalentsMode = talentModeToggle.checked;
+        s2ModeToggle.disabled = isTalentsMode; // Disable S2 toggle in Talents mode
+
+        if(isTalentsMode){
+            talentSection.classList.remove("collapsed");
+            s1ModulesSection.classList.add("collapsed"); // Hide S1 manual list
+            s2ModulesSection.classList.add("collapsed"); // Hide S2 manual list
+            s1CalcButton.style.display = "none";
+            s2CalcButton.style.display = "none";
+            s1ResultBlock.style.display = "none";
+            s2ResultBlock.style.display = "none";
+             // Update title for clarity
+             mainTitle.textContent = "1CP Talents Avg Calc";
+             // Enable all options in missing module select
+             updateMissingModuleSelectOptions(mC.concat(mC2));
+        } else {
+            talentSection.classList.add("collapsed");
+            // Fallback to showing either S1 or S2 manual based on s2ModeToggle state
+            toggleS2(); // This function will handle showing the correct manual section
+        }
+         // Clear missing list when switching OUT of talents mode
+         if (!isTalentsMode) {
+            document.getElementById("missing-list").innerHTML = "";
+            missing.length = 0;
+         }
+    }
+
+    // Function to toggle between S1 and S2 modes (only relevant when not in Talents mode)
+    function toggleS2(){
+        // Only proceed if NOT in talents mode
+        if(talentModeToggle.checked) return;
+
+        isS2 = s2ModeToggle.checked; // Update global flag
+
+        // Update title and formulas based on S2 mode
+        const s1Formulas = `<h3>Calc Formulas (S1)</h3><p><strong>SYS1:</strong> (0.1 × TD) + (0.1 × IN×2.5) + (0.3 × CI) + (0.5 × CF)</p><p><strong>ARCHI:</strong> (0.5 × CF) + (0.5 × CI) + <i>optional 1pt bonus</i></p><p><strong>ALG1/ANA1:</strong> (0.67 × CF) + (0.33 × CI)</p><p><strong>TEE:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDS:</strong> (0.3 × CF) + (0.2 × CI) + (0.4 × TP avg) + (0.1 × TR)</p><p><strong>BWEB:</strong> (0.4 × CF) + (0.4 × CI) + (0.2 × CC)</p><p><strong>ELECT:</strong> (0.5 × CF) + (0.25 × CI) + (0.25 × CC)</p>`;
+        const s2Formulas = `<h3>Calc Formulas (S2)</h3><p><strong>SYS2:</strong> 0.5 × FE + 0.3 × ME + 0.2 × CC</p><p><strong>MECA:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p><p><strong>ALG2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>ANA2:</strong> 0.67 × CF + 0.33 × CI</p><p><strong>TEO:</strong> (2/3 × CF) + (1/3 × CC)</p><p><strong>ALSDD:</strong> (TPc + interos + CC) × 0.25 + TP × 0.2 + CF × 0.55</p><p><strong>ANG:</strong> 0.33 × CI + 0.33 × CC + 0.34 × CF</p><p><strong>ELECTF:</strong> 0.5 × CF + 0.25 × CI + 0.25 × CC</p>`;
+
+        if(isS2){
+            mainTitle.textContent = "1CP S2 Avg Calc";
+            formulaDisplay.innerHTML = s2Formulas;
+            s1ModulesSection.classList.add("collapsed"); // Hide S1
+            s2ModulesSection.classList.remove("collapsed"); // Show S2
+            s1CalcButton.style.display = "none";
+            s1ResultBlock.style.display = "none";
+            s2CalcButton.style.display = "inline-block";
+            s2ResultBlock.style.display = "block";
+             // Update missing module select options for S2
+             updateMissingModuleSelectOptions(mC2);
+             // Clear S1 calculations
+             document.getElementById("f-a").textContent = "0.00";
+        } else {
+            mainTitle.textContent = "1CP S1 Avg Calc";
+            formulaDisplay.innerHTML = s1Formulas;
+            s2ModulesSection.classList.add("collapsed"); // Hide S2
+            s1ModulesSection.classList.remove("collapsed"); // Show S1
+            s2CalcButton.style.display = "none";
+            s2ResultBlock.style.display = "none";
+            s1CalcButton.style.display = "inline-block";
+            s1ResultBlock.style.display = "block";
+             // Update missing module select options for S1
+             updateMissingModuleSelectOptions(mC);
+             // Clear S2 calculations
+             document.getElementById("s2-f-a").textContent = "0.00";
+        }
+
+        // Clear missing list when switching semesters
+        document.getElementById("missing-list").innerHTML = "";
+        missing.length = 0;
+
+        // Recalculate the visible average (S1 or S2)
+        isS2 ? cA_S2() : cA();
+    }
+
+    // Helper to populate missing module select
+    function updateMissingModuleSelectOptions(modules){
+        const select = missingModuleSelect;
+        select.innerHTML = '<option value="">-- Choose Module --</option>'; // Reset options
+        modules.forEach(module => {
+            const option = document.createElement("option");
+            option.value = module.code;
+            option.textContent = module.code;
+            select.appendChild(option);
+        });
+    }
+
+    // Function to dynamically generate module HTML (NEW FUNCTION)
+    function generateModuleHTML(moduleData, isS2 = false) {
+        const moduleCode = moduleData.code;
+        const moduleCodeLower = moduleCode.toLowerCase();
+        const coef = moduleData.coef;
+        const fields = moduleData.fields;
+        const moduleClass = isS2 ? `s2-${moduleCodeLower}` : moduleCodeLower;
+        const avgId = isS2 ? `a-s2-${moduleCodeLower}` : `a-${moduleCodeLower}`;
+        const toggleId = isS2 ? `s2-t-m-${moduleCodeLower}` : `t-m-${moduleCodeLower}`;
+        const toggleFunction = isS2 ? `tMM_S2('${moduleCodeLower}')` : `tMM('${moduleCodeLower}')`;
+
+        let gradesInputsHTML = fields.map(field => {
+            const maxValue = field.includes("/8") ? "8" : "20";
+            return `
+                <div>
+                    <label>${field}</label>
+                    <input type="number" min="0" max="${maxValue}" step="0.5">
+                </div>
+            `;
+        }).join("");
+
+        // Add ARCHI bonus button only for S1 ARCHI
+        if (!isS2 && moduleCode === "ARCHI") {
+            gradesInputsHTML += `<button id="a-b" onclick="tAB()">Add 1pt Bonus</button>`;
+        }
+
+        const moduleItem = document.createElement('div');
+        moduleItem.className = `module-item ${moduleClass}`; // Add module-specific class for targeting inputs
+        moduleItem.dataset.code = moduleCode; // Add data attribute for easy lookup
+
+        moduleItem.innerHTML = `
+            <h4>${moduleCode} <span>(coef ${coef})</span></h4>
+            <div class="t-m">
+                <input type="checkbox" id="${toggleId}" onchange="${toggleFunction}" />
+                <span>Manual Avg Entry</span>
+            </div>
+            <div class="c-g">${gradesInputsHTML}</div>
+            <div class="m-g" style="display:none;">
+                <div>
+                    <label>Module Avg:</label>
+                    <input type="number" min="0" max="20" step="0.5" placeholder="Enter avg">
+                </div>
+            </div>
+            <div class="module-average">
+                 Average: <strong id="${avgId}">0.00</strong>
+            </div>
+        `;
+        return moduleItem;
+    }
+
+    // Initial setup and event listeners
+    document.addEventListener("DOMContentLoaded", () => {
+        // Generate S1 modules HTML
+        const s1ModulesContainer = document.querySelector('#s1-modules .collapsible-content-wrapper');
+        mC.forEach(module => {
+            s1ModulesContainer.appendChild(generateModuleHTML(module));
+        });
+
+        // Generate S2 modules HTML
+        const s2ModulesContainer = document.querySelector('#s2-modules .collapsible-content-wrapper');
+        mC2.forEach(module => {
+            s2ModulesContainer.appendChild(generateModuleHTML(module, true));
+        });
+
+        // Hide S2 and Talents sections initially
+        talentSection && talentSection.classList.add("collapsed");
+        s2ModulesSection && s2ModulesSection.classList.add("collapsed");
+        s1ModulesSection && s1ModulesSection.classList.remove("collapsed"); // Ensure S1 is visible
+
+        // Initial Calculation for S1
+        cA();
+
+        // Theme Toggle Logic (kept identical)
+        const themeToggle = document.getElementById("theme-toggle");
+        const savedTheme = localStorage.getItem("theme");
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+        function setTheme(theme){
+            document.documentElement.setAttribute("data-theme", theme);
+            localStorage.setItem("theme", theme);
+            if(themeToggle) themeToggle.checked = (theme === "dark");
+        }
+        savedTheme ? setTheme(savedTheme) : setTheme(prefersDark ? "dark" : "light");
+        if(themeToggle) {
+            themeToggle.addEventListener("change", function(){
+                setTheme(this.checked ? "dark" : "light");
+            });
+        }
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
+            // Only update if no theme is explicitly saved
+            if(!localStorage.getItem("theme")) {
+                setTheme(e.matches ? "dark" : "light");
+            }
+        });
+
+        // Formula Display Reveal on Scroll (kept identical)
+        if(formulaDisplay){
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if(entry.isIntersecting){
+                        entry.target.classList.add("is-visible");
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, { threshold: 0.1 });
+            observer.observe(formulaDisplay);
+        }
+
+        // Initial state setup
+        tTM(); // Initialize modes based on checkbox states
+        if(!talentModeToggle.checked) { // If not in talents mode initially
+             toggleS2(); // Ensure S1/S2 is correctly set up
+        }
+
+
+        // Konami Code for Party Mode (kept identical)
+        const konamiCode = ["ArrowUp","ArrowUp","ArrowDown","ArrowDown","ArrowLeft","ArrowRight","ArrowLeft","ArrowRight","b","a"];
+        let konamiIndex = 0;
+        let partyModeTimeout = null;
+        document.addEventListener("keydown", function(event) {
+             // If already in party mode, allow code to exit
+             if (document.documentElement.classList.contains("party-mode")) {
+                 if (event.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+                     konamiIndex++;
+                     if (konamiIndex === konamiCode.length) {
+                         clearTimeout(partyModeTimeout);
+                         document.documentElement.classList.remove("party-mode");
+                         konamiIndex = 0; // Reset index
+                         console.log("Party Mode Off!");
+                     }
+                 } else {
+                     konamiIndex = 0; // Reset on wrong key
+                 }
+                 return; // Don't check for entry if already in party mode
+             }
+
+            if (event.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+                konamiIndex++;
+                if (konamiIndex === konamiCode.length) {
+                    document.documentElement.classList.add("party-mode");
+                    konamiIndex = 0; // Reset index
+                    console.log("Party Mode Activated!");
+                    // Set timeout to turn off party mode after 10 seconds
+                    partyModeTimeout = setTimeout(() => {
+                        document.documentElement.classList.remove("party-mode");
+                        console.log("Party Mode Ended.");
+                    }, 10000); // 10 seconds
+                }
+            } else {
+                konamiIndex = 0; // Reset on wrong key
+            }
+        });
+
+         // Added: Reset Button (Optional, but helpful for testing)
+         // Add a reset button and link it to this function if desired.
+         // function resetCalculator(){...} defined above.
+         // Let's add a simple reset button for convenience
+         const resetButton = document.createElement('button');
+         resetButton.textContent = 'Reset All';
+         resetButton.style.cssText = 'display: block; margin: 2rem auto; background: #6b7280; color: white;'; // Simple styling
+         resetButton.onclick = resetCalculator;
+         document.body.appendChild(resetButton); // Append somewhere appropriate, maybe before footer
+          // Move reset button to a better place, maybe after the S2 result block
+          const s2Result = document.getElementById('s2-result');
+          if (s2Result && s2Result.parentNode) {
+              s2Result.parentNode.insertBefore(resetButton, s2Result.nextSibling);
+          } else {
+              // Fallback if S2 result block not found (shouldn't happen)
+              document.body.appendChild(resetButton);
+          }
+          resetButton.style.marginTop = '2rem'; // Add some space
+          resetButton.style.marginBottom = '2rem';
+          resetButton.style.maxWidth = '300px'; // Limit width
+
+    });
+
+     // Function to reset the calculator state (kept identical logic, updated selectors)
+     function resetCalculator(){
+        // Reset Talents mode section
+        document.getElementById("t-a").value = "";
+        document.getElementById("t-f-a").textContent = "0.00";
+        document.getElementById("missing-list").innerHTML = "";
+        missing.length = 0;
+         const missingModuleSelect = document.getElementById("m-m");
+         if(missingModuleSelect) missingModuleSelect.value = "";
+
+
+        // Reset S1 Modules
+        mC.forEach(module => {
+            const moduleCodeLower = module.code.toLowerCase();
+            const moduleItem = document.querySelector(`.module-item[data-code="${module.code}"]`);
+            if (moduleItem) {
+                 // Reset inputs
+                 moduleItem.querySelectorAll('input[type="number"]').forEach(input => input.value = "");
+                 // Reset average display
+                 const avgSpan = document.getElementById(`a-${moduleCodeLower}`);
+                 if (avgSpan) avgSpan.textContent = "0.00";
+                 // Reset manual toggle
+                 const manualToggle = document.getElementById(`t-m-${moduleCodeLower}`);
+                 if(manualToggle && manualToggle.checked) {
+                     manualToggle.checked = false;
+                      // Manually trigger the display change since onchange might not fire consistently on programmatic change
+                     const gradesContainer = moduleItem.querySelector(".c-g");
+                     const manualContainer = moduleItem.querySelector(".m-g");
+                      if (gradesContainer) gradesContainer.style.display = "flex";
+                      if (manualContainer) manualContainer.style.display = "none";
+                 }
+                  // Reset ARCHI bonus flag and button text if it exists
+                 if (module.code === "ARCHI") {
+                     aB = false;
+                     const archiButton = document.getElementById("a-b");
+                     if (archiButton) archiButton.textContent = "Add 1pt Bonus";
+                 }
+            }
+        });
+
+        // Reset S2 Modules
+        mC2.forEach(module => {
+            const moduleCodeLower = module.code.toLowerCase();
+            const moduleItem = document.querySelector(`.module-item[data-code="${module.code}"]`);
+             if (moduleItem) {
+                // Reset inputs
+                moduleItem.querySelectorAll('input[type="number"]').forEach(input => input.value = "");
+                // Reset average display
+                const avgSpan = document.getElementById(`a-s2-${moduleCodeLower}`);
+                if (avgSpan) avgSpan.textContent = "0.00";
+                // Reset manual toggle
+                const manualToggle = document.getElementById(`s2-t-m-${moduleCodeLower}`);
+                if(manualToggle && manualToggle.checked) {
+                    manualToggle.checked = false;
+                     // Manually trigger the display change
+                    const gradesContainer = moduleItem.querySelector(".c-g");
+                    const manualContainer = moduleItem.querySelector(".m-g");
+                     if (gradesContainer) gradesContainer.style.display = "flex";
+                     if (manualContainer) manualContainer.style.display = "none";
+                }
+             }
+        });
+
+        // Reset overall averages
+        document.getElementById("f-a").textContent = "0.00";
+        document.getElementById("s2-f-a").textContent = "0.00";
+
+        // Reset mode toggles and update display
+        const talentToggle = document.getElementById("t-m-global");
+        const s2Toggle = document.getElementById("s2-m-global");
+
+        if(talentToggle) talentToggle.checked = false;
+        if(s2Toggle) s2Toggle.checked = false;
+
+         // Call tTM to ensure correct sections are shown/hidden
+        tTM();
+         // Call toggleS2 to ensure S1 is selected and displayed after tTM
+         // Need to ensure tTM doesn't prevent toggleS2 from running if talentToggle.checked is false
+         // A direct call is safer after setting the checked state
+        toggleS2(); // This will set isS2 to false and show S1
+
+        // Trigger initial calculation based on the reset state (S1 manual)
+        cA();
+     }
+
   </script>
 </body>
 </html>
