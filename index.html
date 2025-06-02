@@ -1,5 +1,6 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-custom-theme="default">
   <head>
     <meta charset="UTF-8" />
     <link
@@ -114,6 +115,15 @@
         --s: var(--accent-secondary);
         /* --a: #9333ea; defined above */
         --su: var(--accent-success);
+
+        /* Colors for animated background spans */
+        --anim-span-1-bg: rgba(37, 99, 235, 0.6);  /* Default Blue */
+        --anim-span-2-bg: rgba(79, 70, 229, 0.7);  /* Default Indigo */
+        --anim-span-3-bg: rgba(147, 51, 234, 0.5); /* Default Purple */
+        --anim-span-4-bg: rgba(37, 99, 235, 0.55); /* Default Blue */
+        --anim-span-5-bg: rgba(79, 70, 229, 0.65); /* Default Indigo */
+        --anim-span-6-bg: rgba(147, 51, 234, 0.35); /* Default Purple */
+        --anim-span-7-bg: rgba(37, 99, 235, 0.6);  /* Default Blue */
       }
 
       [data-theme="dark"] {
@@ -157,7 +167,247 @@
         --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.3),
           0 10px 10px -5px rgba(0, 0, 0, 0.25);
         --shadow-inset: inset 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+
+        /* Dark mode animated background span colors */
+        --anim-span-1-bg: rgba(79, 70, 229, 0.35);
+        --anim-span-2-bg: rgba(37, 99, 235, 0.45);
+        --anim-span-3-bg: rgba(168, 85, 247, 0.35);
+        --anim-span-4-bg: rgba(79, 70, 229, 0.3);
+        --anim-span-5-bg: rgba(37, 99, 235, 0.4);
+        --anim-span-6-bg: rgba(168, 85, 247, 0.25);
+        --anim-span-7-bg: rgba(79, 70, 229, 0.35);
       }
+      /* --- OCEAN THEME --- */
+      [data-custom-theme="ocean"]:not([data-theme="dark"]) {
+          --bg-primary: #e0f7fa;
+          --bg-secondary: rgba(179, 229, 252, 0.85);
+          --bg-tertiary: #b3e5fc;
+          --bg-interactive: #a7dde9;
+          --bg-interactive-strong: #92cace;
+          --text-primary: #004d40;
+          --text-secondary: #006064;
+          --text-muted: #007c83;
+          --text-accent: #00796b;
+          --border-primary: #7ac3d8;
+          --border-interactive: #4db6ac;
+          --border-focus: #00796b;
+          --accent-primary: #00796b; /* Teal */
+          --accent-secondary: #0288d1; /* Dodger Blue */
+          --a: #00acc1; /* Cyan */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(0, 121, 107, 0.65);
+          --anim-span-2-bg: rgba(2, 136, 209, 0.75);
+          --anim-span-3-bg: rgba(0, 172, 193, 0.55);
+          --anim-span-4-bg: rgba(0, 121, 107, 0.60);
+          --anim-span-5-bg: rgba(2, 136, 209, 0.70);
+          --anim-span-6-bg: rgba(0, 172, 193, 0.40);
+          --anim-span-7-bg: rgba(0, 121, 107, 0.65);
+      }
+      [data-custom-theme="ocean"][data-theme="dark"] {
+          --bg-primary: #0a192f;
+          --bg-secondary: rgba(13, 37, 63, 0.85);
+          --bg-tertiary: #162f4b;
+          --bg-interactive: #213f5f;
+          --bg-interactive-strong: #2c4f73;
+          --text-primary: #e0f7fa;
+          --text-secondary: #b3e5fc;
+          --text-muted: #88c8e8;
+          --text-accent: #4dd0e1;
+          --border-primary: #3c5f7c;
+          --border-interactive: #609bb6;
+          --border-focus: #4dd0e1;
+          --accent-primary: #4dd0e1; /* Bright Cyan */
+          --accent-secondary: #81d4fa; /* Bright Light Blue */
+          --a: #26c6da; /* Brighter Cyan */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(77, 208, 225, 0.40);
+          --anim-span-2-bg: rgba(129, 212, 250, 0.50);
+          --anim-span-3-bg: rgba(38, 198, 218, 0.40);
+          --anim-span-4-bg: rgba(77, 208, 225, 0.35);
+          --anim-span-5-bg: rgba(129, 212, 250, 0.45);
+          --anim-span-6-bg: rgba(38, 198, 218, 0.30);
+          --anim-span-7-bg: rgba(77, 208, 225, 0.40);
+      }
+
+      /* --- FOREST THEME --- */
+      [data-custom-theme="forest"]:not([data-theme="dark"]) {
+          --bg-primary: #f1f8e9;
+          --bg-secondary: rgba(220, 237, 200, 0.85);
+          --bg-tertiary: #dcedc8;
+          --bg-interactive: #c5e1a5;
+          --bg-interactive-strong: #b2d993;
+          --text-primary: #2e7d32;
+          --text-secondary: #388e3c;
+          --text-muted: #558b2f;
+          --text-accent: #4caf50;
+          --border-primary: #a5d6a7;
+          --border-interactive: #81c784;
+          --border-focus: #4caf50;
+          --accent-primary: #4caf50; /* Green */
+          --accent-secondary: #689f38; /* Light Green */
+          --a: #8bc34a; /* Lighter Green */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(76, 175, 80, 0.65);
+          --anim-span-2-bg: rgba(104, 159, 56, 0.75);
+          --anim-span-3-bg: rgba(139, 195, 74, 0.55);
+          --anim-span-4-bg: rgba(76, 175, 80, 0.60);
+          --anim-span-5-bg: rgba(104, 159, 56, 0.70);
+          --anim-span-6-bg: rgba(139, 195, 74, 0.40);
+          --anim-span-7-bg: rgba(76, 175, 80, 0.65);
+      }
+      [data-custom-theme="forest"][data-theme="dark"] {
+          --bg-primary: #1b261b;
+          --bg-secondary: rgba(20, 38, 20, 0.85);
+          --bg-tertiary: #273b27;
+          --bg-interactive: #324e32;
+          --bg-interactive-strong: #3e5f3e;
+          --text-primary: #dcedc8;
+          --text-secondary: #a5d6a7;
+          --text-muted: #8dbd8e;
+          --text-accent: #81c784;
+          --border-primary: #4a784a;
+          --border-interactive: #6a9a6a;
+          --border-focus: #81c784;
+          --accent-primary: #81c784; /* Light Green */
+          --accent-secondary: #aed581; /* Lighter Lime */
+          --a: #c5e1a5; /* Very Light Green */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(129, 199, 132, 0.40);
+          --anim-span-2-bg: rgba(174, 213, 129, 0.50);
+          --anim-span-3-bg: rgba(197, 225, 165, 0.40);
+          --anim-span-4-bg: rgba(129, 199, 132, 0.35);
+          --anim-span-5-bg: rgba(174, 213, 129, 0.45);
+          --anim-span-6-bg: rgba(197, 225, 165, 0.30);
+          --anim-span-7-bg: rgba(129, 199, 132, 0.40);
+      }
+
+      /* --- SUNSET GLOW THEME --- */
+      [data-custom-theme="sunset"]:not([data-theme="dark"]) {
+          --bg-primary: #fff3e0; /* Pale Orange/Peach */
+          --bg-secondary: rgba(255, 224, 178, 0.85); /* Light Orange, translucent */
+          --bg-tertiary: #ffe0b2; /* Light Peach */
+          --bg-interactive: #ffcc80;
+          --bg-interactive-strong: #ffb74d;
+          --text-primary: #c0392b; /* Dark Red */
+          --text-secondary: #d35400; /* Pumpkin Orange */
+          --text-muted: #e67e22; /* Carrot Orange */
+          --text-accent: #e74c3c; /* Alizarin Crimson */
+          --border-primary: #ffcc80;
+          --border-interactive: #ffb74d;
+          --border-focus: #e74c3c;
+          --accent-primary: #e74c3c; /* Alizarin Crimson */
+          --accent-secondary: #f39c12; /* Orange */
+          --a: #d63031; /* Pomegranate */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(231, 76, 60, 0.65); /* Crimson */
+          --anim-span-2-bg: rgba(243, 156, 18, 0.75); /* Orange */
+          --anim-span-3-bg: rgba(230, 126, 34, 0.55); /* Carrot */
+          --anim-span-4-bg: rgba(231, 76, 60, 0.60);
+          --anim-span-5-bg: rgba(243, 156, 18, 0.70);
+          --anim-span-6-bg: rgba(230, 126, 34, 0.40);
+          --anim-span-7-bg: rgba(231, 76, 60, 0.65);
+      }
+      [data-custom-theme="sunset"][data-theme="dark"] {
+          --bg-primary: #2c1e2e; /* Dark Purple/Brown */
+          --bg-secondary: rgba(60, 30, 50, 0.85); /* Dark Magenta/Brown, translucent */
+          --bg-tertiary: #4a2e41; /* Darker Mauve */
+          --bg-interactive: #6d4460;
+          --bg-interactive-strong: #8b577a;
+          --text-primary: #ffd1a4; /* Light Peach */
+          --text-secondary: #ffb380; /* Lighter Orange */
+          --text-muted: #ff9d63;
+          --text-accent: #ff8a80; /* Light Coral */
+          --border-primary: #86556c;
+          --border-interactive: #a46787;
+          --border-focus: #ff8a80;
+          --accent-primary: #ff8a80; /* Light Coral */
+          --accent-secondary: #ffab40; /* Bright Orange */
+          --a: #e91e63; /* Pink for Dark Sunset */
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --anim-span-1-bg: rgba(255, 138, 128, 0.40); /* Light Coral */
+          --anim-span-2-bg: rgba(255, 171, 64, 0.50); /* Bright Orange */
+          --anim-span-3-bg: rgba(233, 30, 99, 0.40);   /* Pink */
+          --anim-span-4-bg: rgba(255, 138, 128, 0.35);
+          --anim-span-5-bg: rgba(255, 171, 64, 0.45);
+          --anim-span-6-bg: rgba(233, 30, 99, 0.30);
+          --anim-span-7-bg: rgba(255, 138, 128, 0.40);
+      }
+
+      /* --- MATRIX THEME --- */
+      [data-custom-theme="matrix"]:not([data-theme="dark"]) { /* Matrix light is a bit of an oxymoron, so let's make it darkish */
+          --bg-primary: #050505;
+          --bg-secondary: rgba(5, 20, 5, 0.8);
+          --bg-tertiary: #0a1a0a;
+          --bg-interactive: #0f280f;
+          --bg-interactive-strong: #143214;
+          --text-primary: #00ff00; /* Bright Green */
+          --text-secondary: #33ff33; /* Lighter Green */
+          --text-muted: #66ff66;
+          --text-accent: #00dd00;
+          --border-primary: #005000;
+          --border-interactive: #008000;
+          --border-focus: #00ff00;
+          --accent-primary: #00ff00;
+          --accent-secondary: #33cc33;
+          --a: #66ff66;
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --font-primary: "Consolas", "Menlo", "Monaco", monospace;
+          --anim-span-1-bg: rgba(0, 255, 0, 0.5);
+          --anim-span-2-bg: rgba(51, 255, 51, 0.6);
+          --anim-span-3-bg: rgba(0, 204, 0, 0.4);
+          --anim-span-4-bg: rgba(0, 255, 0, 0.45);
+          --anim-span-5-bg: rgba(51, 255, 51, 0.55);
+          --anim-span-6-bg: rgba(0, 204, 0, 0.3);
+          --anim-span-7-bg: rgba(0, 255, 0, 0.5);
+      }
+      [data-custom-theme="matrix"][data-theme="dark"] { /* This will be very similar to matrix light by design */
+          --bg-primary: #000000;
+          --bg-secondary: rgba(0, 15, 0, 0.85);
+          --bg-tertiary: #051005;
+          --bg-interactive: #0a1f0a;
+          --bg-interactive-strong: #0f280f;
+          --text-primary: #00ff00;
+          --text-secondary: #44ff44;
+          --text-muted: #77ff77;
+          --text-accent: #00ef00;
+          --border-primary: #004000;
+          --border-interactive: #006000;
+          --border-focus: #00ff00;
+          --accent-primary: #00ff00;
+          --accent-secondary: #22ee22;
+          --a: #55ff55;
+          --p: var(--accent-primary);
+          --s: var(--accent-secondary);
+          --font-primary: "Consolas", "Menlo", "Monaco", monospace;
+          --anim-span-1-bg: rgba(0, 255, 0, 0.4);
+          --anim-span-2-bg: rgba(51, 221, 51, 0.5);
+          --anim-span-3-bg: rgba(0, 187, 0, 0.35);
+          --anim-span-4-bg: rgba(0, 255, 0, 0.35);
+          --anim-span-5-bg: rgba(51, 221, 51, 0.45);
+          --anim-span-6-bg: rgba(0, 187, 0, 0.25);
+          --anim-span-7-bg: rgba(0, 255, 0, 0.4);
+      }
+      /* Specific for matrix for titles and such */
+      [data-custom-theme="matrix"] h2#main-title {
+          font-family: "VT323", "Courier New", monospace; /* A more pixelated font */
+          animation: titleGradient 6s linear infinite, subtleTextPulse 2s linear infinite alternate;
+          background: linear-gradient(90deg, #00ff00, #33ff33, #00dd00, #00ff00);
+          background-size: 400% 400%;
+          text-shadow: 0 0 5px #00ff00, 0 0 10px #00ff00, 0 0 15px #008000;
+      }
+      [data-custom-theme="matrix"] .content-card,
+      [data-custom-theme="matrix"] .app-header {
+        border: 1px solid var(--accent-primary);
+        box-shadow: 0 0 10px var(--accent-primary-transparent-medium), 0 0 20px var(--accent-primary-transparent-weak) inset;
+      }
+
 
       *,
       *::before,
@@ -183,7 +433,8 @@
         overflow-x: hidden;
         transition: background-color var(--duration-normal)
             var(--timing-state-change),
-          color var(--duration-normal) var(--timing-state-change);
+          color var(--duration-normal) var(--timing-state-change),
+          font-family var(--duration-normal) var(--timing-state-change); /* Added font-family transition */
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
       }
@@ -244,6 +495,7 @@
         will-change: transform, opacity;
         box-shadow: 0 0 10px 2px currentColor, 0 0 20px 5px currentColor inset; /* Inner and outer glow */
         filter: brightness(1.15); /* Pop more */
+        transition: background-color var(--duration-normal) var(--timing-state-change); /* Smooth color transition */
       }
 
       @keyframes rise {
@@ -252,125 +504,75 @@
           opacity: 0;
         }
         10% {
-          opacity: 0.5; /* More visible earlier */
+          opacity: 0.6; /* Increased for more visibility early */
         }
         90% {
-          opacity: 0.05;
+          opacity: 0.1;
         }
         100% {
           transform: translateY(-140vh) translateX(var(--translateX-end, 50px))
-            rotate(var(--rotate-end, 720deg)) scale(1.4); /* Higher and larger end */
+            rotate(var(--rotate-end, 720deg)) scale(var(--scale-end, 1.4));
           opacity: 0;
         }
       }
-      /* Varied shapes and glows */
+      /* Varied shapes and glows, using themeable variables now */
       .animated-bg span:nth-child(1) {
-        left: 20%;
-        width: 80px;
-        height: 80px;
-        animation-duration: 28s;
-        animation-delay: 0s;
-        animation-timing-function: var(--ease-in-out-quint);
-        --translateX-end: -30px;
-        --rotate-end: 360deg;
-        background-color: rgba(37, 99, 235, 0.6);
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(1) {
-        background-color: rgba(79, 70, 229, 0.35);
+        left: 20%; width: 80px; height: 80px; animation-duration: 28s; animation-delay: 0s;
+        animation-timing-function: var(--ease-in-out-quint); --translateX-end: -30px; --rotate-end: 360deg; --scale-end: 1.4;
+        background-color: var(--anim-span-1-bg);
       }
       .animated-bg span:nth-child(2) {
-        left: 5%;
-        width: 35px;
-        height: 35px;
-        animation-duration: 20s;
-        animation-delay: 2s;
-        animation-timing-function: var(--ease-out-back); /* Bouncy */
-        --translateX-end: 20px;
-        --rotate-end: -200deg;
-        background-color: rgba(79, 70, 229, 0.7);
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Blob */
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(2) {
-        background-color: rgba(37, 99, 235, 0.45);
+        left: 5%; width: 35px; height: 35px; animation-duration: 20s; animation-delay: 2s;
+        animation-timing-function: var(--ease-out-back); --translateX-end: 20px; --rotate-end: -200deg; --scale-end: 1.2;
+        background-color: var(--anim-span-2-bg);
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
       }
       .animated-bg span:nth-child(3) {
-        left: 75%;
-        width: 30px;
-        height: 30px;
-        animation-duration: 25s;
-        animation-delay: 4s;
-        animation-timing-function: var(--ease-in-out-circ);
-        --translateX-end: 60px;
-        --rotate-end: 540deg;
-        background-color: rgba(147, 51, 234, 0.5);
-        border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; /* Blob */
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(3) {
-        background-color: rgba(
-          168,
-          85,
-          247,
-          0.35
-        ); /* Lighter purple for dark */
+        left: 75%; width: 30px; height: 30px; animation-duration: 25s; animation-delay: 4s;
+        animation-timing-function: var(--ease-in-out-circ); --translateX-end: 60px; --rotate-end: 540deg; --scale-end: 1.1;
+        background-color: var(--anim-span-3-bg);
+        border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
       }
       .animated-bg span:nth-child(4) {
-        left: 35%;
-        width: 65px;
-        height: 65px;
-        animation-duration: 22s;
-        animation-delay: 0.5s;
-        animation-timing-function: var(--ease-out-expo);
-        --translateX-end: -50px;
-        --rotate-end: 270deg;
-        background-color: rgba(37, 99, 235, 0.55);
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(4) {
-        background-color: rgba(79, 70, 229, 0.3);
+        left: 35%; width: 65px; height: 65px; animation-duration: 22s; animation-delay: 0.5s;
+        animation-timing-function: var(--ease-out-expo); --translateX-end: -50px; --rotate-end: 270deg; --scale-end: 1.3;
+        background-color: var(--anim-span-4-bg);
       }
       .animated-bg span:nth-child(5) {
-        left: 60%;
-        width: 25px;
-        height: 25px;
-        animation-duration: 18s;
-        animation-delay: 1.5s;
-        animation-timing-function: var(--ease-in-out-expo);
-        --translateX-end: 40px;
-        --rotate-end: -360deg;
-        background-color: rgba(79, 70, 229, 0.65);
-        border-radius: 20% 80% 50% 50% / 40% 30% 70% 60%; /* Blob */
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(5) {
-        background-color: rgba(37, 99, 235, 0.4);
+        left: 60%; width: 25px; height: 25px; animation-duration: 18s; animation-delay: 1.5s;
+        animation-timing-function: var(--ease-in-out-expo); --translateX-end: 40px; --rotate-end: -360deg; --scale-end: 1.0;
+        background-color: var(--anim-span-5-bg);
+        border-radius: 20% 80% 50% 50% / 40% 30% 70% 60%;
       }
       .animated-bg span:nth-child(6) {
-        left: 88%;
-        width: 130px;
-        height: 130px;
-        animation-duration: 40s;
-        animation-delay: 3s; /* Slower, larger */
-        animation-timing-function: var(--ease-in-out-quint);
-        --translateX-end: -70px;
-        --rotate-end: 180deg;
-        background-color: rgba(147, 51, 234, 0.35);
-      }
-      [data-theme="dark"] .animated-bg span:nth-child(6) {
-        background-color: rgba(168, 85, 247, 0.25);
+        left: 88%; width: 130px; height: 130px; animation-duration: 40s; animation-delay: 3s;
+        animation-timing-function: var(--ease-in-out-quint); --translateX-end: -70px; --rotate-end: 180deg; --scale-end: 1.6;
+        background-color: var(--anim-span-6-bg);
       }
       .animated-bg span:nth-child(7) {
-        left: 48%;
-        width: 45px;
-        height: 45px;
-        animation-duration: 21s;
-        animation-delay: 5.5s;
-        animation-timing-function: var(--ease-out-back);
-        --translateX-end: 10px;
-        --rotate-end: 600deg;
-        background-color: rgba(37, 99, 235, 0.6);
-        border-radius: 70% 30% 80% 20% / 60% 70% 30% 40%; /* Blob */
+        left: 48%; width: 45px; height: 45px; animation-duration: 21s; animation-delay: 5.5s;
+        animation-timing-function: var(--ease-out-back); --translateX-end: 10px; --rotate-end: 600deg; --scale-end: 1.25;
+        background-color: var(--anim-span-7-bg);
+        border-radius: 70% 30% 80% 20% / 60% 70% 30% 40%;
       }
-      [data-theme="dark"] .animated-bg span:nth-child(7) {
-        background-color: rgba(79, 70, 229, 0.35);
+      /* Added more spans for engagement */
+      .animated-bg span:nth-child(8) { /* Faster, smaller, sharp rise */
+        left: 15%; width: 20px; height: 20px; animation-duration: 15s; animation-delay: 0.8s;
+        animation-timing-function: var(--ease-in-quint); --translateX-end: 25px; --rotate-end: 300deg; --scale-end: 0.9;
+        background-color: var(--anim-span-2-bg); /* Reusing a theme color */
       }
+      .animated-bg span:nth-child(9) { /* Medium, distinct blob, slow drift */
+        left: 80%; width: 55px; height: 55px; animation-duration: 35s; animation-delay: 6s;
+        animation-timing-function: var(--ease-in-out-circ); --translateX-end: -40px; --rotate-end: -150deg; --scale-end: 1.35;
+        background-color: var(--anim-span-4-bg);
+        border-radius: 50% 50% 30% 70% / 60% 40% 70% 30%; /* Unique blob */
+      }
+      .animated-bg span:nth-child(10) { /* Large, very slow, gentle presence */
+        left: 50%; transform: translateX(-50%); width: 110px; height: 110px; animation-duration: 55s; animation-delay: 8s;
+        animation-timing-function: var(--ease-in-out-expo); --translateX-end: 10px; --rotate-end: 90deg; --scale-end: 1.7;
+        background-color: var(--anim-span-6-bg);
+      }
+
 
       .app-header {
         display: flex;
@@ -386,16 +588,16 @@
         top: 1rem;
         z-index: 100;
         border: 1px solid var(--border-primary);
-        transition: box-shadow var(--duration-fast) var(--timing-interactive);
+        transition: box-shadow var(--duration-fast) var(--timing-interactive), background-color var(--duration-normal) var(--timing-state-change), border-color var(--duration-normal) var(--timing-state-change);
       }
 
       .app-controls {
         display: flex;
-        gap: 1.25rem;
+        gap: 1rem; /* Adjusted gap */
         align-items: center;
         flex-wrap: wrap;
       }
-      .app-controls label {
+      .app-controls label:not(.sr-only) {
         font-weight: 600;
         color: var(--text-secondary);
         cursor: pointer;
@@ -406,7 +608,7 @@
           transform var(--duration-fast) var(--ease-out-quad);
         padding: 0.25rem 0; /* Click area */
       }
-      .app-controls label:hover {
+      .app-controls label:not(.sr-only):hover {
         color: var(--text-primary);
         transform: scale(1.05);
       }
@@ -421,10 +623,59 @@
       .app-controls input[type="checkbox"]:hover {
         transform: scale(1.2);
       }
+      .sr-only { /* For accessible labels that are not visible */
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border-width: 0;
+      }
+
+      /* Styles for the new theme selector */
+      .theme-select-container {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+      }
+      .theme-select-container label { /* Visible label for the select dropdown */
+          font-weight: 500;
+          color: var(--text-secondary);
+          font-size: 0.9em;
+      }
+      #theme-select-dropdown {
+          padding: 0.5rem 0.8rem;
+          border: 1px solid var(--border-primary);
+          border-radius: var(--border-radius-md);
+          background-color: var(--bg-tertiary);
+          color: var(--text-primary);
+          font-weight: 500;
+          cursor: pointer;
+          min-width: 130px;
+          transition: border-color var(--duration-fast) var(--timing-interactive),
+                      box-shadow var(--duration-fast) var(--timing-interactive),
+                      background-color var(--duration-normal) var(--timing-state-change),
+                      color var(--duration-normal) var(--timing-state-change);
+        font-family: var(--font-primary); /* Ensure it picks up themed font */
+      }
+      #theme-select-dropdown:hover {
+          border-color: var(--border-interactive);
+          box-shadow: var(--shadow-sm);
+      }
+      #theme-select-dropdown:focus {
+          border-color: var(--border-focus);
+          box-shadow: 0 0 0 3.5px var(--accent-primary-transparent-strong);
+          outline: none;
+      }
+
 
       .theme-switcher-container {
         display: flex;
         align-items: center;
+        gap: 1rem; /* Space between theme select and dark mode toggle */
       }
       .theme-switcher {
         position: relative;
@@ -509,6 +760,7 @@
         font-weight: 700;
         color: var(--text-primary);
         letter-spacing: -0.01em;
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
 
       h2#main-title {
@@ -536,6 +788,7 @@
         background-size: 300% 300%; /* Larger size for smoother animation */
         animation: titleGradient 12s ease-in-out infinite,
           subtleTextPulse 4s ease-in-out infinite alternate;
+         transition: background var(--duration-normal) var(--timing-state-change); /* Allow gradient colors to transition with theme */
       }
 
       @keyframes titleGradient {
@@ -575,7 +828,7 @@
           /* Bouncy hover */ box-shadow var(--duration-medium)
             var(--ease-out-cubic),
           background-color var(--duration-normal) var(--timing-state-change),
-          border-color var(--duration-medium) var(--timing-interactive);
+          border-color var(--duration-normal) var(--timing-state-change); /* Use normal for color changes */
         border: 1px solid var(--border-primary);
         max-width: 900px;
         position: relative;
@@ -605,13 +858,15 @@
         font-size: 0.95rem;
         transition: border-color var(--duration-fast) var(--timing-interactive),
           box-shadow var(--duration-fast) var(--timing-interactive),
-          background-color var(--duration-fast) var(--timing-interactive),
+          background-color var(--duration-normal) var(--timing-state-change), /* Changed to normal */
+          color var(--duration-normal) var(--timing-state-change), /* Added color transition */
           transform var(--duration-fast) var(--ease-out-quad);
         background-color: var(--bg-tertiary);
         color: var(--text-primary);
         font-weight: 500;
         box-shadow: var(--shadow-inset); /* Default inset shadow */
         flex-grow: 1; /* Allow inputs to grow in flex containers */
+        font-family: var(--font-primary); /* Ensure font consistency */
       }
       input[type="number"]:hover,
       select:hover {
@@ -652,6 +907,7 @@
         padding: 0.75rem 0; /* Padding within the group */
         border-top: 1px dashed var(--border-primary); /* Visual separation */
         margin-top: 0.75rem;
+        transition: border-color var(--duration-normal) var(--timing-state-change);
       }
       .c-g:first-child,
       .m-g:first-child {
@@ -677,6 +933,7 @@
         color: var(--text-secondary);
         font-weight: 500;
         font-size: 0.9rem;
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
       .c-g > div input,
       .m-g > div input {
@@ -692,6 +949,7 @@
         font-size: 0.95rem;
         color: var(--text-secondary);
         font-weight: 500;
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
       .t-m span {
         /* Text label for the toggle */
@@ -764,8 +1022,11 @@
         transition: transform var(--duration-fast) var(--ease-out-back),
           /* Bouncy */ box-shadow var(--duration-fast) var(--ease-out-quad),
           opacity var(--duration-fast) var(--timing-interactive),
-          background-position var(--duration-medium) var(--ease-in-out-cubic);
-        will-change: transform, box-shadow, background-position;
+          background-position var(--duration-medium) var(--ease-in-out-cubic),
+          background var(--duration-normal) var(--timing-state-change), /* For gradient colors */
+          color var(--duration-normal) var(--timing-state-change);
+        will-change: transform, box-shadow, background-position, background, color;
+        font-family: var(--font-primary);
       }
       button:hover {
         transform: translateY(-4px) scale(1.05); /* More pop */
@@ -829,7 +1090,7 @@
       }
       #missing-list button.remove-missing-btn {
         /* Remove button, more specific selector */
-        background: linear-gradient(65deg, var(--accent-danger), #c33a3a);
+        background: linear-gradient(65deg, var(--accent-danger), color-mix(in srgb, var(--accent-danger) 80%, black));
         padding: 0.6rem 1.1rem;
         flex-shrink: 0;
         margin-top: 0.75rem; /* Space above button */
@@ -847,6 +1108,8 @@
         position: relative;
         z-index: 1;
         border: 1px solid var(--border-primary);
+        transition: background-color var(--duration-normal) var(--timing-state-change),
+                    border-color var(--duration-normal) var(--timing-state-change);
       }
       .r-b h3 {
         color: var(--text-secondary);
@@ -869,7 +1132,8 @@
         text-shadow: 0 0 12px var(--accent-primary-transparent-strong);
         transition: color var(--duration-fast) var(--timing-state-change),
           text-shadow var(--duration-fast) var(--timing-state-change),
-          transform var(--duration-fast) var(--ease-out-quad);
+          transform var(--duration-fast) var(--ease-out-quad),
+          background-color var(--duration-normal) var(--timing-state-change);
       }
       /* JS can add .result-updated class to trigger animation on change */
       .result-updated {
@@ -896,26 +1160,26 @@
         z-index: 1;
         background: linear-gradient(
           to right,
-          var(--bg-tertiary-alpha-info, rgba(147, 51, 234, 0.05)),
+          var(--bg-tertiary-alpha-info, color-mix(in srgb, var(--a) 5%, transparent)), /* Themed alpha background */
           transparent 70%
         );
         transition: border-left-color var(--duration-medium)
             var(--timing-interactive),
           background var(--duration-medium) var(--timing-interactive);
       }
-      [data-theme="dark"] .i-b {
-        --bg-tertiary-alpha-info: rgba(168, 85, 247, 0.08);
+      [data-theme="dark"] .i-b { /* Keep this structure but var(--a) will change by theme */
+        --bg-tertiary-alpha-info: color-mix(in srgb, var(--a) 8%, transparent);
       }
       .i-b:hover {
         border-left-color: var(--s); /* Use secondary accent on hover */
         background: linear-gradient(
           to right,
-          var(--bg-tertiary-alpha-info-hover, rgba(79, 70, 229, 0.07)),
+          var(--bg-tertiary-alpha-info-hover, color-mix(in srgb, var(--s) 7%, transparent)),
           transparent 70%
         );
       }
-      [data-theme="dark"] .i-b:hover {
-        --bg-tertiary-alpha-info-hover: rgba(129, 140, 248, 0.1);
+      [data-theme="dark"] .i-b:hover { /* Theme changes var(--s) */
+        --bg-tertiary-alpha-info-hover: color-mix(in srgb, var(--s) 10%, transparent);
       }
 
       .i-b p {
@@ -926,10 +1190,12 @@
         font-weight: 500;
         color: var(--text-secondary);
         /* box-shadow: var(--shadow-xs); Removed, rely on parent card shadow */
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
       .i-b p strong {
         color: var(--text-primary);
         font-weight: 600;
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
 
       .f {
@@ -943,6 +1209,7 @@
         position: relative;
         z-index: 1;
         opacity: 0.8;
+        transition: color var(--duration-normal) var(--timing-state-change), border-color var(--duration-normal) var(--timing-state-change);
       }
 
       @keyframes cardEnter {
@@ -1006,8 +1273,8 @@
         transition: transform var(--duration-fast) var(--ease-out-quad),
           box-shadow var(--duration-fast) var(--ease-out-quad),
           background-color var(--duration-normal) var(--timing-state-change),
-          border-color var(--duration-fast) var(--timing-interactive);
-        will-change: transform, box-shadow;
+          border-color var(--duration-normal) var(--timing-state-change); /* Use normal */
+        will-change: transform, box-shadow, background-color, border-color;
       }
       .module-item:last-child {
         margin-bottom: 0; /* No bottom margin on the last one */
@@ -1027,6 +1294,7 @@
         align-items: center;
         flex-wrap: wrap; /* Allow wrap on small screens */
         gap: 0.5rem;
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
 
       .module-item h4 > span {
@@ -1035,6 +1303,7 @@
         font-weight: 500;
         color: var(--text-secondary);
         flex-shrink: 0;
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
 
       .module-average {
@@ -1043,6 +1312,7 @@
         padding-top: 1rem;
         border-top: 1px dashed var(--border-primary); /* Visual separation */
         position: relative; /* For tooltip icon positioning */
+        transition: border-color var(--duration-normal) var(--timing-state-change);
       }
 
       .module-average strong {
@@ -1080,7 +1350,9 @@
           /* Bouncy entry */ max-height var(--duration-slow)
             var(--ease-in-out-quart),
           padding var(--duration-medium) var(--ease-out-cubic),
-          margin var(--duration-medium) var(--ease-out-cubic); /* Animate margin too */
+          margin var(--duration-medium) var(--ease-out-cubic),
+          background-color var(--duration-normal) var(--timing-state-change),
+          border-color var(--duration-normal) var(--timing-state-change); /* Added */
         overflow: hidden;
         border-left: 4px solid var(--accent-secondary); /* Indicator */
         margin-bottom: 0 !important; /* Initially no margin when collapsed */
@@ -1102,6 +1374,7 @@
         margin-bottom: 1rem;
         color: var(--text-primary);
         font-size: 1.1rem;
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
       .missing-module-item > div.input-grade-group {
         /* Target only grade input groups for this styling */
@@ -1116,6 +1389,7 @@
         color: var(--text-secondary);
         font-weight: 500;
         text-align: right; /* Align labels */
+        transition: color var(--duration-normal) var(--timing-state-change);
       }
       .missing-module-item input[type="number"] {
         /* General selector for number inputs in missing item */
@@ -1162,7 +1436,8 @@
         transition: max-height var(--duration-medium) var(--timing-collapse),
           opacity var(--duration-medium) var(--timing-collapse),
           margin-top var(--duration-medium) var(--timing-collapse),
-          padding-top var(--duration-medium) var(--timing-collapse);
+          padding-top var(--duration-medium) var(--timing-collapse),
+          border-color var(--duration-normal) var(--timing-state-change);
       }
       .weights-customization.visible {
         max-height: 1000px; /* Adjust if more components */
@@ -1174,6 +1449,7 @@
         color: var(--text-secondary);
         margin-bottom: 0.75rem;
         font-weight: 600;
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
       .weight-input-group {
         display: flex;
@@ -1186,13 +1462,16 @@
         text-align: right;
         font-size: 0.85rem;
         color: var(--text-secondary);
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
       .weight-input-group input[type="number"].component-weight-input {
         /* More specific selector */
         width: 80px; /* Fixed width for percentage inputs */
         flex-grow: 0; /* Don't allow to grow */
         border-width: 1px; /* For invalid border */
-        transition: border-color 0.2s ease-in-out;
+        transition: border-color 0.2s ease-in-out,
+                    background-color var(--duration-normal) var(--timing-state-change), /* For theme */
+                    color var(--duration-normal) var(--timing-state-change); /* For theme */
       }
       .weight-input-group
         input[type="number"].component-weight-input.invalid-weight-sum {
@@ -1205,6 +1484,7 @@
         font-size: 0.85rem;
         margin-top: 0.5rem;
         font-weight: 500;
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
       .weights-sum-warning strong {
         font-weight: 700;
@@ -1242,6 +1522,7 @@
         position: relative; /* For tooltip child */
         display: inline-block; /* To make it behave well with the strong tag */
         vertical-align: middle;
+         transition: color var(--duration-normal) var(--timing-state-change);
       }
       .calc-tooltip-icon:hover {
         color: var(--text-accent);
@@ -1265,7 +1546,10 @@
         transform: translateX(-50%);
         opacity: 0;
         transition: opacity var(--duration-fast) ease-in-out,
-          visibility var(--duration-fast) ease-in-out;
+          visibility var(--duration-fast) ease-in-out,
+          background-color var(--duration-normal) var(--timing-state-change), /* Theme */
+          color var(--duration-normal) var(--timing-state-change), /* Theme */
+          border-color var(--duration-normal) var(--timing-state-change); /* Theme */
         box-shadow: var(--shadow-md);
         border: 1px solid var(--border-primary);
         pointer-events: none; /* Allow clicks to pass through if not directly on it */
@@ -1287,6 +1571,7 @@
         border-width: 5px;
         border-style: solid;
         border-color: var(--bg-tertiary) transparent transparent transparent;
+        transition: border-color var(--duration-normal) var(--timing-state-change); /* Theme */
       }
       [data-theme="dark"] .calc-tooltiptext::after {
         border-color: var(--bg-tertiary) transparent transparent transparent;
@@ -1294,110 +1579,25 @@
 
       /* --- PARTY MODE ENHANCEMENTS --- */
       @keyframes partyBackground {
-        0% {
-          background-color: #ff0000;
-        }
-        7% {
-          background-color: #ff7f00;
-        }
-        14% {
-          background-color: #ffff00;
-        }
-        21% {
-          background-color: #00ff00;
-        }
-        28% {
-          background-color: #00ffff;
-        }
-        35% {
-          background-color: #0000ff;
-        }
-        42% {
-          background-color: #8b00ff;
-        }
-        49% {
-          background-color: #ff00ff;
-        }
-        56% {
-          background-color: #ff1493;
-        }
-        63% {
-          background-color: #32cd32;
-        }
-        70% {
-          background-color: #ffa500;
-        }
-        77% {
-          background-color: #adff2f;
-        }
-        84% {
-          background-color: #ff69b4;
-        }
-        91% {
-          background-color: #00fa9a;
-        }
-        100% {
-          background-color: #ff0000;
-        }
+        0% { background-color: #ff0000; } 7% { background-color: #ff7f00; } 14% { background-color: #ffff00; }
+        21% { background-color: #00ff00; } 28% { background-color: #00ffff; } 35% { background-color: #0000ff; }
+        42% { background-color: #8b00ff; } 49% { background-color: #ff00ff; } 56% { background-color: #ff1493; }
+        63% { background-color: #32cd32; } 70% { background-color: #ffa500; } 77% { background-color: #adff2f; }
+        84% { background-color: #ff69b4; } 91% { background-color: #00fa9a; } 100% { background-color: #ff0000; }
       }
       @keyframes partyDance {
-        /* More exaggerated */
-        0%,
-        100% {
-          transform: rotate(0deg) translateX(0px) translateY(0px) scale(1);
-        }
-        25% {
-          transform: rotate(-2deg) translateX(-3px) translateY(-2px) scale(1.01);
-        }
-        50% {
-          transform: rotate(0deg) translateX(0px) translateY(0px) scale(0.99);
-        }
-        75% {
-          transform: rotate(2deg) translateX(3px) translateY(2px) scale(1.01);
-        }
+        0%, 100% { transform: rotate(0deg) translateX(0px) translateY(0px) scale(1); }
+        25% { transform: rotate(-2deg) translateX(-3px) translateY(-2px) scale(1.01); }
+        50% { transform: rotate(0deg) translateX(0px) translateY(0px) scale(0.99); }
+        75% { transform: rotate(2deg) translateX(3px) translateY(2px) scale(1.01); }
       }
       @keyframes partyHueRotate {
-        0% {
-          filter: hue-rotate(0deg) saturate(1.5);
-        }
-        100% {
-          filter: hue-rotate(360deg) saturate(1.5);
-        }
+        0% { filter: hue-rotate(0deg) saturate(1.5); } 100% { filter: hue-rotate(360deg) saturate(1.5); }
       }
       @keyframes partyTextColor {
-        0% {
-          color: #ff0000;
-        }
-        10% {
-          color: #ff7f00;
-        }
-        20% {
-          color: #ffff00;
-        }
-        30% {
-          color: #00ff00;
-        }
-        40% {
-          color: #00ffff;
-        }
-        50% {
-          color: #0000ff;
-        }
-        60% {
-          color: #8b00ff;
-        }
-        70% {
-          color: #ff00ff;
-        }
-        80% {
-          color: #ff1493;
-        }
-        90% {
-          color: #32cd32;
-        }
-        100% {
-          color: #ff0000;
-        }
+        0% { color: #ff0000; } 10% { color: #ff7f00; } 20% { color: #ffff00; } 30% { color: #00ff00; }
+        40% { color: #00ffff; } 50% { color: #0000ff; } 60% { color: #8b00ff; } 70% { color: #ff00ff; }
+        80% { color: #ff1493; } 90% { color: #32cd32; } 100% { color: #ff0000; }
       }
 
       html.party-mode .animated-bg {
@@ -1407,243 +1607,269 @@
       html.party-mode .animated-bg span {
         opacity: 1 !important;
         animation-duration: var(--duration-fastest) !important;
-        animation-timing-function: steps(
-          2,
-          jump-none
-        ) !important; /* Strobe-like */
+        animation-timing-function: steps(2, jump-none) !important; /* Strobe-like */
         box-shadow: 0 0 25px 12px currentColor, 0 0 40px 20px currentColor inset !important; /* Intense glow */
         filter: brightness(1.5) saturate(2);
       }
       html.party-mode .content-card,
-    html.party-mode .app-header,
-    html.party-mode button,
-    html.party-mode .module-item, /* Add module item */
-    html.party-mode .missing-module-item /* Add missing item */ {
-        animation: partyDance 0.2s linear infinite alternate,
-          partyHueRotate 1s linear infinite;
+      html.party-mode .app-header,
+      html.party-mode button,
+      html.party-mode .module-item, /* Add module item */
+      html.party-mode .missing-module-item /* Add missing item */ {
+        animation: partyDance 0.2s linear infinite alternate, partyHueRotate 1s linear infinite;
       }
       html.party-mode h2#main-title {
-        animation: partyDance 0.15s linear infinite alternate,
-          titleGradient 1.5s ease-in-out infinite,
-          partyTextColor 0.4s linear infinite;
+        animation: partyDance 0.15s linear infinite alternate, titleGradient 1.5s ease-in-out infinite, partyTextColor 0.4s linear infinite;
         -webkit-text-fill-color: unset !important; /* Allow color animation */
-        -moz-text-fill-color: unset !important;
-        text-fill-color: unset !important;
+        -moz-text-fill-color: unset !important; text-fill-color: unset !important;
         background: none !important; /* Disable gradient background for text color cycle */
+        font-family: "Comic Sans MS", "Chalkduster", fantasy !important; /* Party font! */
       }
-      html.party-mode input,
-      html.party-mode select,
-      html.party-mode .r-b {
+      html.party-mode input, html.party-mode select, html.party-mode .r-b {
         animation: partyDance 0.3s ease-in-out infinite alternate;
       }
 
       /* --- Confetti Canvas --- */
       #confetti-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none; /* So it doesn't interfere with interactions */
-        z-index: 9999; /* Above everything */
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none; z-index: 9999;
+      }
+      
+      /* --- WELCOME MODAL STYLES --- */
+      .modal-overlay {
+          position: fixed;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.7); /* Darker overlay */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          z-index: 2000; /* Above everything else */
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity var(--duration-normal) var(--timing-enter), visibility 0s var(--duration-normal) linear;
+          padding: 1rem; /* Ensure padding for small screens */
+      }
+      .modal-overlay.visible {
+          opacity: 1;
+          visibility: visible;
+          transition: opacity var(--duration-normal) var(--timing-enter), visibility 0s linear;
       }
 
-      @media (max-width: 768px) {
-        body {
-          padding: 1rem 0.75rem;
-        }
-        .app-header {
-          flex-direction: column;
-          gap: 1rem;
-          padding: 1rem;
+      .modal-content {
+          background-color: var(--bg-primary);
+          color: var(--text-primary);
+          padding: 2rem 2.5rem;
+          border-radius: var(--border-radius-xl);
+          box-shadow: var(--shadow-xl);
+          max-width: 600px;
+          width: 100%; /* Full width up to max-width */
+          position: relative;
+          transform: translateY(-30px) scale(0.9); /* More pronounced entry animation */
+          transition: transform var(--duration-medium) var(--timing-reveal),
+                      opacity var(--duration-medium) var(--timing-reveal), /* Animate opacity too */
+                      background-color var(--duration-normal) var(--timing-state-change),
+                      color var(--duration-normal) var(--timing-state-change);
+          max-height: 90vh;
+          overflow-y: auto;
+          opacity: 0;
+      }
+      .modal-overlay.visible .modal-content {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+      }
+
+      .modal-content h2 {
+          color: var(--accent-primary);
+          text-align: center;
+          margin-top: 0;
+          margin-bottom: 0.75rem;
+          font-size: 1.8rem;
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      .modal-content p {
+          margin-bottom: 1.5rem;
+          text-align: center;
+          font-size: 1.05rem;
+          color: var(--text-secondary);
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      .modal-content p strong {
+          color: var(--text-primary);
+          font-weight: 700;
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+
+      .modal-close-btn {
+          position: absolute;
           top: 0.75rem;
-        }
-        .app-controls {
+          right: 0.75rem;
+          background: transparent;
+          border: none;
+          font-size: 2.2rem; /* Larger */
+          color: var(--text-muted);
+          cursor: pointer;
+          padding: 0.2rem 0.5rem;
+          line-height: 1;
+          transition: color var(--duration-fast) var(--timing-interactive), transform var(--duration-fast) var(--timing-interactive);
+          z-index: 10; /* Ensure above other modal content if overlapping */
+      }
+      .modal-close-btn:hover {
+          color: var(--text-primary);
+          transform: scale(1.15) rotate(90deg); /* More interaction */
+      }
+
+      .modal-actions {
+          display: flex;
           justify-content: center;
           gap: 1rem;
-        }
-        h2#main-title {
-          font-size: 2rem;
-        }
-        h3 {
-          font-size: 1.35rem;
-        }
-        .content-card,
-        .collapsible-section {
-          margin: 1.25rem auto;
-          padding: 1.5rem;
-          border-radius: var(--border-radius-lg);
-        }
-
-        /* New mobile specific adjustments for module items */
-        .module-item {
-          padding: 1rem;
-          margin-bottom: 1rem;
-        }
-        .module-item h4 {
-          font-size: 1.1rem;
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .module-item h4 > span {
-          font-size: 0.85rem;
-          margin-top: 0.2rem;
-        }
-        .module-item h4 .toggle-weights-btn {
-          margin-left: 0;
-          margin-top: 0.3rem;
-        } /* Adjust btn on mobile */
-
-        .c-g > div,
-        .m-g > div {
-          /* Stack labels and inputs */
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.25rem; /* Reduce gap when stacked */
-          min-width: 100%; /* Take full width */
-        }
-        .c-g > div label,
-        .m-g > div label {
-          text-align: left; /* Align labels left */
-          min-width: auto; /* Don't need min-width when stacked */
-        }
-        .c-g,
-        .m-g {
-          flex-direction: column; /* Stack input groups */
-          gap: 0.5rem; /* Reduced gap between stacked input groups */
-          padding: 0.5rem 0;
-        }
-
-        button {
-          padding: 0.8rem 1.5rem;
+          margin-bottom: 1.5rem;
+          flex-wrap: wrap; /* Allow buttons to wrap on small screens */
+      }
+      .modal-actions button { 
           font-size: 0.9rem;
-          letter-spacing: 0.03em;
-        }
-        #f-a,
-        #t-f-a,
-        #s2-f-a {
-          font-size: 2rem;
-        }
-        .animated-bg span:nth-child(n + 6) {
-          display: none;
-        } /* Show fewer particles */
+          padding: 0.7rem 1.3rem;
+      }
+      .modal-actions button#show-guide-btn {
+          background: linear-gradient(65deg, var(--accent-success), color-mix(in srgb, var(--accent-success) 85%, black));
+      }
+      .modal-actions button#dismiss-welcome-btn {
+          background: linear-gradient(65deg, var(--bg-interactive-strong), var(--bg-interactive));
+          color: var(--text-secondary);
+      }
+      .modal-actions button#dismiss-welcome-btn:hover {
+           color: var(--text-primary);
+      }
 
-        .missing-module-item {
-          padding: 1rem !important;
-          margin-bottom: 1rem !important;
-        }
-        .missing-module-item > div.input-grade-group {
-          flex-direction: column;
-          align-items: flex-start;
-          gap: 0.25rem;
-        }
-        .missing-module-item > div.input-grade-group label {
+
+      .guide-section {
+          border-top: 1px solid var(--border-primary);
+          padding-top: 1.5rem;
+          margin-top: 1.5rem;
           text-align: left;
-          min-width: auto;
-        }
-        .missing-module-item button.remove-missing-btn {
-          align-self: stretch;
-          margin-top: 0.5rem;
-        } /* Full width button */
+          transition: border-color var(--duration-normal) var(--timing-state-change);
+          animation: fadeInGuide 0.5s var(--ease-out-cubic);
+      }
+      @keyframes fadeInGuide {
+          from { opacity: 0; transform: translateY(10px); }
+          to { opacity: 1; transform: translateY(0); }
+      }
+      .guide-section h3 {
+          text-align: center;
+          color: var(--text-accent);
+          margin-bottom: 1rem;
+          font-size: 1.5rem;
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      .guide-section ul {
+          list-style: none; /* Changed from 'disc' to none for cleaner look with emoji */
+          padding-left: 0; /* Removed default padding */
+      }
+      .guide-section ul li {
+          margin-bottom: 0.8rem;
+          font-size: 0.95rem;
+          line-height: 1.6; /* Slightly more line height for readability */
+          color: var(--text-secondary);
+          transition: color var(--duration-normal) var(--timing-state-change);
+          padding-left: 1.8em; /* Space for emoji bullet */
+          position: relative;
+      }
+      .guide-section ul li::before { /* Emoji bullets */
+        content: '🔹'; /* Default bullet */
+        position: absolute;
+        left: 0;
+        top: 0.05em; /* Adjust vertical alignment */
+        color: var(--accent-primary);
+        font-size: 0.9em;
+         transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      .guide-section ul li:nth-child(1)::before { content: '🕹️';} /* Modes */
+      .guide-section ul li:nth-child(2)::before { content: '✍️';} /* Grades */
+      .guide-section ul li:nth-child(3)::before { content: '⚖️';} /* Custom Weights */
+      .guide-section ul li:nth-child(4)::before { content: '🎨';} /* Themes */
+      .guide-section ul li:nth-child(5)::before { content: '🎉';} /* Party Time */
+      .guide-section ul li:nth-child(6)::before { content: '🔄';} /* Reset */
 
-        .weight-input-group {
-          flex-direction: column;
-          align-items: flex-start;
-        }
-        .weight-input-group label {
-          text-align: left;
-          min-width: auto;
-          margin-bottom: 0.2rem;
-        }
-        .weight-input-group input[type="number"].component-weight-input {
-          width: 100%;
-        }
+      .guide-section ul li strong {
+          color: var(--text-primary);
+          font-weight: 600;
+          margin-right: 0.3em;
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      .guide-section ul li em {
+          color: var(--p); /* Use primary accent color */
+          font-style: normal;
+          font-weight: 500; /* Slightly bolder for emphasis */
+          transition: color var(--duration-normal) var(--timing-state-change);
+      }
+      /* End Welcome Modal Styles */
 
-        .calc-tooltiptext {
-          left: 5%;
-          transform: translateX(0);
-          width: 90%;
-        } /* Adjust tooltip for mobile */
-        .calc-tooltiptext::after {
-          left: 10%;
-        }
+      @media (max-width: 768px) {
+        body { padding: 1rem 0.75rem; }
+        .app-header { flex-direction: column; gap: 1rem; padding: 1rem; top: 0.75rem; }
+        .app-controls { flex-direction: column; justify-content: center; gap: 0.75rem; width:100%;} /* Stack controls */
+        .theme-select-container { width: auto; max-width:250px; justify-content: center;} /* Center theme select */
+        #theme-select-dropdown { width: 100%; }
+        .theme-switcher-container { justify-content: center; margin-top: 0.5rem; }
+
+
+        h2#main-title { font-size: 2rem; }
+        h3 { font-size: 1.35rem; }
+        .content-card, .collapsible-section { margin: 1.25rem auto; padding: 1.5rem; border-radius: var(--border-radius-lg); }
+        .module-item { padding: 1rem; margin-bottom: 1rem; }
+        .module-item h4 { font-size: 1.1rem; flex-direction: column; align-items: flex-start; }
+        .module-item h4 > span { font-size: 0.85rem; margin-top: 0.2rem; }
+        .module-item h4 .toggle-weights-btn { margin-left: 0; margin-top: 0.3rem; }
+        .c-g > div, .m-g > div { flex-direction: column; align-items: flex-start; gap: 0.25rem; min-width: 100%; }
+        .c-g > div label, .m-g > div label { text-align: left; min-width: auto; }
+        .c-g, .m-g { flex-direction: column; gap: 0.5rem; padding: 0.5rem 0; }
+        button { padding: 0.8rem 1.5rem; font-size: 0.9rem; letter-spacing: 0.03em; }
+        #f-a, #t-f-a, #s2-f-a { font-size: 2rem; }
+        .animated-bg span:nth-child(n + 8) { display: none; } /* Show fewer, now up to 7 shown */
+        .missing-module-item { padding: 1rem !important; margin-bottom: 1rem !important; }
+        .missing-module-item > div.input-grade-group { flex-direction: column; align-items: flex-start; gap: 0.25rem; }
+        .missing-module-item > div.input-grade-group label { text-align: left; min-width: auto; }
+        .missing-module-item button.remove-missing-btn { align-self: stretch; margin-top: 0.5rem; }
+        .weight-input-group { flex-direction: column; align-items: flex-start; }
+        .weight-input-group label { text-align: left; min-width: auto; margin-bottom: 0.2rem; }
+        .weight-input-group input[type="number"].component-weight-input { width: 100%; }
+        .calc-tooltiptext { left: 5%; transform: translateX(0); width: 90%; }
+        .calc-tooltiptext::after { left: 10%; }
+        .modal-content { padding: 1.5rem; } /* Adjust modal padding */
+        .modal-content h2 { font-size: 1.6rem; }
+        .guide-section ul li { font-size: 0.9rem; padding-left: 1.6em; }
       }
       @media (max-width: 480px) {
-        body {
-          padding: 0.5rem;
-        }
-        .app-header {
-          padding: 0.75rem;
-          top: 0.5rem;
-        }
-        .app-controls label {
-          font-size: 0.9rem;
-          gap: 0.5rem;
-        }
-        .app-controls input[type="checkbox"] {
-          width: 18px;
-          height: 18px;
-        }
-        .theme-switcher {
-          width: 48px;
-          height: 26px;
-        } /* Adjusted */
-        .theme-switcher .slider:before {
-          width: 20px;
-          height: 20px;
-          left: 3px;
-          bottom: 3px;
-        }
-        .theme-switcher input:checked + .slider:before {
-          transform: translateX(22px);
-        } /* Adjusted */
-        .slider::after {
-          font-size: 11px;
-          right: 6px;
-        }
-        .theme-switcher input:checked + .slider::after {
-          left: 6px;
-        }
-        h2#main-title {
-          font-size: 1.7rem;
-        }
-        h3 {
-          font-size: 1.2rem;
-        }
-        .content-card,
-        .collapsible-section {
-          padding: 1rem;
-          margin: 1rem auto;
-        }
-        .module-item {
-          padding: 0.75rem;
-          margin-bottom: 0.75rem;
-        }
-        .module-item h4 {
-          font-size: 1rem;
-        }
-        .c-g > div,
-        .m-g > div {
-          min-width: 100%;
-        } /* Ensure stacking */
+        body { padding: 0.5rem; }
+        .app-header { padding: 0.75rem; top: 0.5rem; }
+        .app-controls label:not(.sr-only) { font-size: 0.9rem; gap: 0.5rem; }
+        .app-controls input[type="checkbox"] { width: 18px; height: 18px; }
+        .theme-select-container label { font-size: 0.85rem; }
+        #theme-select-dropdown { padding: 0.4rem 0.7rem; font-size:0.9rem;}
 
-        button {
-          padding: 0.7rem 1.2rem;
-          font-size: 0.85rem;
-        }
-        #f-a,
-        #t-f-a,
-        #s2-f-a {
-          font-size: 1.75rem;
-        }
-        .animated-bg span:nth-child(n + 4) {
-          display: none;
-        } /* Even fewer particles */
-
-        .missing-module-item {
-          padding: 0.75rem !important;
-          margin-bottom: 0.75rem !important;
-        }
+        .theme-switcher { width: 48px; height: 26px; }
+        .theme-switcher .slider:before { width: 20px; height: 20px; left: 3px; bottom: 3px; }
+        .theme-switcher input:checked + .slider:before { transform: translateX(22px); }
+        .slider::after { font-size: 11px; right: 6px; }
+        .theme-switcher input:checked + .slider::after { left: 6px; }
+        h2#main-title { font-size: 1.7rem; }
+        h3 { font-size: 1.2rem; }
+        .content-card, .collapsible-section { padding: 1rem; margin: 1rem auto; }
+        .module-item { padding: 0.75rem; margin-bottom: 0.75rem; }
+        .module-item h4 { font-size: 1rem; }
+        .c-g > div, .m-g > div { min-width: 100%; }
+        button { padding: 0.7rem 1.2rem; font-size: 0.85rem; }
+        #f-a, #t-f-a, #s2-f-a { font-size: 1.75rem; }
+        .animated-bg span:nth-child(n + 6) { display: none; } /* Even fewer, now up to 5 shown */
+        .missing-module-item { padding: 0.75rem !important; margin-bottom: 0.75rem !important; }
+        .modal-content { padding: 1rem; } /* Adjust modal padding */
+        .modal-content h2 { font-size: 1.4rem; }
+        .modal-content p { font-size: 0.95rem; margin-bottom: 1rem;}
+        .modal-actions button { font-size: 0.8rem; padding: 0.6rem 1rem; }
+        .guide-section h3 { font-size: 1.3rem; }
+        .guide-section ul li { font-size: 0.85rem; }
       }
     </style>
 
@@ -1651,37 +1877,61 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet"> <!-- For Matrix theme title -->
   </head>
 
   <body>
-    <div class="animated-bg">
+    <div class="animated-bg"> <!-- Total 10 spans now -->
       <span></span><span></span><span></span><span></span><span></span
-      ><span></span><span></span>
+      ><span></span><span></span><span></span><span></span><span></span>
     </div>
     <canvas id="confetti-canvas"></canvas>
 
+    <!-- Welcome Modal -->
+    <div id="welcome-modal" class="modal-overlay" style="display: none;">
+        <div class="modal-content">
+            <button class="modal-close-btn" aria-label="Close welcome message">&times;</button>
+            <h2>🎉 Welcome! 🎉</h2>
+            <p>This calculator is made by <strong>Walid</strong>, enhanced with AI.</p>
+            <div class="modal-actions">
+                <button id="show-guide-btn">Show Quick Guide</button>
+                <button id="dismiss-welcome-btn">Get Started</button>
+            </div>
+            <div id="guide-content" class="guide-section" style="display: none;">
+                <h3>🚀 Quick Guide</h3>
+                <ul>
+                    <li><strong>Modes:</strong> There is a <em>Talents Mode</em> where you can enter only missing subjects and <em>S2 Mode is always avaible too </em>. Choose between the two.</li>
+                    <li><strong>Grades:</strong> Input grades. Hover 'ⓘ' by module average for formula details.</li>
+                    <li><strong>Custom Weights:</strong> Click '⚙️' by module name to customize component weights. Saved locally!</li>
+                    <li><strong>Themes:</strong> Pick a 'Theme' and use ☀️/🌙 for Light/Dark mode.</li>
+                    <li><strong>Party Time:</strong> Try Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) for 10 seconds of fun!</li>
+                    <li><strong>Reset:</strong> 'Reset All' button at bottom clears inputs & weights.</li>
+                </ul>
+                <p style="text-align: center; margin-top:1rem; font-size:0.9em; color:var(--text-muted);">Happy Calculating!</p>
+            </div>
+        </div>
+    </div>
+
+
     <header class="app-header">
       <div class="app-controls">
-        <label
-          ><input type="checkbox" id="t-m-global" onchange="tTM()" /> Talents
-          Mode</label
-        >
-        <label
-          ><input type="checkbox" id="s2-m-global" onchange="toggleS2()" /> S2
-          Mode</label
-        >
+        <label><input type="checkbox" id="t-m-global" onchange="tTM()" /> Talents Mode</label>
+        <label><input type="checkbox" id="s2-m-global" onchange="toggleS2()" /> S2 Mode</label>
       </div>
       <div class="theme-switcher-container">
-        <label
-          class="theme-switcher"
-          for="theme-toggle"
-          title="Toggle Dark Mode"
-        >
-          <input
-            type="checkbox"
-            id="theme-toggle"
-            aria-label="Toggle dark mode"
-          /><span class="slider"></span>
+        <div class="theme-select-container">
+            <label for="theme-select-dropdown" class="sr-only">Select Theme</label> <!-- Added sr-only for screen readers if no visible label -->
+            <select id="theme-select-dropdown">
+                <option value="default">Default</option>
+                <option value="ocean">Ocean Blue</option>
+                <option value="forest">Forest Green</option>
+                <option value="sunset">Sunset Glow</option>
+                <option value="matrix">Matrix Code</option>
+            </select>
+        </div>
+        <label class="theme-switcher" for="theme-toggle" title="Toggle Dark Mode">
+          <input type="checkbox" id="theme-toggle" aria-label="Toggle dark mode" />
+          <span class="slider"></span>
         </label>
       </div>
     </header>
@@ -1752,7 +2002,7 @@
 
     <!-- S1 Calculation Button and Result -->
     <div style="text-align: center; margin: 1.5rem 0">
-      <button id="s1-calc" onclick="cA()">Calc S1 Avg</button>
+      <button id="s1-calc" class="primary-action" onclick="cA()">Calc S1 Avg</button>
     </div>
     <div class="r-b" id="s1-result" style="text-align: center">
       <h3>S1 Avg: <span id="f-a">0.00</span></h3>
@@ -1771,7 +2021,7 @@
 
     <!-- S2 Calculation Button and Result -->
     <div style="text-align: center; margin: 1.5rem 0">
-      <button id="s2-calc" onclick="cA_S2()" style="display: none">
+      <button id="s2-calc" class="primary-action" onclick="cA_S2()" style="display: none">
         Calc S2 Avg
       </button>
     </div>
@@ -1786,7 +2036,6 @@
 
     <div class="f">
       Made by Walid - Enhanced UI by Expert AI       try this ↑ ↑ ↓ ↓ ← → ← → B A
-
     </div>
 
     <script>
@@ -1797,437 +2046,115 @@
           coef: 3,
           fields: ["TD", "IN (/8)", "CI", "CF"],
           components: [
-            {
-              id: "td",
-              label: "TD",
-              defaultWeight: 0.1,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "in",
-              label: "IN (/8)",
-              defaultWeight: 0.1,
-              inputMax: 8,
-              preWeightScale: 2.5,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "td", label: "TD", defaultWeight: 0.1, inputMax: 20, preWeightScale: 1, },
+            { id: "in", label: "IN (/8)", defaultWeight: 0.1, inputMax: 8, preWeightScale: 2.5, },
+            { id: "ci", label: "CI", defaultWeight: 0.3, inputMax: 20, preWeightScale: 1, },
+            { id: "cf", label: "CF", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ARCHI",
-          coef: 4,
-          fields: ["CF", "CI"],
+        }, {
+          code: "ARCHI", coef: 4, fields: ["CF", "CI"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+          ], hasBonus: true, bonusValue: 1,
+        }, {
+          code: "ALG1", coef: 3, fields: ["CF", "CI"],
+          components: [
+            { id: "cf", label: "CF", defaultWeight: 0.67, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
           ],
-          hasBonus: true,
-          bonusValue: 1,
-        },
-        {
-          code: "ALG1",
-          coef: 3,
-          fields: ["CF", "CI"],
+        }, {
+          code: "ANA1", coef: 5, fields: ["CF", "CI"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.67,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.67, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ANA1",
-          coef: 5,
-          fields: ["CF", "CI"],
+        }, {
+          code: "TEE", coef: 2, fields: ["CF", "CC (/20)"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.67,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 2 / 3, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC (/20)", defaultWeight: 1 / 3, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "TEE",
-          coef: 2,
-          fields: ["CF", "CC (/20)"],
+        }, {
+          code: "ALSDS", coef: 5, fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 2 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC (/20)",
-              defaultWeight: 1 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.3, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
+            { id: "tp1", label: "TP1", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
+            { id: "tp2", label: "TP2", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
+            { id: "tr", label: "TR (/20)", defaultWeight: 0.1, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ALSDS",
-          coef: 5,
-          fields: ["CF", "CI", "TP1", "TP2", "TR (/20)"],
+        }, {
+          code: "BWEB", coef: 1, fields: ["CF", "CI", "CC"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "tp1",
-              label: "TP1",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "tp2",
-              label: "TP2",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "tr",
-              label: "TR (/20)",
-              defaultWeight: 0.1,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.4, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.4, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "BWEB",
-          coef: 1,
-          fields: ["CF", "CI", "CC"],
+        }, {
+          code: "ELECT", coef: 3, fields: ["CF", "CI", "CC=INT1+INT2"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.4,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.4,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-          ],
-        },
-        {
-          code: "ELECT",
-          coef: 3,
-          fields: ["CF", "CI", "CC=INT1+INT2"],
-          components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC=INT1+INT2",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC=INT1+INT2", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
           ],
         },
       ];
       const mC2 = [
         {
-          code: "SYS2",
-          coef: 3,
-          fields: ["FE", "ME", "CC"],
+          code: "SYS2", coef: 3, fields: ["FE", "ME", "CC"],
           components: [
-            {
-              id: "fe",
-              label: "FE",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "me",
-              label: "ME",
-              defaultWeight: 0.3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "fe", label: "FE", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+            { id: "me", label: "ME", defaultWeight: 0.3, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "MECA",
-          coef: 3,
-          fields: ["CF", "CI", "CC"],
+        }, {
+          code: "MECA", coef: 3, fields: ["CF", "CI", "CC"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ALG2",
-          coef: 3,
-          fields: ["CF", "CI"],
+        }, {
+          code: "ALG2", coef: 3, fields: ["CF", "CI"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.67,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.67, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ANA2",
-          coef: 5,
-          fields: ["CF", "CI"],
+        }, {
+          code: "ANA2", coef: 5, fields: ["CF", "CI"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.67,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.67, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "TEO",
-          coef: 2,
-          fields: ["CF", "CC"],
+        }, {
+          code: "TEO", coef: 2, fields: ["CF", "CC"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 2 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 1 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 2 / 3, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 1 / 3, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ALSDD",
-          coef: 5,
-          fields: ["TPc", "interos", "CC", "TP", "CF"],
+        }, {
+          code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"],
           components: [
-            {
-              id: "tpc",
-              label: "TPc",
-              defaultWeight: 0.25 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "interos",
-              label: "interos",
-              defaultWeight: 0.25 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.25 / 3,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "tp",
-              label: "TP",
-              defaultWeight: 0.2,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.55,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "tpc", label: "TPc", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
+            { id: "interos", label: "interos", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
+            { id: "tp", label: "TP", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
+            { id: "cf", label: "CF", defaultWeight: 0.55, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ANG",
-          coef: 2,
-          fields: ["CI", "CC", "CF"],
+        }, {
+          code: "ANG", coef: 2, fields: ["CI", "CC", "CF"],
           components: [
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.33,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.34,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "ci", label: "CI", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.33, inputMax: 20, preWeightScale: 1, },
+            { id: "cf", label: "CF", defaultWeight: 0.34, inputMax: 20, preWeightScale: 1, },
           ],
-        },
-        {
-          code: "ELECTF",
-          coef: 4,
-          fields: ["CF", "CI", "CC"],
+        }, {
+          code: "ELECTF", coef: 4, fields: ["CF", "CI", "CC"],
           components: [
-            {
-              id: "cf",
-              label: "CF",
-              defaultWeight: 0.5,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "ci",
-              label: "CI",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
-            {
-              id: "cc",
-              label: "CC",
-              defaultWeight: 0.25,
-              inputMax: 20,
-              preWeightScale: 1,
-            },
+            { id: "cf", label: "CF", defaultWeight: 0.5, inputMax: 20, preWeightScale: 1, },
+            { id: "ci", label: "CI", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
+            { id: "cc", label: "CC", defaultWeight: 0.25, inputMax: 20, preWeightScale: 1, },
           ],
         },
       ];
@@ -2375,7 +2302,7 @@
           totalWeightedAvg += moduleAvg * module.coef;
         });
 
-        const finalAvgValue = totalWeightedAvg / totalSemesterCoef;
+        const finalAvgValue = totalSemesterCoef > 0 ? totalWeightedAvg / totalSemesterCoef : 0;
         const finalAvgDisplay = finalAvgValue.toFixed(2);
 
         const finalAvgSpan = document.getElementById(finalAvgElementId);
@@ -2506,7 +2433,7 @@
           n += moduleAvg * module.coef;
         });
 
-        const finalAvgValue = n / totalCoefCurrent;
+        const finalAvgValue = totalCoefCurrent > 0 ? n / totalCoefCurrent : 0;
         const finalAvgDisplay = finalAvgValue.toFixed(2);
 
         const finalAvgSpan = document.getElementById("t-f-a");
@@ -2882,6 +2809,53 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
+        // --- WELCOME MODAL LOGIC ---
+        const welcomeModal = document.getElementById('welcome-modal');
+        const showGuideBtn = document.getElementById('show-guide-btn');
+        const guideContent = document.getElementById('guide-content');
+        const dismissWelcomeBtn = document.getElementById('dismiss-welcome-btn');
+        const modalCloseBtn = welcomeModal.querySelector('.modal-close-btn');
+
+        function showWelcomeModal() {
+            if (welcomeModal) {
+                welcomeModal.style.display = 'flex';
+                setTimeout(() => { // Allow display to apply before transition
+                    welcomeModal.classList.add('visible');
+                }, 10);
+            }
+        }
+
+        function hideWelcomeModal() {
+            if (welcomeModal) {
+                welcomeModal.classList.remove('visible');
+                const handleTransitionEnd = () => {
+                    if (!welcomeModal.classList.contains('visible')) {
+                        welcomeModal.style.display = 'none';
+                        if(guideContent) guideContent.style.display = 'none'; // Reset guide content visibility
+                        if(showGuideBtn) showGuideBtn.textContent = 'Show Quick Guide'; // Reset button text
+                    }
+                    welcomeModal.removeEventListener('transitionend', handleTransitionEnd);
+                };
+                welcomeModal.addEventListener('transitionend', handleTransitionEnd);
+            }
+        }
+
+        if (showGuideBtn) {
+            showGuideBtn.addEventListener('click', () => {
+                if (guideContent) {
+                    const isHidden = guideContent.style.display === 'none';
+                    guideContent.style.display = isHidden ? 'block' : 'none';
+                    showGuideBtn.textContent = isHidden ? 'Hide Guide' : 'Show Quick Guide';
+                }
+            });
+        }
+        if (dismissWelcomeBtn) dismissWelcomeBtn.addEventListener('click', hideWelcomeModal);
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideWelcomeModal);
+        
+        showWelcomeModal(); // Show modal on page load
+        // --- END WELCOME MODAL LOGIC ---
+
+
         loadCustomWeights();
         const s1ModulesContainer = document.querySelector(
           "#s1-modules .collapsible-content-wrapper"
@@ -2903,29 +2877,58 @@
         updateMissingModuleSelectOptions(mC);
         cA();
 
-        const themeToggle = document.getElementById("theme-toggle");
-        const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
-        function setTheme(theme) {
-          document.documentElement.setAttribute("data-theme", theme);
-          localStorage.setItem("theme", theme);
-          if (themeToggle) themeToggle.checked = theme === "dark";
+        // --- New Theme Management ---
+        const appThemeToggle = document.getElementById('theme-toggle'); // HTML id is 'theme-toggle'
+        const appThemeSelect = document.getElementById('theme-select-dropdown');
+
+        function setAppTheme(customTheme, isDarkMode) {
+            document.documentElement.setAttribute('data-custom-theme', customTheme);
+            localStorage.setItem('selectedCustomTheme', customTheme);
+            if (appThemeSelect) appThemeSelect.value = customTheme;
+
+            if (isDarkMode) {
+                document.documentElement.setAttribute('data-theme', 'dark');
+            } else {
+                document.documentElement.removeAttribute('data-theme');
+            }
+            localStorage.setItem('darkModePreference', isDarkMode ? 'dark' : 'light');
+            if (appThemeToggle) appThemeToggle.checked = isDarkMode;
         }
-        savedTheme
-          ? setTheme(savedTheme)
-          : setTheme(prefersDark ? "dark" : "light");
-        if (themeToggle)
-          themeToggle.addEventListener("change", function () {
-            setTheme(this.checked ? "dark" : "light");
-          });
-        window
-          .matchMedia("(prefers-color-scheme: dark)")
-          .addEventListener("change", (e) => {
-            if (!localStorage.getItem("theme"))
-              setTheme(e.matches ? "dark" : "light");
-          });
+
+        const initialCustomTheme = localStorage.getItem('selectedCustomTheme') || 'default';
+        let initialIsDarkMode;
+        const savedDarkModePref = localStorage.getItem('darkModePreference');
+
+        if (savedDarkModePref) {
+            initialIsDarkMode = savedDarkModePref === 'dark';
+        } else {
+            initialIsDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        }
+
+        setAppTheme(initialCustomTheme, initialIsDarkMode);
+
+        if (appThemeSelect) {
+            appThemeSelect.addEventListener('change', function() {
+                const currentIsDark = document.documentElement.getAttribute('data-theme') === 'dark';
+                setAppTheme(this.value, currentIsDark);
+            });
+        }
+
+        if (appThemeToggle) {
+            appThemeToggle.addEventListener('change', function() {
+                const currentCustomTheme = document.documentElement.getAttribute('data-custom-theme') || 'default';
+                setAppTheme(currentCustomTheme, this.checked);
+            });
+        }
+
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            if (!localStorage.getItem('darkModePreference')) { // Only if user hasn't made a specific choice
+                const currentCustomTheme = document.documentElement.getAttribute('data-custom-theme') || 'default';
+                setAppTheme(currentCustomTheme, e.matches);
+            }
+        });
+        // --- End New Theme Management ---
+
 
         if (formulaDisplay) {
           const observer = new IntersectionObserver(
@@ -2944,24 +2947,19 @@
         if (!talentModeToggle.checked) toggleS2();
 
         const konamiCode = [
-          "ArrowUp",
-          "ArrowUp",
-          "ArrowDown",
-          "ArrowDown",
-          "ArrowLeft",
-          "ArrowRight",
-          "ArrowLeft",
-          "ArrowRight",
-          "b",
-          "a",
+          "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+          "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a",
         ];
         let konamiIndex = 0;
         let partyModeTimeout = null;
         document.addEventListener("keydown", function (e) {
-          if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT")
-            return;
+          if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+          const currentKey = e.key.toLowerCase();
+          const expectedKey = konamiCode[konamiIndex].toLowerCase();
+
           if (document.documentElement.classList.contains("party-mode")) {
-            if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+             // Type Konami code again to turn off party mode immediately
+            if (currentKey === expectedKey) {
               konamiIndex++;
               if (konamiIndex === konamiCode.length) {
                 clearTimeout(partyModeTimeout);
@@ -2969,18 +2967,20 @@
                 konamiIndex = 0;
               }
             } else {
-              konamiIndex = 0;
+              konamiIndex = 0; // Reset if wrong key
             }
             return;
           }
-          if (e.key.toLowerCase() === konamiCode[konamiIndex].toLowerCase()) {
+
+          if (currentKey === expectedKey) {
             konamiIndex++;
             if (konamiIndex === konamiCode.length) {
               document.documentElement.classList.add("party-mode");
               konamiIndex = 0;
+              triggerConfetti(); // Add extra confetti for party mode start
               partyModeTimeout = setTimeout(() => {
                 document.documentElement.classList.remove("party-mode");
-              }, 10000);
+              }, 10000); // Party for 10 seconds!
             }
           } else {
             konamiIndex = 0;
@@ -2989,16 +2989,16 @@
 
         const resetButton = document.createElement("button");
         resetButton.textContent = "Reset All Inputs & Weights";
+        resetButton.className = "primary-action"; // Use existing button class
         resetButton.style.cssText =
-          "display: block; margin: 2rem auto; background: #6b7280; color: white; max-width: 300px;";
+          "display: block; margin: 2rem auto; background: var(--accent-warning); max-width: 300px;";
         resetButton.onclick = resetCalculator;
-        const s2ResultDiv = document.getElementById("s2-result");
-        if (s2ResultDiv && s2ResultDiv.parentNode)
-          s2ResultDiv.parentNode.insertBefore(
-            resetButton,
-            s2ResultDiv.nextSibling
-          );
-        else document.body.appendChild(resetButton);
+        const footerElement = document.querySelector(".f");
+         if (footerElement) {
+            footerElement.parentNode.insertBefore(resetButton, footerElement);
+        } else {
+            document.body.appendChild(resetButton);
+        }
       });
 
       function resetCalculator() {
@@ -3033,6 +3033,9 @@
             const mC = moduleItem.querySelector(".m-g");
             if (gC) gC.style.display = "flex";
             if (mC) mC.style.display = "none";
+             // Also ensure toggle weights button is visible again
+            const toggleWeightsBtn = moduleItem.querySelector(".toggle-weights-btn");
+            if(toggleWeightsBtn) toggleWeightsBtn.style.display = "inline-block";
           }
           if (moduleDef.code === "ARCHI" && !isS2M) {
             aB = false;
@@ -3080,48 +3083,70 @@
           s2ModeToggle.disabled = false;
         }
         isS2 = false;
-        tTM();
-        toggleS2();
-        cA();
+        
+        // Explicitly reset themes to default and trigger application
+        const appThemeSelect = document.getElementById('theme-select-dropdown');
+        const appThemeToggle = document.getElementById('theme-toggle');
+        
+        localStorage.removeItem('selectedCustomTheme');
+        localStorage.removeItem('darkModePreference');
+
+        let isDarkByDefault = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        if(appThemeToggle) appThemeToggle.checked = isDarkByDefault;
+        if(appThemeSelect) appThemeSelect.value = 'default';
+        
+        setAppTheme('default', isDarkByDefault); // Resets to default and preferred dark/light
+        
+        tTM(); // This will also call toggleS2 if talents mode is off.
+        if (!talentModeToggle.checked) {
+            toggleS2(); // Ensure S1/S2 visibility and calculations are correctly set
+        } else {
+             isS2 ? cA_S2() : cA(); // Or just calculate based on current state if Talents mode active
+        }
+         cA(); // Final ensure S1 is calculated if it's default view.
       }
+
 
       // --- Confetti ---
       function triggerConfetti() {
         const canvas = document.getElementById("confetti-canvas");
+        if (!canvas) return;
         const ctx = canvas.getContext("2d");
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
         const confettiPieces = [];
-        const pieceCount = 100;
-        const colors = [
-          "#f44336",
-          "#e91e63",
-          "#9c27b0",
-          "#673ab7",
-          "#3f51b5",
-          "#2196f3",
-          "#03a9f4",
-          "#00bcd4",
-          "#009688",
-          "#4CAF50",
-          "#8BC34A",
-          "#CDDC39",
-          "#FFEB3B",
-          "#FFC107",
-          "#FF9800",
-          "#FF5722",
-        ];
+        const pieceCount = document.documentElement.classList.contains('party-mode') ? 300 : 150; // More for party mode
+        
+        let colors = ["#f44336", "#e91e63", "#9c27b0", "#673ab7", "#3f51b5", "#2196f3", "#03a9f4", "#00bcd4", "#009688", "#4CAF50", "#8BC34A", "#CDDC39", "#FFEB3B", "#FFC107", "#FF9800", "#FF5722"];
+        
+        const rootStyle = getComputedStyle(document.documentElement);
+        const themedAccents = [
+            rootStyle.getPropertyValue('--accent-primary').trim(),
+            rootStyle.getPropertyValue('--accent-secondary').trim(),
+            rootStyle.getPropertyValue('--a').trim(),
+            rootStyle.getPropertyValue('--accent-success').trim(),
+            rootStyle.getPropertyValue('--accent-warning').trim(),
+            rootStyle.getPropertyValue('--text-accent').trim() // Another themed color
+        ].filter(c => c && c !== "" && !c.startsWith("rgba")); // Filter out empty or rgba for solid colors
+
+        if (themedAccents.length > 3) { // If we have a good number of themed solid colors
+            colors = [...new Set([...themedAccents, ...colors.slice(0, 5)])]; // Mix and unique
+        }
 
         for (let i = 0; i < pieceCount; i++) {
           confettiPieces.push({
             x: Math.random() * canvas.width,
-            y: Math.random() * canvas.height - canvas.height, // Start above screen
-            size: Math.random() * 8 + 5, // Size 5-13
-            speedX: Math.random() * 6 - 3, // Speed -3 to 3
-            speedY: Math.random() * 5 + 2, // Speed 2 to 7 (downwards)
+            y: Math.random() * canvas.height - canvas.height, 
+            size: Math.random() * 8 + 5, 
+            speedX: Math.random() * 6 - 3, 
+            speedY: Math.random() * 5 + 2, 
             color: colors[Math.floor(Math.random() * colors.length)],
             rotation: Math.random() * 360,
             rotationSpeed: Math.random() * 10 - 5,
+            opacity: 1,
+            angle: Math.random() * Math.PI * 2, 
+            waveFrequency: Math.random() * 0.02 + 0.01,
+            waveAmplitude: Math.random() * 20 + 10
           });
         }
 
@@ -3131,27 +3156,37 @@
           let activePieces = 0;
           confettiPieces.forEach((p) => {
             p.y += p.speedY;
-            p.x += p.speedX;
+            p.x += p.speedX + Math.sin(p.angle) * (p.waveAmplitude/10); 
+            p.angle += p.waveFrequency;
             p.rotation += p.rotationSpeed;
+            p.speedY *= 0.995; 
+            if (p.y < canvas.height * 0.9) p.opacity -= 0.003; 
+             else p.opacity -= 0.01; 
+            p.opacity = Math.max(0, p.opacity);
 
-            if (p.y < canvas.height) {
-              // Only draw if on screen
+
+            if (p.y < canvas.height && p.x > -p.size && p.x < canvas.width + p.size && p.opacity > 0) {
               activePieces++;
               ctx.save();
+              ctx.globalAlpha = p.opacity;
               ctx.fillStyle = p.color;
               ctx.translate(p.x + p.size / 2, p.y + p.size / 2);
               ctx.rotate((p.rotation * Math.PI) / 180);
-              ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size);
+              ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * (Math.random() > 0.5 ? 1 : 0.5)); 
               ctx.restore();
             }
           });
           if (activePieces > 0) {
             animationFrameId = requestAnimationFrame(updateConfetti);
           } else {
-            ctx.clearRect(0, 0, canvas.width, canvas.height); // Clear once all off screen
+            ctx.clearRect(0, 0, canvas.width, canvas.height); 
+            if (canvas.width > 0 || canvas.height > 0) { // Avoid error if already 0
+                // Optional: collapse canvas to free memory
+                // canvas.width = 0; canvas.height = 0; 
+            }
           }
         }
-        cancelAnimationFrame(animationFrameId); // Clear any existing animation
+        if (typeof animationFrameId !== 'undefined') cancelAnimationFrame(animationFrameId); 
         updateConfetti();
       }
     </script>
