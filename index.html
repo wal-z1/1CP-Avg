@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en" data-custom-theme="default">
   <head>
@@ -110,10 +109,10 @@
         --timing-state-change: var(--ease-in-out-cubic);
         --timing-collapse: var(--ease-in-out-quart);
         --timing-reveal: var(--ease-out-quint);
-
+        
+        /* REFACTOR: Moved common variable aliases to :root */
         --p: var(--accent-primary);
         --s: var(--accent-secondary);
-        /* --a: #9333ea; defined above */
         --su: var(--accent-success);
 
         /* Colors for animated background spans */
@@ -194,8 +193,6 @@
           --accent-primary: #00796b; /* Teal */
           --accent-secondary: #0288d1; /* Dodger Blue */
           --a: #00acc1; /* Cyan */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(0, 121, 107, 0.65);
           --anim-span-2-bg: rgba(2, 136, 209, 0.75);
           --anim-span-3-bg: rgba(0, 172, 193, 0.55);
@@ -220,8 +217,6 @@
           --accent-primary: #4dd0e1; /* Bright Cyan */
           --accent-secondary: #81d4fa; /* Bright Light Blue */
           --a: #26c6da; /* Brighter Cyan */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(77, 208, 225, 0.40);
           --anim-span-2-bg: rgba(129, 212, 250, 0.50);
           --anim-span-3-bg: rgba(38, 198, 218, 0.40);
@@ -248,8 +243,6 @@
           --accent-primary: #4caf50; /* Green */
           --accent-secondary: #689f38; /* Light Green */
           --a: #8bc34a; /* Lighter Green */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(76, 175, 80, 0.65);
           --anim-span-2-bg: rgba(104, 159, 56, 0.75);
           --anim-span-3-bg: rgba(139, 195, 74, 0.55);
@@ -274,8 +267,6 @@
           --accent-primary: #81c784; /* Light Green */
           --accent-secondary: #aed581; /* Lighter Lime */
           --a: #c5e1a5; /* Very Light Green */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(129, 199, 132, 0.40);
           --anim-span-2-bg: rgba(174, 213, 129, 0.50);
           --anim-span-3-bg: rgba(197, 225, 165, 0.40);
@@ -302,8 +293,6 @@
           --accent-primary: #e74c3c; /* Alizarin Crimson */
           --accent-secondary: #f39c12; /* Orange */
           --a: #d63031; /* Pomegranate */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(231, 76, 60, 0.65); /* Crimson */
           --anim-span-2-bg: rgba(243, 156, 18, 0.75); /* Orange */
           --anim-span-3-bg: rgba(230, 126, 34, 0.55); /* Carrot */
@@ -328,8 +317,6 @@
           --accent-primary: #ff8a80; /* Light Coral */
           --accent-secondary: #ffab40; /* Bright Orange */
           --a: #e91e63; /* Pink for Dark Sunset */
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --anim-span-1-bg: rgba(255, 138, 128, 0.40); /* Light Coral */
           --anim-span-2-bg: rgba(255, 171, 64, 0.50); /* Bright Orange */
           --anim-span-3-bg: rgba(233, 30, 99, 0.40);   /* Pink */
@@ -356,8 +343,6 @@
           --accent-primary: #00ff00;
           --accent-secondary: #33cc33;
           --a: #66ff66;
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --font-primary: "Consolas", "Menlo", "Monaco", monospace;
           --anim-span-1-bg: rgba(0, 255, 0, 0.5);
           --anim-span-2-bg: rgba(51, 255, 51, 0.6);
@@ -383,8 +368,6 @@
           --accent-primary: #00ff00;
           --accent-secondary: #22ee22;
           --a: #55ff55;
-          --p: var(--accent-primary);
-          --s: var(--accent-secondary);
           --font-primary: "Consolas", "Menlo", "Monaco", monospace;
           --anim-span-1-bg: rgba(0, 255, 0, 0.4);
           --anim-span-2-bg: rgba(51, 221, 51, 0.5);
@@ -1881,10 +1864,7 @@
   </head>
 
   <body>
-    <div class="animated-bg"> <!-- Total 10 spans now -->
-      <span></span><span></span><span></span><span></span><span></span
-      ><span></span><span></span><span></span><span></span><span></span>
-    </div>
+    <div class="animated-bg"></div>
     <canvas id="confetti-canvas"></canvas>
 
     <!-- Welcome Modal -->
@@ -2134,12 +2114,13 @@
             { id: "cc", label: "CC", defaultWeight: 1 / 3, inputMax: 20, preWeightScale: 1, },
           ],
         }, {
-          code: "ALSDD", coef: 5, fields: ["TPc", "interos", "CC", "TP", "CF"],
+          // MODIFICATION: Updated ALSDD structure and weights as per new requirements.
+          code: "ALSDD", coef: 5, fields: ["TPc", "CC", "Interos (INT1+INT2)", "TP", "CF"],
           components: [
-            { id: "tpc", label: "TPc", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
-            { id: "interos", label: "interos", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
-            { id: "cc", label: "CC", defaultWeight: 0.25 / 3, inputMax: 20, preWeightScale: 1, },
-            { id: "tp", label: "TP", defaultWeight: 0.2, inputMax: 20, preWeightScale: 1, },
+            { id: "tpc", label: "TPc", defaultWeight: 0.25 * 0.5, inputMax: 20, preWeightScale: 1, },      // 50% of 25% Note TD
+            { id: "cc", label: "CC", defaultWeight: 0.25 * 0.25, inputMax: 20, preWeightScale: 1, },       // 25% of 25% Note TD
+            { id: "interos", label: "Interos (INT1+INT2)", defaultWeight: 0.25 * 0.25, inputMax: 20, preWeightScale: 1, }, // 25% of 25% Note TD
+            { id: "tp", label: "TP", defaultWeight: 0.20, inputMax: 20, preWeightScale: 1, },
             { id: "cf", label: "CF", defaultWeight: 0.55, inputMax: 20, preWeightScale: 1, },
           ],
         }, {
@@ -2454,7 +2435,7 @@
         const archiButton = document.getElementById("a-b");
         if (archiButton)
           archiButton.textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
-        isS2 ? cA_S2() : cA();
+        (isS2 ? cA_S2 : cA)();
       }
 
       function toggleManualAvgUI(moduleItem, moduleCode, isS2Module, isManual) {
@@ -2480,43 +2461,28 @@
         }
         if (toggleWeightsBtn)
           toggleWeightsBtn.style.display = isManual ? "none" : "inline-block";
-
-        if (isS2Module) cA_S2();
-        else cA();
+        
+        (isS2Module ? cA_S2 : cA)();
       }
 
-      function tMM(moduleCodeLower) {
+      function toggleModuleManualMode(moduleCodeLower, isS2Module) {
+        const sPrefix = isS2Module ? "s2-" : "";
+        const moduleListSelector = isS2Module ? "#s2-modules" : "#s1-modules";
+
         const moduleItem = document.querySelector(
-          `#s1-modules .module-item[data-code="${moduleCodeLower.toUpperCase()}"]`
+          `${moduleListSelector} .module-item[data-code="${moduleCodeLower.toUpperCase()}"]`
         );
         if (!moduleItem) return;
-        const manualCheckbox = document.getElementById(
-          `t-m-${moduleCodeLower}`
-        );
+        
+        const manualCheckbox = document.getElementById(`${sPrefix}t-m-${moduleCodeLower}`);
         toggleManualAvgUI(
           moduleItem,
           moduleCodeLower.toUpperCase(),
-          false,
+          isS2Module,
           manualCheckbox.checked
         );
       }
-
-      function tMM_S2(moduleCodeLower) {
-        const moduleItem = document.querySelector(
-          `#s2-modules .module-item[data-code="${moduleCodeLower.toUpperCase()}"]`
-        );
-        if (!moduleItem) return;
-        const manualCheckbox = document.getElementById(
-          `s2-t-m-${moduleCodeLower}`
-        );
-        toggleManualAvgUI(
-          moduleItem,
-          moduleCodeLower.toUpperCase(),
-          true,
-          manualCheckbox.checked
-        );
-      }
-
+      
       const talentModeToggle = document.getElementById("t-m-global");
       const s2ModeToggle = document.getElementById("s2-m-global");
       const talentSection = document.getElementById("t-s");
@@ -2588,18 +2554,17 @@
           isS2 ? "S2" : "S1"
         }) Default Weights</h3>`;
         currentModules.forEach((mod) => {
-          let formulaStr = mod.components
-            .map((comp) => {
-              let term = `(${(comp.defaultWeight * 100).toFixed(0)}%`; // Show as percentage
+          // MODIFICATION: Changed the map function to create minimized formula text
+          let formulaStr = mod.components.map((comp) => {
+              const compName = comp.label.split(" ")[0];
+              let gradePart = compName;
               if (comp.preWeightScale && comp.preWeightScale !== 1) {
-                term += ` × (Grade × ${comp.preWeightScale})`;
-              } else {
-                term += ` × Grade`;
+                  gradePart = `(${compName} × ${comp.preWeightScale})`;
               }
-              term += ` for ${comp.label.split(" ")[0]})`;
-              return term;
-            })
-            .join(" + ");
+              // Format to (Weight% Component) or (Weight% (Component x Scale))
+              return `(${(comp.defaultWeight * 100).toFixed(0)}% ${gradePart})`;
+          }).join(" + ");
+
           if (mod.hasBonus && mod.code === "ARCHI" && !isS2)
             formulaStr += " + <i>opt. 1pt bonus</i>";
           formulaHTML += `<p><strong>${mod.code}:</strong> ${formulaStr}</p>`;
@@ -2772,9 +2737,7 @@
         const toggleId = isS2Module
           ? `s2-t-m-${moduleCodeLower}`
           : `t-m-${moduleCodeLower}`;
-        const toggleFunction = isS2Module
-          ? `tMM_S2('${moduleCodeLower}')`
-          : `tMM('${moduleCodeLower}')`;
+        const toggleFunction = `toggleModuleManualMode('${moduleCodeLower}', ${isS2Module})`;
 
         let gradesInputsHTML = moduleData.fields
           .map((fieldLabel, idx) => {
@@ -2809,6 +2772,13 @@
       }
 
       document.addEventListener("DOMContentLoaded", () => {
+        const animatedBg = document.querySelector('.animated-bg');
+        if (animatedBg) {
+            for (let i = 0; i < 10; i++) {
+                animatedBg.appendChild(document.createElement('span'));
+            }
+        }
+
         // --- WELCOME MODAL LOGIC ---
         const welcomeModal = document.getElementById('welcome-modal');
         const showGuideBtn = document.getElementById('show-guide-btn');
@@ -3000,7 +2970,7 @@
             document.body.appendChild(resetButton);
         }
       });
-
+      
       function resetCalculator() {
         customWeights = {};
         localStorage.removeItem("customWeights");
@@ -3059,17 +3029,20 @@
               .forEach((i) => i.classList.remove("invalid-weight-sum"));
           }
         }
-        mC.forEach((mD) => {
-          const mI = document.querySelector(
-            `#s1-modules .module-item[data-code="${mD.code}"]`
-          );
-          if (mI) resetModItem(mI, mD, false);
-        });
-        mC2.forEach((mD) => {
-          const mI = document.querySelector(
-            `#s2-modules .module-item[data-code="${mD.code}"]`
-          );
-          if (mI) resetModItem(mI, mD, true);
+
+        const allSemesters = [
+            { modules: mC, containerSelector: '#s1-modules', isS2: false },
+            { modules: mC2, containerSelector: '#s2-modules', isS2: true }
+        ];
+        allSemesters.forEach(semester => {
+            semester.modules.forEach(moduleDef => {
+                const moduleItem = document.querySelector(
+                    `${semester.containerSelector} .module-item[data-code="${moduleDef.code}"]`
+                );
+                if (moduleItem) {
+                    resetModItem(moduleItem, moduleDef, semester.isS2);
+                }
+            });
         });
 
         document.getElementById("f-a").textContent = "0.00";
@@ -3084,7 +3057,6 @@
         }
         isS2 = false;
         
-        // Explicitly reset themes to default and trigger application
         const appThemeSelect = document.getElementById('theme-select-dropdown');
         const appThemeToggle = document.getElementById('theme-toggle');
         
@@ -3095,15 +3067,15 @@
         if(appThemeToggle) appThemeToggle.checked = isDarkByDefault;
         if(appThemeSelect) appThemeSelect.value = 'default';
         
-        setAppTheme('default', isDarkByDefault); // Resets to default and preferred dark/light
+        setAppTheme('default', isDarkByDefault);
         
-        tTM(); // This will also call toggleS2 if talents mode is off.
+        tTM();
         if (!talentModeToggle.checked) {
-            toggleS2(); // Ensure S1/S2 visibility and calculations are correctly set
+            toggleS2();
         } else {
-             isS2 ? cA_S2() : cA(); // Or just calculate based on current state if Talents mode active
+             isS2 ? cA_S2() : cA();
         }
-         cA(); // Final ensure S1 is calculated if it's default view.
+         cA();
       }
 
 
