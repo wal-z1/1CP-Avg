@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" data-custom-theme="default">
   <head>
@@ -8,7 +9,7 @@
       type="image/svg+xml"
     />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Calculator 1CP S1&S2 - Enhanced Mobile</title>
+    <title>Calculator 1CP S1&S2 - Enhanced UI</title>
     <style>
       /* --- ENHANCEMENT: MODERNIZED LOOK & FEEL + DARK THEME - EVEN BETTERRRR --- */
       /* 1. CSS Variables for Theming (Light & Dark) */
@@ -580,6 +581,33 @@
         align-items: center;
         flex-wrap: wrap;
       }
+      
+      /* --- NEW: Help Button --- */
+      #help-btn {
+          background: var(--bg-interactive);
+          border: 1px solid var(--border-primary);
+          color: var(--text-secondary);
+          width: 38px;
+          height: 38px;
+          border-radius: var(--border-radius-md); /* Match other UI */
+          font-size: 1.25rem;
+          font-weight: 700;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          box-shadow: var(--shadow-sm);
+          transition: all var(--duration-fast) var(--timing-interactive);
+      }
+      #help-btn:hover {
+          background: var(--bg-interactive-strong);
+          color: var(--text-primary);
+          border-color: var(--border-interactive);
+          transform: scale(1.1);
+          box-shadow: var(--shadow-md);
+      }
+
+
       .app-controls label:not(.sr-only) {
         font-weight: 600;
         color: var(--text-secondary);
@@ -799,6 +827,68 @@
         color: var(--text-secondary);
         font-weight: 600;
       }
+      
+      /* --- NEW: Tab Navigation System --- */
+      .tabs-container {
+        max-width: 900px;
+        margin: 0 auto 2rem auto;
+      }
+      .tab-nav {
+        display: flex;
+        gap: 0.5rem;
+        margin-bottom: -1px; /* Overlap border with content card */
+        position: relative;
+        z-index: 2; /* Above content card */
+      }
+      .tab-btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        cursor: pointer;
+        border: 1px solid var(--border-primary);
+        background-color: var(--bg-tertiary);
+        color: var(--text-secondary);
+        border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+        border-bottom: 1px solid var(--border-primary);
+        transition: all var(--duration-fast) var(--timing-interactive);
+        position: relative;
+        top: 0;
+      }
+      .tab-btn:hover {
+        background-color: var(--bg-interactive);
+        color: var(--text-primary);
+        top: -2px;
+      }
+      .tab-btn.active {
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+        border-bottom: 1px solid var(--bg-secondary); /* Seamless blend into card */
+        box-shadow: var(--shadow-sm);
+        top: 0;
+        font-weight: 700;
+      }
+      /* Contrast Check: --text-primary on --bg-secondary (light) = #1A202C on rgba(255,255,255,0.8) -> OK. 
+         (dark) = #e2e8f0 on rgba(22,27,34,0.8) -> OK.  */
+
+      .tab-content-panel {
+        display: none; /* Initially hidden, JS will manage this */
+        animation: cardEnter var(--duration-slow) var(--timing-reveal) backwards;
+      }
+      .tab-content-panel.active {
+        display: block;
+      }
+      @keyframes cardEnter {
+        from {
+          opacity: 0;
+          transform: translateY(25px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      /* --- End Tab Navigation System --- */
+
 
       .content-card {
         background-color: var(--bg-secondary);
@@ -816,6 +906,12 @@
         max-width: 900px;
         position: relative;
         z-index: 1;
+      }
+      
+      /* Specific override for tabbed content cards */
+      .tab-content-panel .content-card {
+        margin-top: 0;
+        border-top-left-radius: 0;
       }
 
       /* Removed table specific styling */
@@ -892,8 +988,8 @@
         margin-top: 0.75rem;
         transition: border-color var(--duration-normal) var(--timing-state-change);
       }
-      .c-g:first-child,
-      .m-g:first-child {
+      .c-g:first-of-type,
+      .m-g:first-of-type {
         border-top: none;
         margin-top: 0;
       } /* No top border for the first group */
@@ -1194,28 +1290,6 @@
         opacity: 0.8;
         transition: color var(--duration-normal) var(--timing-state-change), border-color var(--duration-normal) var(--timing-state-change);
       }
-
-      @keyframes cardEnter {
-        from {
-          opacity: 0;
-          transform: translateY(25px) scale(0.97);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-      .content-card {
-        animation: cardEnter var(--duration-slower) var(--timing-reveal)
-          backwards;
-      }
-      .content-card:nth-child(2) {
-        animation-delay: 0.1s;
-      }
-      .content-card:nth-child(3) {
-        animation-delay: 0.2s;
-      }
-      /* ...and so on if more cards, or use JS to stagger */
 
       .collapsible-section {
         transition-property: opacity, max-height, transform, margin, padding,
@@ -1789,14 +1863,80 @@
       }
       /* End Welcome Modal Styles */
 
+      /* --- NEW: Toast Notification --- */
+      .toast-notification {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        background-color: var(--bg-secondary);
+        backdrop-filter: blur(var(--blur-intensity));
+        color: var(--text-primary);
+        padding: 1.25rem;
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-xl);
+        border: 1px solid var(--border-primary);
+        max-width: 350px;
+        z-index: 1500;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        opacity: 0;
+        transform: translateY(20px) scale(0.95);
+        visibility: hidden;
+        transition: opacity var(--duration-medium) var(--timing-enter),
+                    transform var(--duration-medium) var(--timing-enter),
+                    visibility 0s var(--duration-medium) linear;
+      }
+      .toast-notification.show {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        visibility: visible;
+        transition: opacity var(--duration-medium) var(--timing-enter),
+                    transform var(--duration-medium) var(--timing-enter),
+                    visibility 0s linear;
+      }
+      .toast-notification p {
+          margin: 0;
+          font-size: 0.95rem;
+          font-weight: 500;
+          color: var(--text-secondary);
+      }
+      .toast-notification .toast-actions {
+          display: flex;
+          justify-content: flex-end;
+          gap: 0.5rem;
+      }
+      .toast-notification button {
+          font-size: 0.85rem;
+          padding: 0.5rem 1rem;
+      }
+      .toast-notification button.toast-dismiss {
+          background: transparent;
+          color: var(--text-muted);
+          box-shadow: none;
+      }
+      .toast-notification button.toast-dismiss:hover {
+          background: var(--bg-interactive);
+      }
+      /* --- End Toast Notification --- */
+
       @media (max-width: 768px) {
         body { padding: 1rem 0.75rem; }
         .app-header { flex-direction: column; gap: 1rem; padding: 1rem; top: 0.75rem; }
-        .app-controls { flex-direction: column; justify-content: center; gap: 0.75rem; width:100%;} /* Stack controls */
-        .theme-select-container { width: auto; max-width:250px; justify-content: center;} /* Center theme select */
+        .app-controls { flex-direction: row; justify-content: space-between; gap: 0.75rem; width:100%;}
+        .theme-select-container { flex-grow: 1; }
         #theme-select-dropdown { width: 100%; }
-        .theme-switcher-container { justify-content: center; margin-top: 0.5rem; }
+        .theme-switcher-container { justify-content: center; }
 
+        .tab-nav {
+            gap: 0.25rem;
+        }
+        .tab-btn {
+            padding: 0.6rem 0.8rem;
+            font-size: 0.85rem;
+            flex-grow: 1;
+            text-align: center;
+        }
 
         h2#main-title { font-size: 2rem; }
         h3 { font-size: 1.35rem; }
@@ -1823,12 +1963,18 @@
         .modal-content { padding: 1.5rem; } /* Adjust modal padding */
         .modal-content h2 { font-size: 1.6rem; }
         .guide-section ul li { font-size: 0.9rem; padding-left: 1.6em; }
+
+        .toast-notification {
+            max-width: calc(100% - 2rem);
+            bottom: 1rem;
+            left: 1rem;
+            right: 1rem;
+        }
       }
       @media (max-width: 480px) {
         body { padding: 0.5rem; }
         .app-header { padding: 0.75rem; top: 0.5rem; }
-        .app-controls label:not(.sr-only) { font-size: 0.9rem; gap: 0.5rem; }
-        .app-controls input[type="checkbox"] { width: 18px; height: 18px; }
+        #help-btn { width: 32px; height: 32px; font-size: 1.1rem; }
         .theme-select-container label { font-size: 0.85rem; }
         #theme-select-dropdown { padding: 0.4rem 0.7rem; font-size:0.9rem;}
 
@@ -1867,40 +2013,41 @@
     <div class="animated-bg"></div>
     <canvas id="confetti-canvas"></canvas>
 
-    <!-- Welcome Modal -->
-    <div id="welcome-modal" class="modal-overlay" style="display: none;">
+    <!-- Welcome Modal (now the Help Modal) -->
+    <div id="help-modal" class="modal-overlay" style="display: none;">
         <div class="modal-content">
-            <button class="modal-close-btn" aria-label="Close welcome message">&times;</button>
-            <h2>🎉 Welcome! 🎉</h2>
-            <p>This calculator is made by <strong>Walid</strong>, enhanced with AI.</p>
-            <div class="modal-actions">
-                <button id="show-guide-btn">Show Quick Guide</button>
-                <button id="dismiss-welcome-btn">Get Started</button>
-            </div>
-            <div id="guide-content" class="guide-section" style="display: none;">
+            <button id="modal-close-btn" class="modal-close-btn" aria-label="Close help message">&times;</button>
+            <h2>🎉 Welcome & Quick Guide 🎉</h2>
+            <p>This calculator is made by <strong>Walid</strong>, with an enhanced UI.</p>
+            <div id="guide-content" class="guide-section" style="display: block;">
                 <h3>🚀 Quick Guide</h3>
                 <ul>
-                    <li><strong>Modes:</strong> There is a <em>Talents Mode</em> where you can enter only missing subjects and <em>S2 Mode is always avaible too </em>. Choose between the two.</li>
-                    <li><strong>Grades:</strong> Input grades. Hover 'ⓘ' by module average for formula details.</li>
-                    <li><strong>Custom Weights:</strong> Click '⚙️' by module name to customize component weights. Saved locally!</li>
-                    <li><strong>Themes:</strong> Pick a 'Theme' and use ☀️/🌙 for Light/Dark mode.</li>
-                    <li><strong>Party Time:</strong> Try Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) for 10 seconds of fun!</li>
-                    <li><strong>Reset:</strong> 'Reset All' button at bottom clears inputs & weights.</li>
+                    <li><strong>Modes:</strong> Use the tabs to switch between <em>S1 Calculator</em>, <em>S2 Calculator</em>, and <em>Talents Mode</em> for batch processing missing modules.</li>
+                    <li><strong>Grades:</strong> Input grades into the fields. Hover over the 'ⓘ' icon next to a module's average to see the calculation formula used.</li>
+                    <li><strong>Custom Weights:</strong> Click the '⚙️' icon next to a module's name to customize the weight of its components (e.g., CF, CI). Your settings are saved locally!</li>
+                    <li><strong>Themes:</strong> Pick a color scheme from the 'Theme' dropdown and toggle between ☀️/🌙 for Light/Dark mode.</li>
+                    <li><strong>Party Time:</strong> Try the Konami Code (↑ ↑ ↓ ↓ ← → ← → B A) for 10 seconds of fun!</li>
+                    <li><strong>Reset:</strong> The 'Reset All' button at the bottom of the page clears all inputs and custom weights.</li>
                 </ul>
-                <p style="text-align: center; margin-top:1rem; font-size:0.9em; color:var(--text-muted);">Happy Calculating!</p>
+                <p style="text-align: center; margin-top:1.5rem; font-size:1em;">Happy Calculating!</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast-notification" class="toast-notification">
+        <p>Working with multiple modules? Try <strong>Talents Mode</strong> for batch processing!</p>
+        <div class="toast-actions">
+            <button id="toast-try-now" class="primary-action">Try Now</button>
+            <button id="toast-dismiss" class="toast-dismiss">Dismiss</button>
         </div>
     </div>
 
 
     <header class="app-header">
-      <div class="app-controls">
-        <label><input type="checkbox" id="t-m-global" onchange="tTM()" /> Talents Mode</label>
-        <label><input type="checkbox" id="s2-m-global" onchange="toggleS2()" /> S2 Mode</label>
-      </div>
       <div class="theme-switcher-container">
         <div class="theme-select-container">
-            <label for="theme-select-dropdown" class="sr-only">Select Theme</label> <!-- Added sr-only for screen readers if no visible label -->
+            <label for="theme-select-dropdown" class="sr-only">Select Theme</label>
             <select id="theme-select-dropdown">
                 <option value="default">Default</option>
                 <option value="ocean">Ocean Blue</option>
@@ -1914,102 +2061,84 @@
           <span class="slider"></span>
         </label>
       </div>
+       <div class="app-controls">
+         <button id="help-btn" aria-label="Show help">❓</button>
+      </div>
     </header>
 
-    <h2 id="main-title">1CP S1 Avg Calc</h2>
+    <h2 id="main-title">1CP Avg Calc</h2>
 
-    <!-- Talents Mode Section (Already card-like) -->
-    <div
-      id="t-s"
-      class="content-card collapsible-section collapsed"
-      style="display: block"
-    >
-      <div class="collapsible-content-wrapper">
-        <h3>Recover Missing Module from Talents Avg</h3>
-        <div style="margin-bottom: 1rem">
-          <label
-            for="t-a"
-            style="display: block; margin-bottom: 0.5rem; font-weight: 600"
-            >Enter Talents Avg:</label
-          ><input
-            type="number"
-            id="t-a"
-            min="0"
-            max="20"
-            step="0.5"
-            style="width: 100%; max-width: 200px"
-            oninput="cM()"
-          />
+    <main class="tabs-container">
+        <nav class="tab-nav">
+            <button class="tab-btn active" data-tab="s1">S1 Calculator</button>
+            <button class="tab-btn" data-tab="s2">S2 Calculator</button>
+            <button class="tab-btn" data-tab="talents">Talents Mode</button>
+        </nav>
+
+        <div class="tab-content-wrapper">
+            <!-- S1 Calculator Panel -->
+            <div id="s1-content-panel" class="tab-content-panel active">
+                <div id="s1-modules" class="content-card">
+                    <div class="collapsible-content-wrapper">
+                        <!-- S1 Modules will be injected here by JS -->
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 1.5rem 0">
+                    <button id="s1-calc" class="primary-action" onclick="cA()">Calc S1 Avg</button>
+                </div>
+                <div class="r-b" id="s1-result" style="text-align: center">
+                    <h3>S1 Avg: <span id="f-a">0.00</span></h3>
+                </div>
+            </div>
+
+            <!-- S2 Calculator Panel -->
+            <div id="s2-content-panel" class="tab-content-panel">
+                <div id="s2-modules" class="content-card">
+                    <div class="collapsible-content-wrapper">
+                        <!-- S2 Modules will be injected here by JS -->
+                    </div>
+                </div>
+                <div style="text-align: center; margin: 1.5rem 0">
+                    <button id="s2-calc" class="primary-action" onclick="cA_S2()">Calc S2 Avg</button>
+                </div>
+                <div class="r-b" id="s2-result" style="text-align: center">
+                    <h3>S2 Avg: <span id="s2-f-a">0.00</span></h3>
+                </div>
+            </div>
+            
+            <!-- Talents Mode Panel -->
+            <div id="talents-content-panel" class="tab-content-panel">
+                <div id="t-s" class="content-card">
+                  <div class="collapsible-content-wrapper">
+                    <h3>Recover Missing Module from Talents Avg</h3>
+                    <div class="app-controls" style="margin-bottom: 1rem; justify-content: flex-start;">
+                        <label><input type="checkbox" id="talents-s2-toggle" onchange="toggleTalentsSemester()" /> Use S2 Modules</label>
+                    </div>
+                    <div style="margin-bottom: 1rem">
+                      <label for="t-a" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Enter Talents Avg:</label>
+                      <input type="number" id="t-a" min="0" max="20" step="0.5" style="width: 100%; max-width: 200px" oninput="cM()" />
+                    </div>
+                    <div style="margin-bottom: 1rem; display: flex; flex-wrap: wrap; gap: 1rem; align-items: flex-end;">
+                      <div>
+                        <label for="m-m" style="display: block; margin-bottom: 0.5rem; font-weight: 600">Select Module:</label>
+                        <select id="m-m" style="width: 100%; max-width: 200px">
+                          <option value="">-- Choose Module --</option>
+                        </select>
+                      </div>
+                      <button onclick="addMissing()">Add Module</button>
+                    </div>
+                    <div id="missing-list" style="margin-bottom: 1rem"></div>
+                    <button onclick="cM()">Calc Semester Avg</button>
+                    <div class="r-b">
+                      <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
+                    </div>
+                  </div>
+                </div>
+            </div>
         </div>
-        <div
-          style="
-            margin-bottom: 1rem;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            align-items: flex-end;
-          "
-        >
-          <div>
-            <label
-              for="m-m"
-              style="display: block; margin-bottom: 0.5rem; font-weight: 600"
-              >Select Module:</label
-            ><select id="m-m" style="width: 100%; max-width: 200px">
-              <option value="">-- Choose Module --</option>
-            </select>
-          </div>
-          <button onclick="addMissing()">Add Module</button>
-        </div>
-        <div id="missing-list" style="margin-bottom: 1rem"></div>
-        <button onclick="cM()">Calc Semester Avg</button>
-        <div class="r-b">
-          <h3>The Semester Avg: <span id="t-f-a">0.00</span></h3>
-        </div>
-      </div>
-    </div>
-
-    <!-- S1 Modules List (Replaces S1 table) -->
-    <div
-      id="s1-modules"
-      class="content-card collapsible-section"
-      style="display: block"
-    >
-      <div class="collapsible-content-wrapper">
-        <!-- Modules will be injected here by JS -->
-      </div>
-    </div>
-
-    <!-- S1 Calculation Button and Result -->
-    <div style="text-align: center; margin: 1.5rem 0">
-      <button id="s1-calc" class="primary-action" onclick="cA()">Calc S1 Avg</button>
-    </div>
-    <div class="r-b" id="s1-result" style="text-align: center">
-      <h3>S1 Avg: <span id="f-a">0.00</span></h3>
-    </div>
-
-    <!-- S2 Modules List (Replaces S2 table) -->
-    <div
-      id="s2-modules"
-      class="content-card collapsible-section collapsed"
-      style="display: block"
-    >
-      <div class="collapsible-content-wrapper">
-        <!-- Modules will be injected here by JS -->
-      </div>
-    </div>
-
-    <!-- S2 Calculation Button and Result -->
-    <div style="text-align: center; margin: 1.5rem 0">
-      <button id="s2-calc" class="primary-action" onclick="cA_S2()" style="display: none">
-        Calc S2 Avg
-      </button>
-    </div>
-    <div class="r-b" id="s2-result" style="text-align: center; display: none">
-      <h3>S2 Avg: <span id="s2-f-a">0.00</span></h3>
-    </div>
-
-    <!-- Formula Display (Already card-like) -->
+    </main>
+    
+    <!-- Formula Display (Remains outside tabs for general info) -->
     <div class="i-b content-card reveal-on-scroll" id="formula-display">
       <!-- Content will be set by JS based on S1/S2 mode -->
     </div>
@@ -2141,11 +2270,17 @@
       ];
 
       let aB = false; // Archi Bonus flag
-      let isS2 = false; // S2 Mode flag
       const tCoef = mC.reduce((sum, mod) => sum + mod.coef, 0);
       const tCoefS2 = mC2.reduce((sum, mod) => sum + mod.coef, 0);
       let customWeights = {};
       let calculationDetailsCache = {}; // To store tooltip content
+      let isTalentsS2Mode = false; // State for S1/S2 within talents mode
+
+      // --- Toast Notification State ---
+      let manualModuleCount = 0;
+      let talentsSuggestionShown = false;
+      let toastTimeout;
+
 
       // --- HELPER FUNCTIONS ---
       function gIV(containerSelector) {
@@ -2317,7 +2452,7 @@
         if (!selectedCode || missing.find((m) => m.code === selectedCode))
           return;
 
-        const currentModuleSet = isS2 ? mC2 : mC;
+        const currentModuleSet = isTalentsS2Mode ? mC2 : mC;
         const moduleData = currentModuleSet.find(
           (m) => m.code === selectedCode
         );
@@ -2401,7 +2536,7 @@
       function cM() {
         const talentsAvgInput =
           parseFloat(document.getElementById("t-a").value) || 0;
-        const totalCoefCurrent = isS2 ? tCoefS2 : tCoef;
+        const totalCoefCurrent = isTalentsS2Mode ? tCoefS2 : tCoef;
         let n = talentsAvgInput * totalCoefCurrent;
 
         missing.forEach((module) => {
@@ -2410,7 +2545,7 @@
           const grades = Array.from(
             moduleItemDiv.querySelectorAll('input[type="number"].grade-input')
           ).map((input) => parseFloat(input.value) || 0);
-          const moduleAvg = cMA(module.code, grades, false, isS2 ? "S2" : "S1");
+          const moduleAvg = cMA(module.code, grades, false, isTalentsS2Mode ? "S2" : "S1");
           n += moduleAvg * module.coef;
         });
 
@@ -2435,7 +2570,26 @@
         const archiButton = document.getElementById("a-b");
         if (archiButton)
           archiButton.textContent = aB ? "Remove 1pt Bonus" : "Add 1pt Bonus";
-        (isS2 ? cA_S2 : cA)();
+        cA(); // Archi is only in S1
+      }
+      
+      function showToast() {
+        const toast = document.getElementById('toast-notification');
+        if (toast) {
+            toast.classList.add('show');
+            clearTimeout(toastTimeout); // Clear any existing timer
+            toastTimeout = setTimeout(() => {
+                hideToast();
+            }, 8000); // Auto-dismiss after 8 seconds
+        }
+      }
+
+      function hideToast() {
+        const toast = document.getElementById('toast-notification');
+        if (toast) {
+            toast.classList.remove('show');
+            clearTimeout(toastTimeout);
+        }
       }
 
       function toggleManualAvgUI(moduleItem, moduleCode, isS2Module, isManual) {
@@ -2462,6 +2616,16 @@
         if (toggleWeightsBtn)
           toggleWeightsBtn.style.display = isManual ? "none" : "inline-block";
         
+        // Update manual count and show toast if needed
+        const currentActiveTab = document.querySelector('.tab-btn.active').dataset.tab;
+        if (currentActiveTab !== 'talents') {
+            manualModuleCount = document.querySelectorAll('.t-m input[type="checkbox"]:checked').length;
+            if (manualModuleCount > 3 && !talentsSuggestionShown) {
+                showToast();
+                talentsSuggestionShown = true;
+            }
+        }
+        
         (isS2Module ? cA_S2 : cA)();
       }
 
@@ -2482,94 +2646,62 @@
           manualCheckbox.checked
         );
       }
-      
-      const talentModeToggle = document.getElementById("t-m-global");
-      const s2ModeToggle = document.getElementById("s2-m-global");
-      const talentSection = document.getElementById("t-s");
-      const s1ModulesSection = document.getElementById("s1-modules");
-      const s2ModulesSection = document.getElementById("s2-modules");
-      const s1CalcButton = document.getElementById("s1-calc");
-      const s2CalcButton = document.getElementById("s2-calc");
-      const s1ResultBlock = document.getElementById("s1-result");
-      const s2ResultBlock = document.getElementById("s2-result");
-      const formulaDisplay = document.getElementById("formula-display");
+
       const mainTitle = document.getElementById("main-title");
       const missingModuleSelect = document.getElementById("m-m");
 
-      function tTM() {
-        const isTalentsMode = talentModeToggle.checked;
-        s2ModeToggle.disabled = isTalentsMode;
-        talentSection.classList.toggle("collapsed", !isTalentsMode);
-        if (isTalentsMode) {
-          s1ModulesSection.classList.add("collapsed");
-          s2ModulesSection.classList.add("collapsed");
-          s1CalcButton.style.display = "none";
-          s2CalcButton.style.display = "none";
-          s1ResultBlock.style.display = "none";
-          s2ResultBlock.style.display = "none";
-          mainTitle.textContent = `1CP Talents Avg Calc (${
-            isS2 ? "S2" : "S1"
-          })`;
-          updateMissingModuleSelectOptions(isS2 ? mC2 : mC);
-        } else {
-          toggleS2();
-        }
-        if (!isTalentsMode) {
-          document.getElementById("missing-list").innerHTML = "";
-          missing.length = 0;
-        }
-      }
-
-      function toggleS2() {
-        if (talentModeToggle.checked) {
-          isS2 = s2ModeToggle.checked;
-          mainTitle.textContent = `1CP Talents Avg Calc (${
-            isS2 ? "S2" : "S1"
-          })`;
-          updateMissingModuleSelectOptions(isS2 ? mC2 : mC);
-          document.getElementById("missing-list").innerHTML = "";
-          missing.length = 0;
-          cM();
-          return;
-        }
-        isS2 = s2ModeToggle.checked;
-        updateFormulaDisplay();
-        mainTitle.textContent = `1CP ${isS2 ? "S2" : "S1"} Avg Calc`;
-        s1ModulesSection.classList.toggle("collapsed", isS2);
-        s2ModulesSection.classList.toggle("collapsed", !isS2);
-        s1CalcButton.style.display = isS2 ? "none" : "inline-block";
-        s2CalcButton.style.display = isS2 ? "inline-block" : "none";
-        s1ResultBlock.style.display = isS2 ? "none" : "block";
-        s2ResultBlock.style.display = isS2 ? "block" : "none";
-        document.getElementById("f-a").textContent = "0.00";
-        document.getElementById("s2-f-a").textContent = "0.00";
-        document.getElementById("f-a").className = "";
-        document.getElementById("s2-f-a").className = ""; // Clear color class
-        isS2 ? cA_S2() : cA();
-      }
-
-      function updateFormulaDisplay() {
-        const currentModules = isS2 ? mC2 : mC;
+      function updateFormulaDisplay(semester = "s1") {
+        const formulaDisplay = document.getElementById("formula-display");
+        const currentModules = semester === 's1' ? mC : mC2;
         let formulaHTML = `<h3>Calc Formulas (${
-          isS2 ? "S2" : "S1"
+          semester.toUpperCase()
         }) Default Weights</h3>`;
         currentModules.forEach((mod) => {
-          // MODIFICATION: Changed the map function to create minimized formula text
           let formulaStr = mod.components.map((comp) => {
               const compName = comp.label.split(" ")[0];
               let gradePart = compName;
               if (comp.preWeightScale && comp.preWeightScale !== 1) {
                   gradePart = `(${compName} × ${comp.preWeightScale})`;
               }
-              // Format to (Weight% Component) or (Weight% (Component x Scale))
               return `(${(comp.defaultWeight * 100).toFixed(0)}% ${gradePart})`;
           }).join(" + ");
 
-          if (mod.hasBonus && mod.code === "ARCHI" && !isS2)
+          if (mod.hasBonus && mod.code === "ARCHI" && semester === 's1')
             formulaStr += " + <i>opt. 1pt bonus</i>";
           formulaHTML += `<p><strong>${mod.code}:</strong> ${formulaStr}</p>`;
         });
         formulaDisplay.innerHTML = formulaHTML;
+      }
+      
+      function switchTab(tabId) {
+          document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+          document.querySelector(`.tab-btn[data-tab="${tabId}"]`).classList.add('active');
+
+          document.querySelectorAll('.tab-content-panel').forEach(panel => panel.classList.remove('active'));
+          document.getElementById(`${tabId}-content-panel`).classList.add('active');
+          
+          let titleText = `1CP Avg Calc`;
+          if (tabId === 's1') {
+              titleText = `1CP S1 Avg Calc`;
+              updateFormulaDisplay('s1');
+          } else if (tabId === 's2') {
+              titleText = `1CP S2 Avg Calc`;
+              updateFormulaDisplay('s2');
+          } else if (tabId === 'talents') {
+              titleText = `1CP Talents Avg Calc (${isTalentsS2Mode ? "S2" : "S1"})`;
+              updateFormulaDisplay(isTalentsS2Mode ? 's2' : 's1');
+          }
+          mainTitle.textContent = titleText;
+      }
+
+      function toggleTalentsSemester() {
+        isTalentsS2Mode = document.getElementById('talents-s2-toggle').checked;
+        mainTitle.textContent = `1CP Talents Avg Calc (${isTalentsS2Mode ? "S2" : "S1"})`;
+        updateMissingModuleSelectOptions(isTalentsS2Mode ? mC2 : mC);
+        document.getElementById("missing-list").innerHTML = "";
+        missing.length = 0;
+        updateFormulaDisplay(isTalentsS2Mode ? 's2' : 's1');
+        cM(); // Recalculate
       }
 
       function updateMissingModuleSelectOptions(modules) {
@@ -2623,7 +2755,8 @@
       function addWeightsEventListeners(
         moduleItemElement,
         moduleCode,
-        isMissing = false
+        isMissing = false,
+        isS2Module = false
       ) {
         const toggleBtn = moduleItemElement.querySelector(
           `.toggle-weights-btn[data-module="${moduleCode}"]`
@@ -2640,11 +2773,10 @@
         const warningP = moduleItemElement.querySelector(
           ".weights-sum-warning"
         );
-        const moduleDef =
-          (isS2 && !isMissing && mC2.find((m) => m.code === moduleCode)) ||
-          (!isS2 && !isMissing && mC.find((m) => m.code === moduleCode)) ||
-          (isS2 && isMissing && mC2.find((m) => m.code === moduleCode)) ||
-          (!isS2 && isMissing && mC.find((m) => m.code === moduleCode));
+        const semesterContext = (isMissing ? isTalentsS2Mode : isS2Module);
+        const moduleList = semesterContext ? mC2 : mC;
+        const moduleDef = moduleList.find(m => m.code === moduleCode);
+
 
         if (toggleBtn) {
           toggleBtn.addEventListener("click", () => {
@@ -2664,7 +2796,7 @@
             saveCustomWeights();
             checkWeightsSum(moduleCode, warningP, weightInputs, moduleDef);
             if (isMissing) cM();
-            else if (isS2) cA_S2();
+            else if (isS2Module) cA_S2();
             else cA();
           });
         });
@@ -2686,7 +2818,7 @@
               inp.classList.remove("invalid-weight-sum")
             );
             if (isMissing) cM();
-            else if (isS2) cA_S2();
+            else if (isS2Module) cA_S2();
             else cA();
           });
         }
@@ -2765,9 +2897,9 @@
             <div class="m-g" style="display:none;"><div><label>Module Avg:</label><input type="number" class="grade-input" min="0" max="20" step="0.5" placeholder="Enter avg" oninput="${
               isS2Module ? "cA_S2()" : "cA()"
             }"></div></div>
-            ${generateWeightsPanelHTML(moduleData)}
+            ${generateWeightsPanelHTML(moduleData, false)}
             <div class="module-average"> Average: <strong id="${avgId}">0.00</strong><span class="calc-tooltip-icon" tabindex="0" aria-label="Show calculation details for ${moduleCode}">ⓘ<span class="calc-tooltiptext">Details here.</span></span></div>`;
-        addWeightsEventListeners(moduleItem, moduleCode, false);
+        addWeightsEventListeners(moduleItem, moduleCode, false, isS2Module);
         return moduleItem;
       }
 
@@ -2779,51 +2911,39 @@
             }
         }
 
-        // --- WELCOME MODAL LOGIC ---
-        const welcomeModal = document.getElementById('welcome-modal');
-        const showGuideBtn = document.getElementById('show-guide-btn');
-        const guideContent = document.getElementById('guide-content');
-        const dismissWelcomeBtn = document.getElementById('dismiss-welcome-btn');
-        const modalCloseBtn = welcomeModal.querySelector('.modal-close-btn');
+        // --- HELP MODAL LOGIC ---
+        const helpModal = document.getElementById('help-modal');
+        const helpBtn = document.getElementById('help-btn');
+        const modalCloseBtn = helpModal.querySelector('#modal-close-btn');
 
-        function showWelcomeModal() {
-            if (welcomeModal) {
-                welcomeModal.style.display = 'flex';
+        function showHelpModal() {
+            if (helpModal) {
+                helpModal.style.display = 'flex';
                 setTimeout(() => { // Allow display to apply before transition
-                    welcomeModal.classList.add('visible');
+                    helpModal.classList.add('visible');
                 }, 10);
             }
         }
 
-        function hideWelcomeModal() {
-            if (welcomeModal) {
-                welcomeModal.classList.remove('visible');
-                const handleTransitionEnd = () => {
-                    if (!welcomeModal.classList.contains('visible')) {
-                        welcomeModal.style.display = 'none';
-                        if(guideContent) guideContent.style.display = 'none'; // Reset guide content visibility
-                        if(showGuideBtn) showGuideBtn.textContent = 'Show Quick Guide'; // Reset button text
+        function hideHelpModal() {
+            if (helpModal) {
+                helpModal.classList.remove('visible');
+                helpModal.addEventListener('transitionend', () => {
+                    if (!helpModal.classList.contains('visible')) {
+                        helpModal.style.display = 'none';
                     }
-                    welcomeModal.removeEventListener('transitionend', handleTransitionEnd);
-                };
-                welcomeModal.addEventListener('transitionend', handleTransitionEnd);
+                }, { once: true });
             }
         }
-
-        if (showGuideBtn) {
-            showGuideBtn.addEventListener('click', () => {
-                if (guideContent) {
-                    const isHidden = guideContent.style.display === 'none';
-                    guideContent.style.display = isHidden ? 'block' : 'none';
-                    showGuideBtn.textContent = isHidden ? 'Hide Guide' : 'Show Quick Guide';
-                }
-            });
-        }
-        if (dismissWelcomeBtn) dismissWelcomeBtn.addEventListener('click', hideWelcomeModal);
-        if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideWelcomeModal);
+        if (helpBtn) helpBtn.addEventListener('click', showHelpModal);
+        if (modalCloseBtn) modalCloseBtn.addEventListener('click', hideHelpModal);
         
-        showWelcomeModal(); // Show modal on page load
-        // --- END WELCOME MODAL LOGIC ---
+        // --- TOAST NOTIFICATION LOGIC ---
+        document.getElementById('toast-try-now')?.addEventListener('click', () => {
+            switchTab('talents');
+            hideToast();
+        });
+        document.getElementById('toast-dismiss')?.addEventListener('click', hideToast);
 
 
         loadCustomWeights();
@@ -2839,11 +2959,16 @@
         mC2.forEach((module) =>
           s2ModulesContainer.appendChild(generateModuleHTML(module, true))
         );
+        
+        // --- TAB LOGIC ---
+        document.querySelectorAll('.tab-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                switchTab(btn.dataset.tab);
+            });
+        });
+        // Initial state
+        switchTab('s1');
 
-        talentSection.classList.add("collapsed");
-        s2ModulesSection.classList.add("collapsed");
-        s1ModulesSection.classList.remove("collapsed");
-        updateFormulaDisplay();
         updateMissingModuleSelectOptions(mC);
         cA();
 
@@ -2900,6 +3025,7 @@
         // --- End New Theme Management ---
 
 
+        const formulaDisplay = document.getElementById("formula-display");
         if (formulaDisplay) {
           const observer = new IntersectionObserver(
             (entries) =>
@@ -2913,8 +3039,6 @@
           );
           observer.observe(formulaDisplay);
         }
-        tTM();
-        if (!talentModeToggle.checked) toggleS2();
 
         const konamiCode = [
           "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
@@ -2981,6 +3105,11 @@
         missing.length = 0;
         if (missingModuleSelect) missingModuleSelect.value = "";
 
+        // Reset manual entry tracking for toast
+        manualModuleCount = 0;
+        talentsSuggestionShown = false;
+        hideToast();
+
         function resetModItem(moduleItem, moduleDef, isS2M) {
           moduleItem
             .querySelectorAll('input[type="number"].grade-input')
@@ -2999,13 +3128,7 @@
           const mT = document.getElementById(mTId);
           if (mT && mT.checked) {
             mT.checked = false;
-            const gC = moduleItem.querySelector(".c-g");
-            const mC = moduleItem.querySelector(".m-g");
-            if (gC) gC.style.display = "flex";
-            if (mC) mC.style.display = "none";
-             // Also ensure toggle weights button is visible again
-            const toggleWeightsBtn = moduleItem.querySelector(".toggle-weights-btn");
-            if(toggleWeightsBtn) toggleWeightsBtn.style.display = "inline-block";
+            toggleModuleManualMode(moduleDef.code.toLowerCase(), isS2M);
           }
           if (moduleDef.code === "ARCHI" && !isS2M) {
             aB = false;
@@ -3049,13 +3172,10 @@
         document.getElementById("f-a").className = "";
         document.getElementById("s2-f-a").textContent = "0.00";
         document.getElementById("s2-f-a").className = "";
-
-        if (talentModeToggle) talentModeToggle.checked = false;
-        if (s2ModeToggle) {
-          s2ModeToggle.checked = false;
-          s2ModeToggle.disabled = false;
-        }
-        isS2 = false;
+        
+        const talentsS2Toggle = document.getElementById('talents-s2-toggle');
+        if (talentsS2Toggle) talentsS2Toggle.checked = false;
+        isTalentsS2Mode = false;
         
         const appThemeSelect = document.getElementById('theme-select-dropdown');
         const appThemeToggle = document.getElementById('theme-toggle');
@@ -3069,13 +3189,10 @@
         
         setAppTheme('default', isDarkByDefault);
         
-        tTM();
-        if (!talentModeToggle.checked) {
-            toggleS2();
-        } else {
-             isS2 ? cA_S2() : cA();
-        }
-         cA();
+        switchTab('s1');
+        cA();
+        cA_S2();
+        cM();
       }
 
 
